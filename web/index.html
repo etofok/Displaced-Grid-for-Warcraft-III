@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAM7AAADOwGLxKo2AAAFwWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4yLWMwMDAgMTE2LmRlZTNhNzcsIDIwMjIvMDkvMDEtMTM6NTc6MDggICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMy41IChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjQtMDUtMTFUMTk6MzQ6NTgrMDM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDI0LTA1LTExVDE5OjM3KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI0LTA1LTExVDE5OjM3KzAzOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpkN2U3YTRkYi1mZWM5LWYxNDItYmZlMy0xNzkyNTcwOTFiZTkiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo4Yzc2YzZjMC01ODBiLTBjNGQtOTk4Mi1lYWNjNzQ1Zjc0MmYiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2MDQ0ZDM2OS04MmJhLTU4NDAtODZiNy1lOTA5YjE4NmVhZTAiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjYwNDRkMzY5LTgyYmEtNTg0MC04NmI3LWU5MDliMTg2ZWFlMCIgc3RFdnQ6d2hlbj0iMjAyNC0wNS0xMVQxOTozNDo1OCswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjUgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpkN2U3YTRkYi1mZWM5LWYxNDItYmZlMy0xNzkyNTcwOTFiZTkiIHN0RXZ0OndoZW49IjIwMjQtMDUtMTFUMTk6MzcrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy41IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz67rMg4AAAAwUlEQVR42u3bQQqEMAwF0FynZ8nBci5P5mxlaEGYMi36Fn9XaPIWViON1tq5IDHI32uJRQDnDs0DAACgD3Acx7RUVXfjqoprBmum1gIAAAAAAAAAAAAAAAAAAAAAAAAAwACgqqYlM7sbZ2ZcM1gztZathqJ3AB49FQYAYB+AWN38QoTo/qX9PqJ+yajZu5lZS69XAAAAeAh6DwAAAIDPYQMRAAAAAAAAAAAAAAAAAAAAAAAAAC8GcG8QAAAAb7k+/wF/39osHJHepwAAAABJRU5ErkJggg==" rel="icon" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displaced Grid by etofok</title>
+</head>
+<body>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="carousel.css">
+  <link rel="stylesheet" href="slider.css">
+  <link rel="stylesheet" href="faq.css">
+  <link rel="stylesheet" href="lists.css">
+  <link rel="stylesheet" href="buttons.css">
+  <link rel="stylesheet" href="countdown.css">
+
+
+  <!-- Above the fold -->
+  <div class="section-read-abovethefold nocontextmenu"> 
+
+    <h1>Displaced Grid</h1>
+    <h4>by etofok</h4>
+    <h2>Advanced Hotkey Layout For Warcraft III</h2>
+    <h3>+ 7 additional UX modules for even faster control!</h3>
+
+    <img class="nocontextmenu centered" src="assets/images/DGridOnTop.png" alt="DGridOnTop"> 
+
+    <a name="anchor_tothetop" class="anchor-smooth"></a>
+
+    <p>
+      <p class="redbg">JOIN THE LAUNCH PARTY STREAM!</p>
+      <p class="redbg">May 17, Friday - 8:00PM (GMT +3)</p>
+      <p class="countdown_launch padded" id="countdown_launch"></p>
+    </p>
+   
+    <p>
+      <span>
+        <a href="https://www.youtube.com/etofok/live?sub_confirmation=1" target="_blank" class="CTA-button-one color_youtube"><i class="fa fa-youtube-play" style="font-size:4rem"></i>Join on Youtube</a>
+      </span>
+
+      <span>
+        <a href="https://www.twitch.tv/etofok/schedule?seriesID=73bd1f97-2529-44f9-92b0-2d05be63d60e" target="_blank" class="CTA-button-one color_twitch"><i class="fa fa-twitch" style="font-size:4rem"></i>Join on Twitch</a>
+      </span>
+    </p>
+
+<!--
+    <iframe src="https://player.twitch.tv/?channel=etofok&parent=etofok.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+-->
+
+
+
+  
+  </div>
+
+  <!-- quick disclaimer -->
+  <div class="section-read-whitebg nocontextmenu">
+    
+    <h1>Modules provide an unfair advantage</h1>
+    <h1>Do NOT use vs Players!</h1>
+    <h1>Modules are showcase only!</h1>
+
+  </div>
+
+  <!-- Showcase Modules -->
+  <div class="section-read-modules nocontextmenu">
+
+    <div id="container-thumbnails" class="container-thumbnails">
+        <!-- Generated from data in main.js -->
+    </div>
+    
+    <div class="carousel-container">
+      <span class="container-slide-big" id="container-slide-big"><!-- Generated from data in main.js --></span>
+
+      <div class="moduleTooltipText" id="moduleTooltipText">TOOLTIP TEXT</div>
+
+      <button class="prev nocontextmenu" onclick="prevSlide()"><</button>
+      <button class="next nocontextmenu" onclick="nextSlide()">></button>
+    </div>
+        
+    <div class="moduleText">
+      <span class="moduleName" id="moduleName"></span>
+      <span class="moduleTooltip" id="moduleTooltip">[?]</span>
+      <div class="moduleDesc" id="moduleDesc" value=""></div>
+    </div>
+
+    <a href="#anchor_tothetop" class="temp_disabled centered">Go to Download</a>
+  </div>
+
+  <!-- Slider Displaced vs Grid -->
+  <div class="section-read-comparison nocontextmenu">
+    
+    <div class="container-comparison">
+
+      <div class="img before-img"></div>
+      <div class="img after-img"></div>
+          
+      <input type="range" min="0" max="100" value="23" class="slider" name='slider' id="slider">
+      <div class='slider-button'></div>
+    </div>
+
+    <img src="Legacy.png" alt="Legacy" class="centered">
+
+    <a href="#anchor_tothetop" class="temp_disabled centered">Go to Download</a>
+
+  </div>
+
+<!--  -->
+  <div class="faq-section nocontextmenu">
+
+    <!-- 1 start -->
+    <div class="question">
+
+      <button class="question-button">Displaced Grid Explained</button>
+
+      <div class="answer">
+        
+        <p>'Displaced Grid' is a hotkey layout designed for ergonomics and speed.</p>
+
+        <img class="centered cuteborder padded" src="assets/images/typingfast.gif" alt="gitstypingshitinterface"> 
+
+        <p>Warcraft 3 is one of the GODFATHERS of not only the RTS genre but competitive gaming in general.</p>
+
+        <p>And it comes to no surprise it's one of the most hotkey intensive games there is.</p>
+
+        <p>At 200 Actions-Per-Minute and an average game length floating at around 15 minutes...</p>
+
+        <p>We are looking at 3000+ actions PER GAME!</p>
+
+        <p>Now, think of how many games an active player might have in one day? In a week? Over the years?..</p>
+
+        <p>Why use a hotkey layout designed for ergonomics...of 2001?</p>
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/winme.webp" alt="Millennium"> 
+          <span class="textunderneath">
+           Windows Millennium, released during Warcraft 3 development in 2000
+          </span>
+        </div>
+
+        <p>The goal was to reduce the gap between what we WANT to do in-game...</p>
+
+        <p>and what we can ACTUALLY manage doing :)</p>
+
+        <p>Because I, for one, can't play like Grubby.</p>
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/imverybadchart.jpg" alt="imverybadchart"> 
+          <span class="textunderneath">
+            the gap between the 'intent' and the 'execution'
+          </span>
+        </div>
+
+        <p>Truth is: the worse the interface - the bigger the gap between our intention and our execution.</p>
+
+        <p>And ironically, the 'slower' player suffers the most from this gap.</p>
+
+        <p>So instead of fighting the interface, Displaced Grid is designed to bridge that gap.</p>
+
+        <p>With a better interface we can execute our decisions FASTER</p>
+
+        <p>BONUS: And without hand fatigue at all!</p>
+
+          <ul class="wrap-list-features"><b>KEY FEATURES:</b>
+            <li class="list-notsocompact">- Noticeably <b>More Compact</b></li>
+            <li class="list-notsocompact">- <b>Main Control Groups:</b> <i>QWASZX</i> - for much quicker access to 6 control groups</li>
+            <li class="list-notsocompact">- <b>Select Heroes:</b> <i>'1' '2' '3'</i> - an ergonomical solution that is easier on your hand</li>
+            <li class="list-notsocompact">- <b>Items:</b> <i>ALT + QWASZX</i> - visually coherent with backpack and easier access than alternatives</li>
+            <li class="list-notsocompact">- <b>Attack command:</b> <i>'Spacebar'</i> - 100% the best choice right underneath your thumb</li>
+            <li class="list-notsocompact">- <b>Abilities:</b> <i>'E' 'R' 'T' 'Y'</i></li>
+            <li class="list-notsocompact">- Everything else: lower priority right under the Abilities (DFGH & CVBN)</li>
+          </ul>
+
+      </div>
+   </div> 
+    <!-- 1 end -->
+
+    <!-- 2 start -->
+
+ <div class="question">
+    <button class="question-button">Modules Explained</button>
+
+    <div class="answer">
+  
+      <p>Aside from the <i>'Displaced Grid'</i> layout, the package comes with extra 7 modules* designed for fun</p>
+
+      <div class="padded">
+        <img class="centered cuteborder" src="assets/images/overview.png" alt="overview"> 
+        <span class="textunderneath">
+        <i>'QuickCast Abilities'</i> is NOT a module. It's from Blizzard directly. You can find instructions below.
+        </span>
+      </div>
+
+      <p>Module designs follow the same logic of 'bridging the gap' explained earlier.</p>
+
+      <p>But...</p>
+
+      <p><b>Please understand:</b> using the modules against an unaware player <b>is technically cheating.</b></p>
+
+      <p>We're not supposed to have this type of functionality in a normal game.</p>
+
+      <p>Modules massively improve your ability to interact with the game => they provide a competitive advantage.</p>
+
+      <p>Modules are OPTIONAL to use - you don't have to use any of this.</p>
+
+      <p>Modules WORK with ANY LAYOUT. You don't need to use the Displaced Grid layout to use modules.</p>
+
+      <p>You can easily turn off or deactivate any modules (see instructions below).</p>
+
+    </div>
+  </div>
+  <!-- 2 end -->
+
+  <!-- 3 start -->
+ <div class="question">
+
+  <button class="question-button">The Philosophy behind all this</button>
+
+  <div class="answer">
+                  
+    <p>RTS games fell off in popularity not only because of their complexity but also because they are 'hard to play'.</p>
+
+    <p>'Hard to play' is an illusion. It's a veil. It's not the game that's 'hard to play', it's the opponent that makes it hard for you.</p>
+
+    <p>Which is the point of it all.</p>
+
+    <p>But the argument is somewhat grounded in reality: it IS hard to CONTROL everything well "to play".</p>
+
+    <p>Some players don't see the dexterity check as A PART of the experience.</p>
+
+    <p>And some... don't "<i>enjoy sweating out 200 APM</i>" (I've read a lot of comments about RTS games).</p>
+
+    <p>And the very intelligence that draws a very specific crowd to strategy games is what's making us self aware of how embarrassing our execution is.</p>
+
+    <p>The gap between the 'intent' and the 'execution' might be too noticeable for a lot of players to tolerate.</p>
+
+    <div class="padded">
+      <img class="centered cuteborder" src="assets/images/imverybadchart.jpg" alt="imverybadchart"> 
+      <span class="textunderneath">
+        the gap between the 'intent' and the 'execution'
+      </span>
+    </div>
+
+    <p>Add on top of it that it's also a one-on-one battle...</p>
+
+    <p>...a mirror for YOUR flaws (and YOUR FLAWS ONLY)...</p>
+
+    <p>...no wonder people flake out towards 'team based' mobas.</p>
+
+    <p>So unless you LOVE rhythm-management-dexterity-check games, the question "WHY BOTHER?" stands tall. It's not 2003 anymore.</p>
+
+    <p>This is even more important in mature communities.</p>
+
+    <p>You see, from a newcomer's point of view the experienced players might look completely unapproachable.</p>
+
+    <p>You need a significant investment into your ABILITY TO DELIVER.</p>
+
+    <p>Which works for physical sports, works for dexterity games. No problem.</p>
+
+    <p>Think about it: when we reduce the gap between the intent and the execution, we bring forward tactical knowledge and strategic decisions.</p>
+
+    <p>And vice versa.</p>
+
+    <div class="padded">
+      <img class="centered cuteborder" src="assets/images/dexterity vs strategy.jpg" alt="dexterityvsstrategy"> 
+      <span class="textunderneath">
+        I don't want to start any holy wars. This is approximate!
+      </span>
+    </div>
+
+    <p>Whether it's a good thing or a bad thing is up to a debate, because with no physical component you end up with memorization and libraries of flowcharts. Works for chess, works for card games.</p>
+
+    <p>RTS games gathered a huge following, but have a relatively inactive PLAYER base.</p>
+
+    <p>The ratio between the players to the followers is probably second only to Formula 1.</p>
+
+    <p>People do enjoy a good game, but since they don't like their own play - they prefer to watch.</p>
+ 
+    <p>So, to create an RTS with an active PLAYER base... we need to design around accessibility and to do so - we need to design a great interface.</p>
+
+    <p>All this... is my attempt at doing exactly that as a showcase.</p>
+
+    <p><b>Disclaimer 1</b>: the code might not look pretty for some of you senior level software engineers: I made it all from scratch over 2 months of learning autohotkey, and I'm aware it might not be up to par with enterprise practices. All code is open on github.</p>
+
+    <p><b>Disclaimer 2</b>: We use pixel hunt to 'see' things like item cooldown (cooldown is a hard blue overlay so we can 'see' it). For some modules to work, you will need to do a quick to set up.</p>
+
+  </div>
+
+ </div>
+
+</div> 
+
+
+  <!-- FAQ -->
+  <div class="faq-section">
+
+    <h1>F.A.Q.</h1>
+
+    <!-- Question 1 -->
+    <div class="question">
+
+      <button class="question-button smaller">What is Grid?..</button>
+
+      <div class="answer">
+
+        <p>'Grid' is a hotkey layout designed for simplicity.</p>
+
+        <p>Very good for beginners and casual players.</p>
+
+        <p>Better than the 'Classic' layout.</p>
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/Sc2 Grid.webp" alt="Sc2 Grid command card"> 
+          <span class="textunderneath">
+            (screenshot from another Blizzard game, Starcraft 2)
+          </span>
+        </div>
+
+        <ul>
+          <li class="list-compact">1st Row 1st Column is always "Q".</li>
+          <li class="list-compact">3rd Row 1st Column is always "Z".</li>
+          <li class="list-compact">3rd Row 3rd Column is always "C".</li>
+          <li class="list-compact">etc.</li>
+        </ul>
+
+        <p>Grid layout is available in Warcraft III Reforged.</p>
+
+        <div class="padded">
+          <video class="video-webm nocontextmenu centered cuteborder" autoplay muted preload="auto" loop playsinline poster="">
+          <source type="video/webm" src="assets/images/Input_OriginalGrid.webm">
+          </video>
+          <span class="textunderneath">
+            (Enable GRID in 'Settings' -> 'Input')
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+
+      <button class="question-button smaller">What is Quick Cast?..</button>
+
+      <div class="answer">
+          
+        <p><b>"Quick Cast</b>" - ability fires immediately on key activation at the cursor, i.e.</p>
+
+        <div class="padded">
+          <video class="video-webm nocontextmenu cuteborder centered" autoplay muted preload="auto" loop playsinline poster="">
+            <source type="video/webm" src="assets/modules/1_video.mp4">
+          </video>
+          <span class="textunderneath">
+            (as you can see, there's no 'Select Target' cursor)
+          </span>
+        </div>       
+
+        <p>Normal Cast: (1) 'Press Ability Key' -> (2) 'Click Mouse' -> Ability Fires</p>
+        <p>Quick Cast: (1) 'Press Ability Key' -> Ability Fires immediately AT the mouse cursor position</p>
+        
+
+      </div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question">
+
+      <button class="question-button smaller">What's Wrong With Blizzard's Quick Cast??</button>
+
+      <div class="answer">
+
+        <p>Problem is...</p>
+        <p>are...</p>
+
+        <ol class="wrap-list-normal">
+          <li class="list-compact">Quick Casts don't work... well with AOE abilities (we can't see the AOE)</li>
+          <li class="list-compact">Quick Casts don't work... with items (seems like they forgot to enable it)</li>
+          <li class="list-compact">Quick Casts don't work... when targeting UI elements</li>
+          <li class="list-compact">Quick Casts don't work... with the Classic Keys</li>
+          <li class="list-compact">Quick Casts don't work... with the Custom Keys</li>
+        </ol>
+
+        <p>Which is weird and sad.</p>
+        <p>I'm very sad.</p>
+
+      </div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question">
+
+      <button class="question-button smaller">What's Wrong with Blizzard's Grid??</button>
+
+      <div class="answer">
+
+          <p>The default 'Grid' keys are good.</p>
+          <p>On the keyboard,</p>
+          <p>but NOT in-game.</p>
+
+          <p>Take a closer look at the command card:</p>
+          
+          <img class="centered padded" src="assets/images/CommandCardDuo.png" alt="Warcrat III command card">
+          
+          <p>Notice how 'Move', 'Stop', 'Hold' and 'Attack' commands occupy Q W E R slots?</p>
+          <p>Why are Abilities on Z X C V???</p>
+          
+          <p>Wouldn't abilities on Q W E R... make more sense?</p>
+          <p>Wouldn't having "A" for 'Attack' and "S" for 'Stop'... make more sense?</p>
+          <p>Wouldn't aligning 'Abilities' and 'Train Units' on Q W E R... make more sense?</p>
+
+      </div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question">
+
+      <button class="question-button smaller">The Fixed Grid by WTVR</button>
+
+      <div class="answer">
+
+        <p>A valid solution to the 'wrong Grid layout' is to use...</p>
+
+        <a href="https://www.reddit.com/r/WC3/comments/69p3nv/improved_custom_hotkeys_setup_by_wtvr/" target="_blank">Improved Custom Hotkeys Setup by WTVR</a>
+        
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/WTVR1.png" alt="WTVR1">
+          <span class="textunderneath">
+            (solution by WTVR)
+          </span>
+        </div>
+
+        <p>This is a VERY nice in-game layout!</p>
+
+        <p>This is basically 'The Fixed Grid', and should've gotten more attention.</p>
+          
+          
+        <p>But unfortunately, to rearrange the in-game icons we MUST use the 'Custom' input method (instead of 'Grid')</p>
+
+        <p>..which means we won't get the Blizzard's Quick Casts.</p>
+
+        <p>Blizzard's Quick Casts only work with 'GRID'.</p>
+
+        <p>Weird, huh?</p>
+      
+      </div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question">
+
+      <button class="question-button smaller">So.. Grid, Custom or??</button>
+
+      <div class="answer">
+
+          <p>Here's our choice...</p>
+
+          <ol>
+            <li class="list-compact">Use WTVR CustomKeys.txt: enjoy a nice layout, but give up on Blizzard's Quick Casts...</li>
+            <li class="list-compact">Use 'Grid' input: enjoy Blizzard's Quick Casts, but use a nonsensical layout...</li>
+            <li class="list-compact">Use 'Grid' and reassign hotkeys ON TOP of it.</li>
+          </ol>
+
+          <p>Well, I chose №3 :)</p>
+          <p>Warcraft III 'thinks' we use 'Grid' (we do), but in reality we have a layer on top of it.</p>
+          <p>And that is Displaced Grid.</p>
+
+          <img class="nocontextmenu centered padded" src="assets/images/DGridOnTop.png" alt="DGridOnTop"> 
+
+      </div>
+    </div>
+
+  <!-- end of the FAQ -->
+  </div>
+
+
+
+  <div class="section-read-whitebg nocontextmenu">
+
+    <h1>Here's What You Get...</h1>
+
+    <ul class="wrap-list-end">
+      <li class="list-notsocompact"><b>Displaced Grid Layout</b></li>
+      <li class="list-notsocompact"><a href="#anchor_quickcastability">QuickCast for Abilities*</a></li>
+      <li class="list-notsocompact"><b>QuickCast for Items</b></li>
+      <li class="list-notsocompact"><b>Shift Queue Items</b></li>
+      <li class="list-notsocompact"><b>Hold Cast</b></li>
+      <li class="list-notsocompact"><b>Self Target Cast</b></li>
+      <li class="list-notsocompact"><b>Command Multiple Groups</b></li>
+      <li class="list-notsocompact"><b>Camera Hotkeys</b></li>
+      <li class="list-notsocompact"><b>QuickDrop Items</b></li>
+      <li class="list-notsocompact">Set Up Instructions</li>
+      <li class="list-notsocompact">Image Overlay Helper</li>
+      <li class="list-notsocompact">On / Off Layout via Hotkey</li>
+      <li class="list-notsocompact">Open Source Code</li>
+      <li class="list-notsocompact">Everything is optional</li>
+      <li class="list-notsocompact">Everything is customizable</li>
+      <li class="list-notsocompact">Everything is FREE</li>
+    </ul>
+  
+    <a href="#anchor_tothetop" class="temp_disabled centered">Github Download</a>
+
+  </div>
+
+
+
+  <div class="faq-section nocontextmenu">
+
+    <h1>Set Up Instructions</h1>
+
+    <div class="question">
+
+      <button class="question-button smaller" id="anchor_quickcastability">How to Enable Quick Cast In Warcraft 3</button>
+      
+      <div class="answer">
+
+        <a name="anchor_quickcastability" class="anchor-smooth"></a>
+
+        <p>Step 1. You MUST use the 'GRID' layout.</p>
+
+        <video class="video-webm nocontextmenu centered cuteborder padded" autoplay muted preload="auto" loop playsinline poster="">
+        <source type="video/webm" src="assets/images/Input_OriginalGrid.webm">
+        </video>
+
+        <p>Step 2. Go to your <i>%USERNAME%/Documents/Warcraft III folder</i></p>
+
+        <img class="centered cuteborder padded" src="assets/images/QC1.png" alt="Image 1">
+
+        <p>Step 3. Open War3Preferences.txt</p>
+
+        <img class="centered cuteborder padded" src="assets/images/QC2.png" alt="Image 1">
+
+        <p>Step 4. Change every <i>QuickCast=0</i> to <i>QuickCast=1</i> (CTRL + H)</p>
+
+        <img class="centered cuteborder padded" src="assets/images/QC3.png" alt="Image 1">
+
+          <p>Step 5. Enjoy!</p>
+
+          <video width="380" height="338" class="video-webm nocontextmenu centered cuteborder padded" autoplay muted preload="auto" loop playsinline>
+          <source type="video/webm" src="assets/images/QC Showcase.webm">
+          </video>
+
+      </div>
+    </div>
+ 
+    <div class="question">
+
+      <button class="question-button smaller">How to Run the App itself</button>
+
+      <div class="answer">
+     
+        <p>Download Autohotkey v1.1: 
+        <a href="https://www.autohotkey.com/" target="_blank">https://www.autohotkey.com/</a></p>
+        
+        <p>Download 'Displaced GRID' release from Github:
+        <a href="https://github.com/etofok/Displaced-Grid-for-Warcraft-III/releases/" target="_blank">https://github.com/etofok/Displaced-Grid-for-Warcraft-III/releases/</a></p>
+        
+        <p>Run "(RUN THIS FILE) Displaced GRID.ahk" with Autohotkey v1.1</p>
+        
+        <p>"Displaced GRID" will appear in your Tray menu</p>
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/grid1.png">   
+          <span class="textunderneath">
+            (Displaced Grid is On)
+          </span>
+        </div>   
+
+        <p>Right click on this icon to get access to Tray Menu:</p>
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/overview.png">   
+          <span class="textunderneath">
+            (Default Tray Menu)
+          </span>
+        </div>     
+
+      </div>
+    </div>
+
+    <div class="question">
+      <button class="question-button smaller">How to use Displaced Grid Layout</button>
+
+      <div class="answer">
+       
+        <p>The layout will work out of the box.</p>
+
+        <p>Icon in Tray indicates whether it is On or Off</p>
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/grid0.png">   
+          <span class="textunderneath">
+            (Displaced Grid is Off)
+          </span>
+        </div>   
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/grid1.png">   
+          <span class="textunderneath">
+            (Displaced Grid is On)
+          </span>
+        </div>   
+
+        <p>The layout is active ONLY when the Warcraft III window is active.</p>
+
+        <p>When Warcraft III is NOT active (if you're tabbed out) - you'll have your regular hotkeys.</p>
+
+        <p><i>Please note</i>: when the layout is active you won't be able to type in chats (because your keys are remapped).</p>
+   
+        <p>You can toggle the layout On/Off via a Hotkey.</p>
+
+        <p>Default is <b>ScrollLock</b>.</p>
+
+        <p>You are free to change the hotkey in 'UserSettings.ahk' (open in Notepad)</p>
+
+        <img class="centered padded cuteborder" src="assets/images/overview.png">
+
+      </div>
+    </div>
+      
+    <div class="question">
+
+      <button class="question-button smaller">How to use Image Overlay</button>
+
+      <div class="answer">
+
+        <p><i>"IMAGE_OVERLAY.png"</i> is what is displayed on top of the Warcraft III window.</p>
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/imageoverlay.jpg">   
+          <span class="textunderneath">
+            (When Displaced Grid is On you'll see this overlay.)
+          </span>
+        </div>
+
+        <p>This is a lifesaver.</p>
+
+        <p>It's aligned for the 1920x1080 resolution.</p>
+
+        <p><b>If you DON'T play in 1920x1080 - the overlay image will be off grid.</b></p>
+        
+        <p>So, in this case you'll need to adjust the overlay to your resolution.</p>
+
+        <p>This is how I would do it:</p>
+
+        <ol class="wrap-list-normal">
+          <li class="list-compact">Go into Warcraft III</li>
+          <li class="list-compact">Take an in-game screenshot</li>
+          <li class="list-compact">Paste the screenshot in any .png editor</li>
+          <li class="list-compact">(there are tons of websites, and also photoshop and canva)</li>
+          <li class="list-compact">Use "IMAGE_OVERLAY.png" to align everything correctly</li>
+          <li class="list-compact">Save and Replace the original "IMAGE_OVERLAY.png"</li>
+          <li class="list-compact">(don't change the name or the extension)</li>
+        </ol>
+
+        <p>I use photoshop</p>
+
+      </div>   
+    </div>
+
+
+    <div class="question">
+
+      <button class="question-button smaller">How to set up Modules</button>
+
+      <div class="answer">
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/overview.png">   
+          <span class="textunderneath">
+            (App Tray Menu)
+          </span>
+        </div>
+
+        <p>Some modules require very precise pixel coordinates to work. Otherwise they will not work.</p>
+
+        <p>For example, we can 'see' that an item is on cooldown by its blue countdown overlay.</p>
+
+        <p>But we need to 'know' where to check for it on the screen.</p>
+
+        <p>That's why the App needs to know where YOUR item slots are located on YOUR user interface.</p>
+
+        <p>Here's what you can do.</p>
+
+        <p>If you DO play in 1920x1080: everything should work without any modifications.</p>
+
+        <p>If you DON'T play in 1920x1080: you need to adjust a few numbers to YOUR game resolution.</p>
+
+        <p>This is very simple:</p>
+
+        <ol class="">
+          <li class="list-notsocompact">Open 'UserSettings.ahk' in Notepad</li>
+          <li class="list-notsocompact">Find "Item1.x" data</li>
+          <li class="list-notsocompact">You will see X,Y coordinates for each of the 6 item slots</li>
+          <li class="list-notsocompact">Go into Warcraft III</li>
+          <li class="list-notsocompact">Take an in-game screenshot with an item on cooldown</li>
+          <li class="list-notsocompact">Paste the screenshot in Paint</li>
+          <li class="list-notsocompact">Find THIS pixel:</li>
+
+          <div class="padded">
+            <img class="centered cuteborder" src="assets/images/pixelhuntcloseup.png">   
+            <span class="textunderneath">
+              (this exact pixel: blue overlay on top of the white item border.)
+            </span>
+          </div>
+
+          <div class="padded">
+            <video class="nocontextmenu centered cuteborder" autoplay muted preload="auto" loop playsinline>
+            <source type="video/mp4" src="assets/images/pixelhuntsetup.mp4">
+            </video>
+            <span class="textunderneath">
+              (Tray Menu)
+            </span>
+          </div>
+
+          <li class="list-notsocompact">Adjust the X,Y coordinates in 'UserSettings.ahk' for your item slots, so that you can use QuickCast Items and QuickDrop Items modules</li>
+
+          <div class="padded">
+            <img class="centered cuteborder" src="assets/images/itemcoords.png">
+          </div>
+
+          <li class="list-notsocompact">Adjust the X,Y coordinates in 'UserSettings.ahk' for the Portrait UI element as well, so that you can use Self-Target Cast module</li>
+        
+          <div class="padded">
+            <img class="centered cuteborder" src="assets/images/portraitcoords.png">   
+          </div>
+
+          <li class="list-notsocompact">(OPTIONAL) To reanchor groups for the '<i>Command Multiple Groups</i>' module use this:</li>
+
+          <div class="padded">
+            <img class="centered cuteborder" src="assets/images/CommandMultipleGroupsSetup.png">
+            <span class="textunderneath">
+              (Default groups are 1,2,3,4 which are bound to A S Z X)
+            </span>
+          </div>
+
+          <li class="list-notsocompact">(OPTIONAL) To reanchor groups for the <i>'Camera Hotkeys'</i> module use this:</li>
+
+          <div class="padded">
+            <img class="centered cuteborder" src="assets/images/CameraHotkeysSetup.png">
+            <span class="textunderneath">
+              (Default groups are 7,8,9,0 which are bound to F1 F2 F3 F4)
+            </span>
+          </div>
+
+        </ol>
+
+      </div>     
+    </div>
+
+    <div class="question">
+    
+      <button class="question-button smaller">How to Turn Off/On Modules entirely</button>
+
+      <div class="answer">
+
+        <p>In 'UserSettings.ahk' (open in Notepad) you can Enable / Disable modules on App start.</p>
+
+        <img class="centered padded cuteborder" src="assets/images/modulesdefault.png">
+
+        <p>Set "True" to Enable a module.</p>
+        <p>Set "False" to Disable a module.</p>
+
+        <p>Disabled modules won't appear in the App Tray Menu.</p>
+
+        <p>This is useful if you only want to use the Displaced Grid layout, without any modules.</p>
+
+      </div>
+    </div>
+
+  </div> 
+
+
+  <div class="section-read-whitebg">
+
+    <h1>Congratulations! You have reached new heights.</h1>
+
+  </div>
+
+  <div class="section-read-whitebg">
+
+    <h1>What Now?</h1> 
+
+    <p>
+      <h2>You can <a href="https://discord.gg/grmNuB5cWc" target="_blank">engage me on Discord</a></h2>
+
+      <h2>If you ever send donations (Twitch / OF / etc) - you can <a href="https://www.donationalerts.com/r/etofok" target="_blank">send a donation</a> so that you can say thanks for this effort</h2>
+    </p>
+
+    <p>
+      <h2>I hope to deliver more quality content in my time</h2>
+    </p>
+
+  </div>
+
+  <div class="section-read-footer">
+
+    <p>written and produced by <a href="https://linktr.ee/etofok" target="_blank">etofok</a> 2024</p>
+
+    <p>
+      <a href="https://discord.gg/grmNuB5cWc" target="_blank">Discord</a>
+      <a href="https://www.youtube.com/user/etofok?sub_confirmation=1" target="_blank">Youtube</a>
+      <a href="https://www.donationalerts.com/r/etofok" target="_blank">Donate</a>
+    </p>
+
+   <p>Displaced Grid is not affiliated with or endorsed by Activision Blizzard, Inc. All relevant trademarks belong to their respective owners.</p>
+
+  </div>
+
+  <script src="main.js"></script>
+
+</body>
+</html>

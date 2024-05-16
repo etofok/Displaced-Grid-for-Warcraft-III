@@ -1,0 +1,204 @@
+body {
+    margin: 0 auto;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+b {
+    font-weight: 200;
+}
+
+/*
+* { 
+  outline: 1px solid red;
+  outline-offset: -1px;
+}
+*/
+
+.centered {
+  margin: 0 auto;
+  display: flex;
+  text-align: center;
+}
+
+.cuteborder {
+    border: 1px solid #9E9BFE;
+    box-sizing: border-box; 
+}
+
+.textunderneath {
+    display: block;
+    margin-top: 0rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.padded {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+
+
+
+
+@keyframes breath {
+  0% {
+    font-variation-settings: "wght" var(--wght-min);
+  }
+  100% {
+    font-variation-settings: "wght" var(--wght-max);
+  }
+}
+
+.section-read-abovethefold {
+    background-color: #222222;
+    text-align: center;
+    width: 100%;
+}
+
+.section-read-abovethefold h1 {
+    font-family: "Geist";
+    font-size: 2rem;
+    font-weight: bold;
+
+    color: #ffffff;
+    padding: 1rem 0;
+        
+    animation: breath 2.0s alternate ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: 2.0s;
+    animation-fill-mode: both;
+
+    --wght-min: 16;
+    --wght-max: 200;
+}
+
+.section-read-abovethefold h2 {
+    font-family: "Friz Quadrata TT";
+    font-size: 3rem;
+    font-weight: 100;
+
+    line-height: 3rem;
+    letter-spacing: -1px;
+
+    color: #ffffff;
+    padding-top: 2.5rem;
+}
+
+.section-read-abovethefold h3 {
+    font-family: "Friz Quadrata TT";
+    font-size: 2rem;
+
+    color: #a7a7a7;
+}
+
+.section-read-abovethefold h4 {
+    font-family: "Geist";
+    font-size: 1rem;
+    font-weight: 16;
+
+    line-height: 0rem;
+    color: #a7a7a7;
+}
+
+
+
+.section-read-whitebg {
+    font-family: "Friz Quadrata TT";
+
+    margin: 0 auto;
+    padding: 0rem;
+
+    text-align: center;
+
+    background-color: #F5F5F5;
+    box-shadow: inset 0rem -0.5rem 0.5rem -0.5rem rgba(110, 110, 110, 0.5); /*white*/
+
+}
+
+.section-read-whitebg h1 {
+    font-family: "Friz Quadrata TT";
+    font-size: 2rem;
+
+    line-height: 3rem;
+    color: #444444;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+
+.section-read-whitebg h2 {
+    font-family: "Friz Quadrata TT";
+    font-size: 1rem;
+    line-height: 1rem;
+
+    color: #444444;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.section-read-comparison {
+    font-family: "Friz Quadrata TT";
+
+    margin: 0 auto;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+
+    text-align: center;
+
+    background-color: #F5F5F5;
+    box-shadow: inset 0rem -0.5rem 0.5rem -0.5rem rgba(110, 110, 110, 0.5);
+}
+
+.section-read-comparison h1 {
+    font-family: "Friz Quadrata TT";
+    font-size: 3rem;
+
+    color: #444444;
+    text-align: center;
+}
+
+
+.section-read-footer {
+    font-family: "Friz Quadrata TT";
+    font-size: 1rem;
+    text-align: center;
+
+    margin: 0 auto;
+    padding: 2rem 0;
+
+    background-color: #F5F5F5;
+    box-shadow: inset 0rem -0.5rem 0.5rem -0.5rem rgba(110, 110, 110, 0.5); /*white*/
+}
+
+
+
+
+.section-read-modules {
+    margin: 0 auto;
+    padding: 1rem 0;
+
+    text-align: center;
+    background-color: #F5F5F5;
+
+    box-shadow: inset 0rem -0.5rem 0.5rem -0.5rem rgba(110, 110, 110, 0.5);
+}
+
+
+.redbg {
+    background-color: red;
+}
+
+#anchor-smooth {
+  scroll-behavior: smooth;
+}
+
+
+

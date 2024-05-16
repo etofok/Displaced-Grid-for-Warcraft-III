@@ -1,0 +1,113 @@
+@font-face {
+  font-family: "Geist";
+  src: url("https://pham.codes/d/GeistMonoVF.woff2") format("woff2");
+}
+
+
+.question {
+    margin: 1rem auto;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.question-button {
+    font-size: 2rem;
+
+    text-align: left;
+    background-color: #282828;
+    color: #F5F5F5;
+    padding: 1rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    box-shadow: rgb(0, 0, 0, 0.2) 0px 1rem 1rem 1rem;
+
+    font-weight: 150;
+    letter-spacing: -1px;
+    font-family: "Geist";
+    -webkit-font-smoothing: antialiased;
+    transition: opacity 0.6s linear;
+
+}
+
+.question-button:hover {
+    transition: background-color 0.3s ease;
+    background-color: #383838;
+}
+
+.smaller {
+    font-size: 1.5rem;
+    font-weight: 64;
+}
+
+.smaller:hover {
+    transition: background-color 0.1s ease;
+    border-left: 1px solid #F5F5F5;
+}
+
+
+.answer {
+    display: none;
+
+    font-size: 1rem;
+    line-height: 2rem;
+    font-family: "Geist";
+    text-align: left;
+
+    margin: 0 auto;
+    padding: 1rem;  
+
+    background-color: #333333;
+    color: #f1f1f1;
+
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -2rem 2rem 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 1rem 8px, rgba(0, 0, 0, 0.09) 0px 32px 1rem;
+
+    font-weight: 64;
+    letter-spacing: 0px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.answer.show {
+    display: block;
+}
+
+.answer p {
+    text-align: left;
+    line-height: 2rem;
+    margin-bottom: 1.25em;
+}
+
+
+
+
+.faq-section {
+    background-color: #292929;
+    text-align: center;
+    box-shadow: inset 0px -1rem 1rem -1rem rgba(0, 0, 0, 0.5); /*black*/
+    padding: 1rem;
+    overflow-wrap: break-word;
+}
+
+
+.faq-section h1 {
+    font-family: "Geist";
+    font-size: 2rem;
+    font-weight: 128;
+    letter-spacing: 0px;
+    -webkit-font-smoothing: antialiased;
+
+    background-color: #383838;
+    margin: 1rem auto;
+    padding: 1rem;
+    color: #F5F5F5;
+    text-align: center;
+    max-width: 1000px;
+
+    box-shadow: rgb(0, 0, 0, 0.2) 0px 1rem 1rem 1rem;
+}
+
+
+
+
+
+
