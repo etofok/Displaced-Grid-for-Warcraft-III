@@ -58,7 +58,7 @@ QuickCast(objItem) {
 
 	;-----------------------------------------
 	; check if the Item slot is NOT empty to continue...
-	ImageSearch, image_cdX, image_cdY, objItem.x-2, objItem.y-2, objItem.x+2, objItem.y+2, *10 %A_ScriptDir%\Modules\pixelhunt\PixelHunt_NonEmptySlot.png
+	ImageSearch, image_cdX, image_cdY, objItem.x-2, objItem.y-2, objItem.x+2, objItem.y+2, *30 %A_ScriptDir%\Modules\pixelhunt\PixelHunt_NonEmptySlot.png
 	
 	; image_cdX, image_cdY setup in 
 	; PixelHunt_NonEmptySlot is a gray pixel indicating an item's border
