@@ -52,8 +52,9 @@ if (b_CommandMultipleGroups == 1) {
 CommandMultipleGroups(modifiers, objCommand) {
 
 	Loop, % ControlGroups.MaxIndex() {
-	    if (ControlGroups[A_Index].commandThisGroup == 1) {
-	        Send % ControlGroups[A_Index].logicalKey
+	    i := ControlGroups.MaxIndex() - A_Index + 1
+	    if (ControlGroups[i].commandThisGroup == 1) {
+	        Send % ControlGroups[i].logicalKey
 	        Send % modifiers objCommand.logicalKey
 	    }
 	}
