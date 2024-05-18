@@ -15,7 +15,7 @@ if not A_IsAdmin
 SetWorkingDir %A_ScriptDir%
 SetTitleMatchMode, 3
 
-Global currentVersion				:= "v1.1.0"
+Global currentVersion				:= "v1.1.1"
 
 ; miscellaneous
 Global FlashSplashTime 				:= 50
