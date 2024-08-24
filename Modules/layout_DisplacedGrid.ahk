@@ -31,8 +31,8 @@ load_DisplacedGrid() {
 
 	GRID_20.physicalKey 		:= 	"e"
 	GRID_21.physicalKey 		:= 	"r"
-	GRID_22.physicalKey 		:= 	"t"
-	GRID_23.physicalKey 		:= 	"y"
+	GRID_22.physicalKey 		:= 	"4"
+	GRID_23.physicalKey 		:= 	"t"
 
 	Item1.physicalKey			:=	"!q"
 	Item2.physicalKey			:=	"!w"

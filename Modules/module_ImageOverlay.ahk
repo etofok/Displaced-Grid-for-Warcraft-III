@@ -91,7 +91,5 @@ SetupImageOverlay() {
 	Gui, gui_imageOverlay:Color, %color%
 	Gui, gui_imageOverlay:margin, 0, 0
 
-	WinSet, TransColor, %color% 222, % gui_imageOverlay ; PNG transparency. 0 = fully transparent
 	WinSet, ExStyle, +0x20, % gui_imageOverlay	; Click-through
-
 }
