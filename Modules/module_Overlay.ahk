@@ -47,8 +47,7 @@ Toggle_Overlay() {
 Control_Overlay(switchTo) {
 
 	if (switchTo == 1) {
-		SetupImageOverlay()	; yes, every time
-		Gui, gui_imageOverlay:Show, NoActivate, % "x" (WarcraftIII_posX) " y" (WarcraftIII_posY)
+		SetupImageOverlay()	; yes, every time to resize it just in case, etc
 	} else {
 		Gui, gui_imageOverlay:Hide
 	}
@@ -58,24 +57,31 @@ Control_Overlay(switchTo) {
 	if (b_EventLog) {
 		UpdateEventLog("Hotkey Overlay - " . switchTo)	
 	}
-} 
+}
 
 
 SetupImageOverlay() {
-
-	WinGet, windowHandle, ID, %winName%
-	WinGetPos, WarcraftIII_posX, WarcraftIII_posY, WarcraftIII_width, WarcraftIII_height, %winName%
-	
-	image_OverlayLayout_Path = %A_ScriptDir%\IMAGE_OVERLAY.png
-
-	GuiControl, gui_imageOverlay:, Picture, *w(%WarcraftIII_width%) *h(%WarcraftIII_height%) %image_OverlayLayout_Path%
-	Gui, gui_imageOverlay:Add, Picture, x(%WarcraftIII_posX%) y(%WarcraftIII_posY%) h(%WarcraftIII_height%) w(%WarcraftIII_width%), %image_OverlayLayout_Path%
-	Gui, gui_imageOverlay: -Caption +ToolWindow +LastFound -Border +Owner%windowHandle%
-	
 	color := "FFFFFF"
-	Gui, gui_imageOverlay:Color, %color%
-	Gui, gui_imageOverlay:margin, 0, 0
 
-	WinSet, TransColor, %color% 222, % gui_imageOverlay ; PNG transparency. 0 = fully transparent
+    WinGet, windowHandle, ID, %winName%
+    WinGetPos, WarcraftIII_posX, WarcraftIII_posY, WarcraftIII_width, WarcraftIII_height, %winName%
+
+    ; Path to the overlay image
+    image_OverlayLayout_Path = %A_ScriptDir%\IMAGE_OVERLAY.png
+
+    ; Set up the GUI for the overlay with transparency
+    Gui, gui_imageOverlay:-AlwaysOnTop -Caption +ToolWindow +LastFound -Border +Owner%windowHandle%
+    
+    ; Add the image with full dimensions of the window
+    Gui, gui_imageOverlay:Add, Picture, x0 y0 w%WarcraftIII_width% h%WarcraftIII_height%, %image_OverlayLayout_Path%
+ 
+    ; Show the GUI overlay at the exact position of the Warcraft III window
+    Gui, gui_imageOverlay:Show, x%WarcraftIII_posX% y%WarcraftIII_posY% w%WarcraftIII_width% h%WarcraftIII_height%
+	Gui, gui_imageOverlay:Color, %color%
+
+    ; Make the GUI transparent and click-through
+	WinSet, TransColor, %color% 250, % gui_imageOverlay ; PNG transparency. 0 = fully transparent
 	WinSet, ExStyle, +0x20, % gui_imageOverlay	; Click-through
+
+	WinActivate, %winName%
 }

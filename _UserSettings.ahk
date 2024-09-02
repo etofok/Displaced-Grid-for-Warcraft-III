@@ -14,7 +14,6 @@
 ; https://www.autohotkey.com/docs/v1/Hotkeys.htm
 
 Hotkey_Toggle_DisplacedGrid								= ScrollLock 	; Hotswitch between Displaced Grid and Default Grid
-Hotkey_Toggle_Overlay									= ^Numpad2 		; Turn On / Off Image Overlay
 Hotkey_ScriptReload 									= ^Numpad3 		; Reload Script (in case you've modified internal code)
 Hotkey_ScriptFolder										= 
 
@@ -74,45 +73,53 @@ ControlGroup9.commandThisGroup := False 	; f3
 ControlGroup0.commandThisGroup := False 	; f4
 
 ;-----------------------------------------
-; Portait UI Element
+; ???Where is your Portait UI element on your screen???
 ; Relevant for the AltKeyImprovements module, because we mouse click the Portrait UI element
 ;
 ; otherwise this module won't work
 ;
+; You can see the coordinates in Paint:
+; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;-----------------------------------------
 
 PortraitUI.x := 700
 PortraitUI.y := 900
 
 ;-----------------------------------------
-; Inventory UI Element
+; ???Where is your Inventory/Backpack UI on your screen???
 ;
 ; Relevant for the QuickCastItem module, because we pixel hunt whether or not it is on cooldown
-
 ; Relevant for the QuickDropItem module, because we click the item
 ;
-; otherwise these modules won't work
+; otherwise these two modules won't work
 ;
 ;-----------------------------------------
 ; The following works for 1920x1080
+;
+; You can see the coordinates in Paint:
+; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;-----------------------------------------
 
-Item1.x 					:= 	1197 	; Item1.x + 0
-Item1.y 					:= 	880 	; Item1.x + 0
+; item slot #1 (top-left)
+Item1.x 					:= 	1197
+Item1.y 					:= 	880
 
-Item2.x 					:= 	1270 	; Item1.x + 74
-Item2.y 					:= 	880  	; Item1.y + 0
+; item slot #2 (top-right)
+Item2.x 					:= 	1270
+Item2.y 					:= 	880
 
-Item3.x 					:= 	1197 	; Item1.x + 0
-Item3.y 					:= 	949 	; Item1.x + 69
+; item slot #3 (middle-left)
+Item3.x 					:= 	1197
+Item3.y 					:= 	949
 
-Item4.x 					:= 	1270  	; Item1.x + 74
-Item4.y 					:= 	949 	; Item1.x + 69
+; item slot #4 (middle-right)
+Item4.x 					:= 	1270
+Item4.y 					:= 	949
 
-Item5.x 					:= 	1197 	; Item1.x + 0
-Item5.y 					:= 	1017	; Item1.x + 138 (69*2)
+; item slot #5 (bottom-left)
+Item5.x 					:= 	1197
+Item5.y 					:= 	1017
 
-Item6.x 					:= 	1270 	; Item1.x + 74
-Item6.y 					:= 	1017 	; Item1.x + 138 (69*2)
-
-; tip: for every resolution there's a pattern
+; item slot #6 (bottom-right)
+Item6.x 					:= 	1270
+Item6.y 					:= 	1017
