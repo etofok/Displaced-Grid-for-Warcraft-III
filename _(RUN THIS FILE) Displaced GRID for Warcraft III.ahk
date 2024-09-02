@@ -2,7 +2,7 @@
 ; 	Displaced GRID+ for Warcraft III by etofok
 
 ;	Development: 
-;	Dec 10th, 2023 - August 24th, 2024
+;	Dec 10th, 2023 - Sept 2nd, 2024
 ;-----------------------------------------
 
 #SingleInstance force
@@ -15,7 +15,7 @@ if not A_IsAdmin
 SetWorkingDir %A_ScriptDir%
 SetTitleMatchMode, 3
 
-Global currentVersion				:= "v1.2.1"
+Global currentVersion				:= "v1.2.2"
 
 ; miscellaneous
 Global FlashSplashTime 				:= 50
