@@ -40,7 +40,7 @@ Hotkey_Item(objCommand) {
 				QuickCast(objCommand)
 			}
 
-			if (b_HoldRecast == 1) {
+			if (b_RapidFire == 1) {
 				Send, {Shift down}{Escape}
 			}
 
@@ -66,7 +66,7 @@ Hotkey_Item(objCommand) {
 			QuickCast(objCommand)
 		}		
 
-		if (b_HoldRecast == 1) {
+		if (b_RapidFire == 1) {
 			Send, {Escape}
 		}
 			

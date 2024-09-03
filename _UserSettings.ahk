@@ -1,46 +1,79 @@
 ﻿;-----------------------------------------
 ; Welcome to the Set Up file
+; It will take you 5 minutes to set up everything once and for life.
 ;-----------------------------------------
 
 
 
 ;-----------------------------------------
-; What hotkey do you want to control the App with?
-;
+; How to enable QuickCasts for Abilities in Warcraft III: Reforged.
+; Displaced Grid is designed with this functionality in mind.
+
+; Step 1. You MUST use the 'GRID' layout. 
+; Warcraft III -> Menu -> Options -> Input -> Preset Keybindings -> Dropdown select "Grid" -> Save -> Exit Warcraft III
+
+; Step 2. Open War3Preferences.txt
+; Go to your %USERNAME%\Documents\Warcraft III\War3Preferences.txt
+
+; Step 3. 
+; In War3Preferences.txt change every "QuickCast=0" to "QuickCast=1".
+; Save War3Preferences.txt -> Launch the game.
+
+;-----------------------------------------
+
+
+
+
+
+
+;-----------------------------------------
+; 1. Do you want to switch Displaced Grid hotkeys on or off on app Launch?
+;-----------------------------------------
+
+Global b_DisplacedGrid 									:= True		; True / False
+
+
+
+;-----------------------------------------
+; 2. What hotkeys do you want to control the app with?
+;-----------------------------------------
+
+Hotkey_Toggle_DisplacedGrid								= ScrollLock 	; Hotswitch between Displaced Grid and Default hotkeys. You need this in order to type in-game. I recommend something close to Enter.
+Hotkey_ScriptReload 									= ^Numpad3 		; Reload Script
+
 ; ^ - CTRL
 ; + - SHIFT
 ; ! - ALT
-; Wiki page: 
-; https://www.autohotkey.com/docs/v1/Hotkeys.htm
+; Wiki page: https://www.autohotkey.com/docs/v1/Hotkeys.htm
 
-Hotkey_Toggle_DisplacedGrid								= ScrollLock 	; Hotswitch between Displaced Grid and Default Grid
-Hotkey_ScriptReload 									= ^Numpad3 		; Reload Script (in case you've modified internal code)
-Hotkey_ScriptFolder										= 
+
 
 ;-----------------------------------------
-; What Modules do you want to have access to?
+; 3. What MODULES do you want to use?
 ;
-; If set to 'True' - Module will load on start and will be present in App Tray
-; If set to 'False' - Module will NOT load on start and will NOT be present in App Tray
+; If set to 'True' - the module WILL be loaded.
+; If set to 'False' - the module WILL NOT be loaded.
 ;-----------------------------------------
 
-Global b_DisplacedGrid 									:= True ; / False
+Global b_QuickCastItems 								:= True 	; Pseudo QuickCast for Items (requires precise coordinates, see below)
+Global b_RapidFire										:= True 	; RapidFire Casting: Hold Command
+Global b_ShiftQueueItems								:= True 	; Queue items by holding shift
+Global b_AltKeyImprovements								:= True 	; Hold Alt to Self Cast + Alt doesn't block from casting abilities
+Global b_CommandMultipleGroups 							:= True 	; Command Multiple Groups (defaults ASZX, see below)
+Global b_CameraHotkeys 									:= True 	; Instant Camera Jump for certain groups (defaults f1 f2 f3 f4, see below)
+Global b_QuickDropItems 								:= True 	; Alt + Ctrl + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise coordinates, see below)
 
-Global b_QuickCastItems 								:= True
-Global b_HoldRecast										:= True
-Global b_ShiftQueueItems								:= True
-Global b_AltKeyImprovements								:= True
-Global b_CommandMultipleGroups 							:= True
-Global b_CameraHotkeys 									:= True
-Global b_QuickDropItems 								:= True
+Global b_EventLog	 									:= False 	; This is a debugging overlay I used in development.
 
-Global b_EventLog	 									:= False ; this is a debugging overlay
+
 
 ;-----------------------------------------
-; 'Camera Hotkeys' Module Set Up
+; 4. What control groups you would like to have an instant camera pan? / 'Camera Hotkeys' Module Set Up
 ;
-; defaults in Displaced Grid are control groups 7,8,9,0 
-; which are bound to f1 f2 f3 f4
+; The defaults in Displaced Grid are the control groups 7,8,9 and 0 (which are bound to f1 f2 f3 f4).
+; These are VALID control groups.
+; The module double-taps the group when you tap it, that's why the camera instantly pans.
+;-----------------------------------------
 
 ControlGroup1.jumpCameraInstantly := False 	; a
 ControlGroup2.jumpCameraInstantly := False 	; s
@@ -53,12 +86,19 @@ ControlGroup8.jumpCameraInstantly := True 	; f2
 ControlGroup9.jumpCameraInstantly := True 	; f3
 ControlGroup0.jumpCameraInstantly := True 	; f4
 
+; I found two main use cases:
+; a scout / harass / hit-squad
+; Main Base / Expansion
+
+
+
 ;-----------------------------------------
-; 'Command Multiple Groups' Module Set Up
+; 5. What control groups you would like to control at the same time by using CapsLock? / 'Command Multiple Groups' Module Set Up
 ;
-; Your designated 'Army' Control Groups
-; I recommend using CG1 CG2 CG3 CG4 as your 'army' (which are bound to A S Z X)
-; I recommed using CG5 CG6 as your 'production' (which are bound to Q W)
+; This module allow you send your attack/move/cast/stop/hold/patrol commands to the designated control groups.
+;
+; I recommend using CG1 CG2 CG3 CG4 as your main 'army' hotkeys (which are bound to A S Z X).
+; I recommend using CG5 or CG6 as your 'production' hotkey (which are bound to Q and W respectively).
 ;-----------------------------------------
 
 ControlGroup1.commandThisGroup := True 		; a
@@ -72,33 +112,36 @@ ControlGroup8.commandThisGroup := False 	; f2
 ControlGroup9.commandThisGroup := False 	; f3
 ControlGroup0.commandThisGroup := False 	; f4
 
+
+
 ;-----------------------------------------
-; ???Where is your Portait UI element on your screen???
-; Relevant for the AltKeyImprovements module, because we mouse click the Portrait UI element
+; 6. Where is your Portrait UI element on YOUR screen?
 ;
-; otherwise this module won't work
+; This is required for the AltKeyImprovements module in order to click the Portrait UI element.
+; Otherwise this module will not work.
 ;
-; You can see the coordinates in Paint:
+; You can easily check the coordinates in Windows Paint, like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;-----------------------------------------
 
+; The following works for 1920x1080
 PortraitUI.x := 700
 PortraitUI.y := 900
 
+
+
 ;-----------------------------------------
-; ???Where is your Inventory/Backpack UI on your screen???
+; 7. Where is your Inventory/Backpack UI on YOUR screen?
 ;
-; Relevant for the QuickCastItem module, because we pixel hunt whether or not it is on cooldown
-; Relevant for the QuickDropItem module, because we click the item
+; This is required for the QuickCastItem module, because we pixel hunt whether the item is on cooldown or not (by its blue cooldown overlay).
+; This is required for the QuickDropItem module, because we right-click the item in order to grab-and-drag it.
+; Otherwise these two modules will not work.
 ;
-; otherwise these two modules won't work
-;
-;-----------------------------------------
-; The following works for 1920x1080
-;
-; You can see the coordinates in Paint:
+; You can easily check the coordinates in Windows Paint, like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;-----------------------------------------
+
+; The following works for 1920x1080
 
 ; item slot #1 (top-left)
 Item1.x 					:= 	1197
@@ -123,3 +166,8 @@ Item5.y 					:= 	1017
 ; item slot #6 (bottom-right)
 Item6.x 					:= 	1270
 Item6.y 					:= 	1017
+
+;-----------------------------------------
+
+; That's it!
+; etofok

@@ -8,6 +8,7 @@ load_BlizzardGrid() {
 	SelectHero2.physicalKey		:= 	"f2"
 	SelectHero3.physicalKey		:= 	"f3"
 	IdleWorker.physicalKey		:=	"f8"
+	JumpToEvent.physicalKey		:=	"Space"
 
 	ControlGroup1.physicalKey	:=	"1"
 	ControlGroup2.physicalKey	:=	"2"

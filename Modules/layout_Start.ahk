@@ -15,6 +15,7 @@ Global	SelectHero1 		:=	[]
 Global	SelectHero2 		:=	[]
 Global	SelectHero3 		:=	[]
 Global	IdleWorker 			:=	[]
+Global	JumpToEvent			:=	[]
 
 Global	ControlGroup1 		:=	[]
 Global	ControlGroup2 		:=	[]
@@ -40,7 +41,7 @@ Global	MouseButtonRight 	:= 	[]
 ; Command Card.
 ;-------------------------------------------
 
-GRID_00.logicalKey 			:= 	"{q}"	; Parentheses are necessary, because otherwise the hotkeys won't work once you change the language in windows
+GRID_00.logicalKey 			:= 	"{q}"	; Parentheses are necessary, because otherwise the hotkeys won't work once you change the language in Windows
 GRID_01.logicalKey			:=	"{w}"
 GRID_02.logicalKey			:=	"{e}"
 GRID_03.logicalKey			:=	"{r}"
@@ -61,6 +62,7 @@ SelectHero1.logicalKey		:= 	"{f1}"
 SelectHero2.logicalKey		:= 	"{f2}"
 SelectHero3.logicalKey		:= 	"{f3}"
 IdleWorker.logicalKey		:=	"{f8}"
+JumpToEvent.logicalKey		:=	"{Space}"
 
 ;-------------------------------------------
 ; Control Groups.

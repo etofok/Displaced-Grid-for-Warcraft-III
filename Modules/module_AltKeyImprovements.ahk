@@ -1,31 +1,28 @@
-﻿; ----------------------------------------------------
-; Alt Cast
+﻿;-----------------------------------------
+; ----- Cast On Yourself
+;-----------------------------------------
+; 
+; 1) Double Tap the ability to target self with it (doesn't work with items).
 ;
-; 1) Double Tap the ability to target self with it.
-;
-; Most contemporary games do have some sort of 'Self Target Cast' functionality to help players with in-battle control.
-; Here, I've implemented 'Hold Alt + Double Tap Hotkey' functionality to self cast spells.
-;
-; This is a very obvious macro that clicks the Portrait UI element to target the caster, 
-; so it provides a clear competitive advantage
-; and you should not use this module in competitive environment, unless both parties have agreed.
-;
-; Having said that, I do believe this functionality SHOULD be a part of the core experience
-; as discussed in my video showcase there:
-; Watch On Youtube -
-;
+; Most contemporary games do have some sort of 'Cast On Yourself' functionality to help players with in-battle control.
+; I've implemented 'Hold Alt + Double Tap Ability Hotkey' functionality to self cast spells.
 ;
 ; 2) 'Alt' no longer prevents Ability use.
 ;
-; By default in Warcraft III, holding the 'Alt' key flat out blocks the usage of abilities and items.
-; This is relevant, because we intend to use our Items with Alt + QWASZX with Displaced Grid,
-; which means, by default, we wouldn't be able to press something like 'Alt + Q' -> 'Alt + E', because Alt would block the 'E' (1st ability)
+; By default in Warcraft III, if you hold the 'Alt' key it blocks the usage of abilities and items.
 ;
-; 
-;----------------------------------------------------
+; This is very relevant, because we intend to use our Items with Alt + QWASZX,
+; which means, by default, we wouldn't be able to press something like 'Alt + Q' -> 'Alt + E', because Alt would block everything.
+;
+;-----------------------------------------
+; (!) IMPORTANT: Since this is a multiclick macro that provides a clear competitive advantage, 
+; you should not use this module in competitive environment, unless both parties have agreed.
+;
+; Having said that, I do believe this functionality SHOULD be a part of the core experience
+;-----------------------------------------
 
 ; Yes I use Globals
-Global menu_Toggle_AltKeyImprovements				:= "Self-Target Cast (hold Alt)"
+Global menu_Toggle_AltKeyImprovements				:= "Cast On Yourself: Hold Alt -> Double Tap"
 Menu, Tray, Add, %menu_Toggle_AltKeyImprovements%, Toggle_AltKeyImprovements
 
 ;--------------------------------
@@ -87,7 +84,7 @@ AltKeyImprovements(objCommand) {
 					Send % "{Shift Down}"objCommand.logicalKey
 					Click % PortraitUI.x " " PortraitUI.y
 
-					if (b_HoldRecast == 1) {
+					if (b_RapidFire == 1) {
 
 						Send {Shift Down}{Escape}
 
@@ -146,7 +143,7 @@ AltKeyImprovements(objCommand) {
 					if (b_EventLog)
 						UpdateEventLog("Alt + (" KeyToPress ")`nFiring the Ability anyway!")
 
-					if (b_HoldRecast == 1) {
+					if (b_RapidFire == 1) {
 						
 						Send, {Escape}
 						Send % objCommand.logicalKey
@@ -180,9 +177,9 @@ Control_AltKeyImprovements(switchTo) {
 	b_AltKeyImprovements := switchTo
 	
 	ToggleCheckmark(menu_Toggle_AltKeyImprovements, switchTo)
-	FlashSplash("Self-Target Cast - " . switchTo, FlashSplashTime)
 
 	if (b_EventLog) {
-		UpdateEventLog("Self-Target Cast - " . switchTo)	
+		UpdateEventLog("Self-Target Cast - " . switchTo)
+		FlashSplash("Self-Target Cast - " . switchTo, FlashSplashTime)
 	}
 }

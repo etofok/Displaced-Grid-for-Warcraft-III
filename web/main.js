@@ -34,8 +34,8 @@ const modules = [
         ),
     m_HoldCast                = new ModuleData(
         2, 
-        'Hold Cast', 
-        'Hold down the ability hotkey to fire repeatedly!', 
+        'Rapid Fire Casting', 
+        'Hold down the ability key to fire repeatedly!', 
         'assets/modules/3_thumb.png', 
         'assets/modules/3_video.mp4', 
         'e_slideBig',
@@ -54,8 +54,8 @@ const modules = [
         ),
     m_AltKeyImprovements        = new ModuleData(
         4, 
-        'Self-Target Cast', 
-        'Alt Double-Tap to Self-Target abilities!', 
+        'Cast on Yourself', 
+        'Alt + Double-Tap to target yourself!', 
         'assets/modules/5_thumb.png', 
         'assets/modules/5_video.mp4', 
         'e_slideBig',
@@ -65,16 +65,16 @@ const modules = [
     m_CommandMultipleGroups           = new ModuleData(
         5, 
         'Command Multiple Groups', 
-        'Issue an Attack/Move/Cast command to ALL designated control groups at ONCE!', 
+        'Issue an Attack/Move/Cast/etc command to ALL designated control groups at ONCE!', 
         'assets/modules/6_thumb.png', 
         'assets/modules/6_video.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Default behavior: 1a2a3a4a to issue an attack command to groups 1 2 3 4. <br> With this module you just press Caps + Attack. <br> Works with mouse right click i.e. Caps + Right Click to move/attack. <br> Has extra synergy with Quick Cast, especially for Undead (Coil/Nova/Swarm/Impale share the same hotkey).'
+        'Default behavior: 1-a-click-2-a-click-3-a-click-4-a-click to issue an attack command to groups 1 2 3 4. <br> With this module you just press Caps + Attack. <br> Works with mouse right click i.e. Caps + Right Click to move/attack. <br> Has extra synergy with Quick Cast, especially for Undead (Coil/Nova/Swarm/Impale share the same hotkey).'
         ),
     m_CameraHotkeys             = new ModuleData(
         6, 
-        'Camera Hotkeys', 
+        'Camera Hotkeys | Instant pan', 
         'Instant camera jump for designated control groups!', 
         'assets/modules/7_thumb.png', 
         'assets/modules/7_video.mp4', 

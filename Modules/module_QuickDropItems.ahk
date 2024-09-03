@@ -1,20 +1,22 @@
-﻿; ----------------------------------------------------
+﻿;-----------------------------------------
+; ----- QuickDrop Items
+;-----------------------------------------
+; Ctrl + Alt + 1 2 3 4 5 6 (+ Shift)
 ;
-; Quick Item Drop: Ctrl Alt + 1 2 3 4 5 6 (+ Shift)
+; Drop/Pass/Sell an item from your inventory to the target at mouse cursor: 
+; a. place on the ground
+; b. pass to a hero
+; c. sell in a shop.
 ;
-; Drop/Pass/Sell an item from the inventory to the target at mouse cursor, 
-; i.e. place on the ground, pass to a hero or sell in a shop.
-;
+;-----------------------------------------
 ; (!) IMPORTANT: Since this is a multiclick macro that provides a clear competitive advantage, 
-; you should not use this module in competitive environment.
+; you should not use this module in competitive environment, unless both parties have agreed.
 ;
 ; Having said that, I do believe this functionality SHOULD be a part of the core experience
-; Just like in World of Warcraft (also a Blizzard game) players are free to bind to instantly use abilities on a specific teammate / target.
-; 
-; -------------
+;-----------------------------------------
 
 ; Yes I use Globals
-Global menu_Toggle_QuickDropItems				:= "QuickDrop Items (hold CTRL)"
+Global menu_Toggle_QuickDropItems				:= "QuickDrop Items: Hold CTRL -> Use Item"
 Menu, Tray, Add, %menu_Toggle_QuickDropItems%, Toggle_QuickDropItems
 
 ;-----------------------------------------
@@ -67,9 +69,9 @@ Control_QuickDropItems(switchTo) {
 	b_QuickDropItems := switchTo
 
 	ToggleCheckmark(menu_Toggle_QuickDropItems, switchTo)
-	FlashSplash("QuickDrop Items - " . switchTo, FlashSplashTime)
 
 	if (b_EventLog) {
-		UpdateEventLog("QuickDrop Items - " . switchTo)	
+		UpdateEventLog("QuickDrop Items - " . switchTo)
+		FlashSplash("QuickDrop Items - " . switchTo, FlashSplashTime)
 	}
 }

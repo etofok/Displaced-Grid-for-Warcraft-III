@@ -2,52 +2,44 @@
 ; ----- I M A G E  O V E R L A Y -----
 ;-----------------------------------------
 ;
-; This module overlay an image on top of the Warcraft III active window
-; This image shows the Displaced GRID hotkeys on top of the command card actions and items
+; This module overlays an image on top of the Warcraft III:Reforged window.
 ;
-; (!) You are free to use it in competitive play
 ;-----------------------------------------
+
+; Path to the overlay image
+Global image_OverlayLayout_Path = 
+image_OverlayLayout_Path = %A_ScriptDir%\Image_Overlay\IMAGE_OVERLAY.png
 
 Global WarcraftIII_posX 	:= 
 Global WarcraftIII_posY 	:= 
 Global WarcraftIII_width 	:= 
 Global WarcraftIII_height 	:= 
 
-; initially I wanted to have this module 'turn off-able'
-b_Overlay 										:= True
-
+; the overlay is tied to the Displaced Grid layout. Layout On = Overlay On.
+b_Overlay 										:= b_DisplacedGrid
 
 ;-----------------------------------------
 ; On program start...
 
 if (b_Overlay == 1) {
-	; only toggle on if the Warcraft III window exists
-	if WinExist(winTitle) {
-		Control_Overlay(1)
-	} else {
-		Control_Overlay(0)
-		MsgBox, Warcraft III is NOT ACTIVE:`nCannot display the hotkey overlay!`nPlease Run Warcraft III and try again!
-	}
+	Control_Overlay(1)	
+} else {
+	Control_Overlay(0)
 }
 
 ;--------------------------------
 ; Overlay Control
 ;--------------------------------
 
-Toggle_Overlay() {
-
-	if (b_Overlay == 1) {
-		Control_Overlay(0)
-	} else {
-		Control_Overlay(1)
-	}
-}
-
-
 Control_Overlay(switchTo) {
 
 	if (switchTo == 1) {
-		SetupImageOverlay()	; yes, every time to resize it just in case, etc
+		if WinExist(winTitle) {
+			SetupImageOverlay()	; yes, every time to resize it just in case, etc
+		} else {
+			MsgBox, %error_warcraftNotFound%
+		}
+
 	} else {
 		Gui, gui_imageOverlay:Hide
 	}
@@ -65,9 +57,6 @@ SetupImageOverlay() {
 
     WinGet, windowHandle, ID, %winName%
     WinGetPos, WarcraftIII_posX, WarcraftIII_posY, WarcraftIII_width, WarcraftIII_height, %winName%
-
-    ; Path to the overlay image
-    image_OverlayLayout_Path = %A_ScriptDir%\IMAGE_OVERLAY.png
 
     ; Set up the GUI for the overlay with transparency
     Gui, gui_imageOverlay:-AlwaysOnTop -Caption +ToolWindow +LastFound -Border +Owner%windowHandle%

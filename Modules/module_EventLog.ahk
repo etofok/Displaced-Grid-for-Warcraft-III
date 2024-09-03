@@ -135,14 +135,4 @@ Control_EventLog(switchTo) {
 	
 	ToggleCheckmark(menu_Toggle_EventLog, switchTo)
 	FlashSplash("Event Log - " . switchTo, FlashSplashTime)
-
-	;UpdateEventLog("Event Log - " . switchTo)	
-	
-}
-
-
-; We call this once at the very launch, and then everytime an attempt to enable the overlay is made
-SetupEventLog() {
-
-
 }

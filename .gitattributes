@@ -4,3 +4,4 @@
 web export-ignore
 README.md export-ignore
 DGRIDhero.png export-ignore
+.gitattributes export-ignore

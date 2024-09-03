@@ -25,7 +25,7 @@
 	}
 
 
-	if (b_HoldRecast == 1 and A_ThisHotkey == A_PriorHotkey) {	; * Breakdown below
+	if (b_RapidFire == 1 and A_ThisHotkey == A_PriorHotkey) {	; * Breakdown below
 
 		Send {Escape}
 
@@ -36,7 +36,7 @@
 	Send % appendModifiers objCommand.logicalKey
 }
 
-; This last part with b_HoldRecast allows us to hold down a hotkey to repeatedly activate it.
+; This last part with b_RapidFire allows us to hold down a hotkey to repeatedly activate it.
 ;
 ; If the key is used again (or being held), we send a 'deselect' (Escape) command right BEFORE it
 

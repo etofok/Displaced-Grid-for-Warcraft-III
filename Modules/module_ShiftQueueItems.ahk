@@ -1,23 +1,20 @@
 ﻿;-----------------------------------------
-; ----- SHIFT QUEUE ITEMS
+; ----- ShiftQueue Items
 ;-----------------------------------------
 ;
 ; This module allows the player to use items and abilities keys while holding Shift.
 ;
-; By default, we have to let go of the Shift key in order to activate an item hotkey.
-; By default, we have to use left click to Shift-queue abilities.
+; By default, the user has to let go of the Shift key in order to activate an item hotkey.
+; By default, the user has to left-click to Shift-queue abilities (minor, but not the user can use the hotkey as well)
 ;
-;
+;-----------------------------------------
 ; (!) IMPORTANT: Since this is a multiclick macro that provides a clear competitive advantage, 
 ; you should not use this module in competitive environment, unless both parties have agreed.
 ;
 ; Having said that, I do believe this functionality SHOULD be a part of the core experience
-; as discussed in my video showcase there:
-; Watch On Youtube -
 ;-----------------------------------------
 
 ; Yes I use Globals
-
 Global menu_Toggle_ShiftQueueItems				:= "Shift-Queue Items"
 Menu, Tray, Add, %menu_Toggle_ShiftQueueItems%, Toggle_ShiftQueueItems
 
@@ -52,9 +49,9 @@ Control_ShiftQueueItems(switchTo) {
 	b_ShiftQueueItems := switchTo
 	
 	ToggleCheckmark(menu_Toggle_ShiftQueueItems, switchTo)
-	FlashSplash("Shift-Queue Items - " . switchTo, FlashSplashTime)
 
 	if (b_EventLog) {
 		UpdateEventLog("Shift-Queue Items - " . switchTo)	
+		FlashSplash("Shift-Queue Items - " . switchTo, FlashSplashTime)
 	}
 }

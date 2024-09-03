@@ -7,6 +7,7 @@ load_DisplacedGrid() {
 	SelectHero2.physicalKey		:= 	"2"
 	SelectHero3.physicalKey		:= 	"3"
 	IdleWorker.physicalKey		:=	"4"
+	JumpToEvent.physicalKey		:=	"5"
 
 	ControlGroup1.physicalKey	:=	"a"
 	ControlGroup2.physicalKey	:=	"s"

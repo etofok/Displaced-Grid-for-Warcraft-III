@@ -1,37 +1,33 @@
 ﻿;-----------------------------------------
-; ----- QUICKCASTITEMS
+; ----- QuickCast Items
 ;-----------------------------------------
 ;
-; For some reason QuickCast=1 in .../Documents/WarcraftIII/War3preferences.txt 
-; works for Ability hotkeys, 
-; but does NOT work for Item hotkeys.
+; (!) This module requires a set up to your resolution.
+; You must modify the required screen coordinates in UserSettings.ahk
+
+; For some reason QuickCast=1 in .../Documents/WarcraftIII/War3preferences.txt works for Abilities, 
+; but does NOT work for Items.
 ; 
-; This module does three things:
-; 1. Checks that the item slot is not empty (pixel hunting)
-; 2. Checks that the item is not on cooldown (pixel hunting)
+; This module does 3 things:
+; 1. Checks that the item slot is not empty (via pixel hunting)
+; 2. Checks that the item is not on cooldown (via pixel hunting)
 ; 3. Sends a Left Mouse click
 ; 
-; which makes it a 'Pseudo' Quick Cast.
 ;
-; (!) The reason this is not a 'true' quickcast is because the left mouse click is not connected to 'reality'
-; i.e. say, we intend to use an item, but it's a passive item (= not 'activatable').
+; (!) The reason this is not a 'true' quickcast is because the left mouse click is not connected to 'reality',
+; i.e. say, we "activate" an item, but it's actually a passive item (so it can't be activated in principle).
 ; This module will send a Left Mouse Click regardless, 
-; because it can't differentiate between what's an active and what's a passive item.
+; because while it CAN see that the slot is occupied by an item and is NOT on cooldown...
+; it can't differentiate between an active and a passive item.
 ;
+; I have not found a clever way to differentiate between active and passive Items (i.e. Orb of Fire)
 ; This is a very minor limitation - just don't activate passive items.
 ;
-; (!) To make this work on a non-fullHD resolution you must modify the required screen coordinates in UserSettings.ahk
-;
-; (!) IMPORTANT: Since this is a macro (left click, Pixel Hunt x2) that provides a clear competitive advantage, 
+;-----------------------------------------
+; (!) IMPORTANT: Since this is a multiclick macro that provides a clear competitive advantage, 
 ; you should not use this module in competitive environment, unless both parties have agreed.
 ;
-	; I have not found a clever way to differentiate between active and passive Items (i.e. Orb of Fire)
-	; which means it'll send a left click if we attempt to use a passive item.
-	; SOLUTION: don't attempt to use passive items.
-
 ; Having said that, I do believe this functionality SHOULD be a part of the core experience
-; as discussed in my video showcase there:
-; Watch On Youtube -
 ;-----------------------------------------
 
 ; Yes I use Globals
@@ -126,9 +122,9 @@ Control_QuickCastItems(switchTo) {
 	b_QuickCastItems := switchTo
 	
 	ToggleCheckmark(menu_Toggle_QuickCastItems, switchTo)
-	FlashSplash("QuickCast Items - " . switchTo, FlashSplashTime)
 
 	if (b_EventLog) {
 		UpdateEventLog("QuickCast Items - " . switchTo)	
+		FlashSplash("QuickCast Items - " . switchTo, FlashSplashTime)
 	}
 } 
