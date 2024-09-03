@@ -284,7 +284,8 @@ return
 
 ScriptSettings:
 	Suspend, Permit
-	Run, %a_scriptdir%\_UserSettings.ahk, Notepad
+	filePath := A_ScriptDir "\_UserSettings.ahk"
+	Run, notepad.exe %filePath%
 return
 
 ;--------------------------------

@@ -1,6 +1,6 @@
 ﻿;-----------------------------------------
-; Welcome to the Set Up file
-; It will take you 5 minutes to set up everything once and for life.
+; Welcome to UserSetting!
+; Please set aside 5 minutes to set up everything once and for all.
 ;-----------------------------------------
 
 
@@ -8,17 +8,17 @@
 ;-----------------------------------------
 ; How to enable QuickCasts for Abilities in Warcraft III: Reforged.
 ; Displaced Grid is designed with this functionality in mind.
-
+;
 ; Step 1. You MUST use the 'GRID' layout. 
 ; Warcraft III -> Menu -> Options -> Input -> Preset Keybindings -> Dropdown select "Grid" -> Save -> Exit Warcraft III
-
+;
 ; Step 2. Open War3Preferences.txt
 ; Go to your %USERNAME%\Documents\Warcraft III\War3Preferences.txt
-
+;
 ; Step 3. 
 ; In War3Preferences.txt change every "QuickCast=0" to "QuickCast=1".
 ; Save War3Preferences.txt -> Launch the game.
-
+;
 ;-----------------------------------------
 
 
@@ -30,7 +30,7 @@
 ; 1. Do you want to switch Displaced Grid hotkeys on or off on app Launch?
 ;-----------------------------------------
 
-Global b_DisplacedGrid 									:= True		; True / False
+Global b_DisplacedGrid 			:= True		; True / False
 
 
 
@@ -38,8 +38,8 @@ Global b_DisplacedGrid 									:= True		; True / False
 ; 2. What hotkeys do you want to control the app with?
 ;-----------------------------------------
 
-Hotkey_Toggle_DisplacedGrid								= ScrollLock 	; Hotswitch between Displaced Grid and Default hotkeys. You need this in order to type in-game. I recommend something close to Enter.
-Hotkey_ScriptReload 									= ^Numpad3 		; Reload Script
+Hotkey_Toggle_DisplacedGrid		= ScrollLock 	; Hotswitch between Displaced Grid and Default hotkeys.
+Hotkey_ScriptReload 			= ^Numpad3 	; Reload Script
 
 ; ^ - CTRL
 ; + - SHIFT
@@ -55,15 +55,15 @@ Hotkey_ScriptReload 									= ^Numpad3 		; Reload Script
 ; If set to 'False' - the module WILL NOT be loaded.
 ;-----------------------------------------
 
-Global b_QuickCastItems 								:= True 	; Pseudo QuickCast for Items (requires precise coordinates, see below)
-Global b_RapidFire										:= True 	; RapidFire Casting: Hold Command
-Global b_ShiftQueueItems								:= True 	; Queue items by holding shift
-Global b_AltKeyImprovements								:= True 	; Hold Alt to Self Cast + Alt doesn't block from casting abilities
-Global b_CommandMultipleGroups 							:= True 	; Command Multiple Groups (defaults ASZX, see below)
-Global b_CameraHotkeys 									:= True 	; Instant Camera Jump for certain groups (defaults f1 f2 f3 f4, see below)
-Global b_QuickDropItems 								:= True 	; Alt + Ctrl + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise coordinates, see below)
+Global b_QuickCastItems 		:= True 	; Pseudo QuickCast for Items (requires precise coordinates, see below)
+Global b_RapidFire			:= True 	; RapidFire Casting: Hold Command
+Global b_ShiftQueueItems		:= True 	; Queue items by holding shift
+Global b_AltKeyImprovements		:= True 	; Hold Alt to Self Cast + Alt doesn't block from casting abilities
+Global b_CommandMultipleGroups 		:= True 	; Command Multiple Groups (defaults ASZX, see below)
+Global b_CameraHotkeys 			:= True 	; Instant Camera Jump for certain groups (defaults f1 f2 f3 f4, see below)
+Global b_QuickDropItems 		:= True 	; Alt + Ctrl + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise coordinates, see below)
 
-Global b_EventLog	 									:= False 	; This is a debugging overlay I used in development.
+Global b_EventLog	 		:= False 	; This is a debugging overlay I used in development.
 
 
 
@@ -117,7 +117,7 @@ ControlGroup0.commandThisGroup := False 	; f4
 ;-----------------------------------------
 ; 6. Where is your Portrait UI element on YOUR screen?
 ;
-; This is required for the AltKeyImprovements module in order to click the Portrait UI element.
+; This is required for the Alt Cast module in order to click the Portrait UI element.
 ; Otherwise this module will not work.
 ;
 ; You can easily check the coordinates in Windows Paint, like so:
