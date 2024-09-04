@@ -36,6 +36,7 @@ Control_Overlay(switchTo) {
 	if (switchTo == 1) {
 		if WinExist(winTitle) {
 			SetupImageOverlay()	; yes, every time to resize it just in case, etc
+			Gui, gui_imageOverlay:Show, NoActivate, % "x" (WarcraftIII_posX) " y" (WarcraftIII_posY)
 		} else {
 			MsgBox, %error_warcraftNotFound%
 		}
@@ -51,7 +52,6 @@ Control_Overlay(switchTo) {
 	}
 }
 
-
 SetupImageOverlay() {
 	color := "FFFFFF"
 
@@ -62,10 +62,10 @@ SetupImageOverlay() {
     Gui, gui_imageOverlay:-AlwaysOnTop -Caption +ToolWindow +LastFound -Border +Owner%windowHandle%
     
     ; Add the image with full dimensions of the window
-    Gui, gui_imageOverlay:Add, Picture, x0 y0 w%WarcraftIII_width% h%WarcraftIII_height%, %image_OverlayLayout_Path%
- 
     ; Show the GUI overlay at the exact position of the Warcraft III window
-    Gui, gui_imageOverlay:Show, x%WarcraftIII_posX% y%WarcraftIII_posY% w%WarcraftIII_width% h%WarcraftIII_height%
+	Gui, gui_imageOverlay:Add, Picture, x0 y0 w%WarcraftIII_width% h%WarcraftIII_height%, %image_OverlayLayout_Path%
+	Gui, gui_imageOverlay:Show, x%WarcraftIII_posX% y%WarcraftIII_posY% w%WarcraftIII_width% h%WarcraftIII_height%
+
 	Gui, gui_imageOverlay:Color, %color%
 
     ; Make the GUI transparent and click-through
