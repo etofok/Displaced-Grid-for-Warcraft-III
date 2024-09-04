@@ -58,13 +58,11 @@ SetupImageOverlay() {
     WinGet, windowHandle, ID, %winName%
     WinGetPos, WarcraftIII_posX, WarcraftIII_posY, WarcraftIII_width, WarcraftIII_height, %winName%
 
-    ; Set up the GUI for the overlay with transparency
-    Gui, gui_imageOverlay:-AlwaysOnTop -Caption +ToolWindow +LastFound -Border +Owner%windowHandle%
-    
     ; Add the image with full dimensions of the window
     ; Show the GUI overlay at the exact position of the Warcraft III window
 	Gui, gui_imageOverlay:Add, Picture, x0 y0 w%WarcraftIII_width% h%WarcraftIII_height%, %image_OverlayLayout_Path%
 	Gui, gui_imageOverlay:Show, x%WarcraftIII_posX% y%WarcraftIII_posY% w%WarcraftIII_width% h%WarcraftIII_height%
+    Gui, gui_imageOverlay:-AlwaysOnTop -Caption +ToolWindow +LastFound -Border +Owner%windowHandle%
 
 	Gui, gui_imageOverlay:Color, %color%
 
