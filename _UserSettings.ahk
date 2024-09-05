@@ -1,12 +1,13 @@
 ﻿;-----------------------------------------
-; Welcome to UserSetting!
+; Welcome to UserSettings!
 ; Please set aside 5 minutes to set up everything once and for all.
 ;-----------------------------------------
 
 
 
 ;-----------------------------------------
-; How to enable QuickCasts for Abilities in Warcraft III: Reforged.
+;
+; (!) How to enable QuickCasts for Abilities in Warcraft III:Reforged.
 ; Displaced Grid is designed with this functionality in mind.
 ;
 ; Step 1. You MUST use the 'GRID' layout. 
@@ -38,8 +39,8 @@ Global b_DisplacedGrid 			:= True		; True / False
 ; 2. What hotkeys do you want to control the app with?
 ;-----------------------------------------
 
-Hotkey_Toggle_DisplacedGrid		= ScrollLock 	; Hotswitch between Displaced Grid and Default hotkeys.
-Hotkey_ScriptReload 			= ^Numpad3 	; Reload Script
+Hotkey_Toggle_DisplacedGrid		= ScrollLock 	; Hotswitch between Displaced Grid and Default hotkeys. You need this in order to type in game chats.
+Hotkey_ScriptReload 			= ^Numpad3 	; Reload Script. Default is CTRL+Numpad3
 
 ; ^ - CTRL
 ; + - SHIFT
@@ -55,22 +56,22 @@ Hotkey_ScriptReload 			= ^Numpad3 	; Reload Script
 ; If set to 'False' - the module WILL NOT be loaded.
 ;-----------------------------------------
 
-Global b_QuickCastItems 		:= True 	; Pseudo QuickCast for Items (requires precise coordinates, see below)
+Global b_QuickCastItems 		:= True 	; Pseudo QuickCast for Items (requires precise pixel coordinates, see below)
 Global b_RapidFire			:= True 	; RapidFire Casting: Hold Command
-Global b_ShiftQueueItems		:= True 	; Queue items by holding shift
-Global b_AltKeyImprovements		:= True 	; Hold Alt to Self Cast + Alt doesn't block from casting abilities
-Global b_CommandMultipleGroups 		:= True 	; Command Multiple Groups (defaults ASZX, see below)
-Global b_CameraHotkeys 			:= True 	; Instant Camera Jump for certain groups (defaults f1 f2 f3 f4, see below)
-Global b_QuickDropItems 		:= True 	; Alt + Ctrl + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise coordinates, see below)
+Global b_ShiftQueueItems		:= True 	; Queue items by holding SHIFT
+Global b_AltKeyImprovements		:= True 	; Hold ALT to Self Cast. Holding ALT no longer block commands.
+Global b_CommandMultipleGroups 		:= True 	; Command Multiple Groups (defaults 'A', 'S', 'Z' and 'X', see below)
+Global b_CameraHotkeys 			:= True 	; Instant Camera Jump for certain groups (defaults 'F1', 'F2', 'F3' and 'F4', see below)
+Global b_QuickDropItems 		:= True 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise pixel coordinates, see below)
 
-Global b_EventLog	 		:= False 	; This is a debugging overlay I used in development.
+Global b_EventLog	 		:= False 	; This is a debugging overlay used in development.
 
 
 
 ;-----------------------------------------
-; 4. What control groups you would like to have an instant camera pan? / 'Camera Hotkeys' Module Set Up
+; 4. To which control groups would you like to attach the instant camera pan functionality? | 'Camera Hotkeys' Module Set Up
 ;
-; The defaults in Displaced Grid are the control groups 7,8,9 and 0 (which are bound to f1 f2 f3 f4).
+; The defaults in Displaced Grid are the control groups 7,8,9 and 0 (which are bound to F1 F2 F3 and F4).
 ; These are VALID control groups.
 ; The module double-taps the group when you tap it, that's why the camera instantly pans.
 ;-----------------------------------------
@@ -87,17 +88,17 @@ ControlGroup9.jumpCameraInstantly := True 	; f3
 ControlGroup0.jumpCameraInstantly := True 	; f4
 
 ; I found two main use cases:
-; a scout / harass / hit-squad
-; Main Base / Expansion
+; Instant camera pan to a scout or a hit-squad
+; Instant camera pan between your Main Base and Expansion
 
 
 
 ;-----------------------------------------
-; 5. What control groups you would like to control at the same time by using CapsLock? / 'Command Multiple Groups' Module Set Up
+; 5. Which control groups would you like to manage simultaneously using CapsLock? | 'Command Multiple Groups' Module Set Up
 ;
-; This module allow you send your attack/move/cast/stop/hold/patrol commands to the designated control groups.
+; This module allow the user to send attack/move/cast/stop/hold/patrol commands to specific control groups.
 ;
-; I recommend using CG1 CG2 CG3 CG4 as your main 'army' hotkeys (which are bound to A S Z X).
+; I recommend using CG1 CG2 CG3 CG4 as your main 'army' hotkeys (which are bound to 'A', 'S', 'Z' and 'X').
 ; I recommend using CG5 or CG6 as your 'production' hotkey (which are bound to Q and W respectively).
 ;-----------------------------------------
 
@@ -115,12 +116,12 @@ ControlGroup0.commandThisGroup := False 	; f4
 
 
 ;-----------------------------------------
-; 6. Where is your Portrait UI element on YOUR screen?
+; 6. Where is the Portrait UI element located on your screen?
 ;
-; This is required for the Alt Cast module in order to click the Portrait UI element.
-; Otherwise this module will not work.
+; This is required for the "Alt Cast" module in order to click the Portrait UI element.
+; Otherwise this module will not work properly.
 ;
-; You can easily check the coordinates in Windows Paint, like so:
+; You can easily check the coordinates in Windows Paint (see in the bottom-left), like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;-----------------------------------------
 
@@ -131,14 +132,18 @@ PortraitUI.y := 900
 
 
 ;-----------------------------------------
-; 7. Where is your Inventory/Backpack UI on YOUR screen?
+; 7. Where is the Inventory/Backpack UI element located on your screen?
 ;
 ; This is required for the QuickCastItem module, because we pixel hunt whether the item is on cooldown or not (by its blue cooldown overlay).
 ; This is required for the QuickDropItem module, because we right-click the item in order to grab-and-drag it.
-; Otherwise these two modules will not work.
+; Otherwise these two modules will not work properly.
 ;
-; You can easily check the coordinates in Windows Paint, like so:
+; You can easily check the coordinates in Windows Paint (see in the bottom-left), like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
+;
+; We are looking for the blue overlay on top of the item border. Just one pixel.
+;
+; This way we can determine whether or not the item slot contains an item (by its silver-colored border), and we also can determine whether or not the item is on cooldown (by the blue overlay).
 ;-----------------------------------------
 
 ; The following works for 1920x1080

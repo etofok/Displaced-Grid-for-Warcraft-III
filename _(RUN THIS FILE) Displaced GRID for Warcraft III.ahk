@@ -1,8 +1,10 @@
 ;-----------------------------------------
-; 	Displaced GRID+ for Warcraft III by etofok
+; 	Displaced Grid for Warcraft III:Reforged by etofok
+;	Website Overview: https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/index
+;	Download Latest: https://github.com/etofok/Displaced-Grid-for-Warcraft-III
 
 ;	Development: 
-;	Dec 10th, 2023 - Sept 3rd, 2024
+;	Dec 10th, 2023 - Sept 5th, 2024
 ;-----------------------------------------
 
 #SingleInstance force
@@ -12,7 +14,7 @@
 if not A_IsAdmin
 	Run *RunAs "%A_ScriptFullPath%"
 
-Global currentVersion				:= "v1.3.0"
+Global currentVersion				:= "v1.3.2"
 Global winTitle 					:= "ahk_class OsWindow" ; Warcraft III class name, as seen in WindowSpy of AutoHotkey
 Global winName 						:= "Warcraft III"		; Warcraft III window name, as seen in WindowSpy of AutoHotkey
 
@@ -120,6 +122,7 @@ Menu, Tray, Add, 		,
 Menu, Tray, Add, 		Tutorials, handler_blank
 Menu, Tray, Disable, 	Tutorials
 Menu, Tray, Add, 		How to enable QuickCast for Abilities, Tutorial_AbilityQuickCast
+Menu, Tray, Add, 		How to align the overlay, Tutorial_Overlay
 Menu, Tray, Add, 		Go to Website, Tutorial_Website
 Menu, Tray, Add, 		,
 
@@ -248,7 +251,16 @@ ReloadHotkeys() {
 
 Tutorial_AbilityQuickCast:
 	Suspend, Permit
-	Run, %a_scriptdir%\Tutorials\How to enable QuickCasts for Abilities.txt
+	Run, %a_scriptdir%\Modules\How to enable QuickCasts for Abilities.txt
+return
+
+;--------------------------------
+; Tutorial_Overlay
+;--------------------------------
+
+Tutorial_Overlay:
+	Suspend, Permit
+	Run, %a_scriptdir%\Image_Overlay\How to align the overlay to your resolution.txt
 return
 
 ;--------------------------------

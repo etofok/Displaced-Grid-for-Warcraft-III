@@ -6,6 +6,8 @@
 ;
 ;-----------------------------------------
 
+#Include *i %A_ScriptDir%\Modules\Gdip_All.ahk
+
 ; Path to the overlay image
 Global image_OverlayLayout_Path = 
 image_OverlayLayout_Path = %A_ScriptDir%\Image_Overlay\IMAGE_OVERLAY.png
@@ -36,7 +38,6 @@ Control_Overlay(switchTo) {
 	if (switchTo == 1) {
 		if WinExist(winTitle) {
 			SetupImageOverlay()	; yes, every time to resize it just in case, etc
-			Gui, gui_imageOverlay:Show, NoActivate, % "x" (WarcraftIII_posX) " y" (WarcraftIII_posY)
 		} else {
 			MsgBox, %error_warcraftNotFound%
 		}
@@ -52,23 +53,31 @@ Control_Overlay(switchTo) {
 	}
 }
 
-SetupImageOverlay() {
-	color := "FFFFFF"
 
+SetupImageOverlay() {
+    color := "FFFFFF"
+    
+    ; Get the window handle and position of Warcraft III
     WinGet, windowHandle, ID, %winName%
     WinGetPos, WarcraftIII_posX, WarcraftIII_posY, WarcraftIII_width, WarcraftIII_height, %winName%
 
-    ; Add the image with full dimensions of the window
-    ; Show the GUI overlay at the exact position of the Warcraft III window
-	Gui, gui_imageOverlay:Add, Picture, x0 y0 w%WarcraftIII_width% h%WarcraftIII_height%, %image_OverlayLayout_Path%
-	Gui, gui_imageOverlay:Show, x%WarcraftIII_posX% y%WarcraftIII_posY% w%WarcraftIII_width% h%WarcraftIII_height%
-    Gui, gui_imageOverlay:-AlwaysOnTop -Caption +ToolWindow +LastFound -Border +Owner%windowHandle%
+    ; Create a GUI for the overlay with no borders, etc.
+    Gui, gui_imageOverlay: -Caption +ToolWindow +LastFound -Border +Owner%windowHandle%
+    Gui, gui_imageOverlay: Color, %color%
 
-	Gui, gui_imageOverlay:Color, %color%
+    ; Set the GUI background to be fully transparent
+    WinSet, TransColor, %color% 255, % gui_imageOverlay
 
-    ; Make the GUI transparent and click-through
-	WinSet, TransColor, %color% 250, % gui_imageOverlay ; PNG transparency. 0 = fully transparent
-	WinSet, ExStyle, +0x20, % gui_imageOverlay	; Click-through
+    ; Set the window as click-through
+    WinSet, ExStyle, +0x20, % gui_imageOverlay
 
-	WinActivate, %winName%
+    ; Add the PNG image to the overlay at the exact size and position of the Warcraft III window
+    Gui, gui_imageOverlay: Add, Picture, x0 y0 w%WarcraftIII_width% h%WarcraftIII_height%, %image_OverlayLayout_Path%
+
+    ; Show the GUI overlay without activating it (No Activate)
+    Gui, gui_imageOverlay: Show, NA x%WarcraftIII_posX% y%WarcraftIII_posY% w%WarcraftIII_width% h%WarcraftIII_height%
+
+    ; Ensure the Warcraft III window stays in focus
+    WinActivate, %winName%
 }
+
