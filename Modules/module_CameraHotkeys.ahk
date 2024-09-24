@@ -17,7 +17,7 @@
 ;-----------------------------------------
 
 ; Yes I use Globals
-Global menu_Toggle_CameraHotkeys			:= "Camera Hotkeys | Instant Pan"
+Global menu_Toggle_CameraHotkeys			:= "Camera Hotkeys | Instant Camera Pan"
 Menu, Tray, Add, %menu_Toggle_CameraHotkeys%, Toggle_CameraHotkeys
 
 ;-----------------------------------------
@@ -25,14 +25,17 @@ Menu, Tray, Add, %menu_Toggle_CameraHotkeys%, Toggle_CameraHotkeys
 
 if (b_CameraHotkeys == 1) {
 	Control_CameraHotkeys(1)
+} else {
+	Control_CameraHotkeys(0)
+	Menu, Tray, Disable, 	%menu_Toggle_CameraHotkeys%
 }
 
 ;-----------------------------------------
 ; Module
 
-InstantCameraJump(objCommand) {
+InstantCameraPan(objCommand) {
 
-	if (objCommand.jumpCameraInstantly == 1) {
+	if (objCommand.instantCameraPan == 1) {
 		Send % objCommand.logicalKey, 1
 	}	
 }

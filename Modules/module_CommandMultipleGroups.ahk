@@ -46,8 +46,10 @@ if (b_CommandMultipleGroups == 1) {
 	Control_CommandMultipleGroups(1)
 
 	Global ControlGroups := [ControlGroup0, ControlGroup1, ControlGroup2, ControlGroup3, ControlGroup4, ControlGroup5, ControlGroup6, ControlGroup7, ControlGroup8, ControlGroup9]
+} else {
+	Control_CommandMultipleGroups(0)
+	Menu, Tray, Disable, 	%menu_Toggle_CommandMultipleGroups%
 }
-
 
 ;-----------------------------------------
 ; Module Control

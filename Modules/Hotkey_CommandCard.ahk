@@ -26,11 +26,7 @@
 
 
 	if (b_RapidFire == 1 and A_ThisHotkey == A_PriorHotkey) {	; * Breakdown below
-
-		Send {Escape}
-
-		if (b_EventLog)
-			UpdateEventLog("Deselect")			
+		RapidFire()		
 	}
 
 	Send % appendModifiers objCommand.logicalKey

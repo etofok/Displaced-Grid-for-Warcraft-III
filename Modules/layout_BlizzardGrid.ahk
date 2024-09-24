@@ -44,5 +44,4 @@ load_BlizzardGrid() {
 	Item6.physicalKey			:=	"numpad2"
 
 	MouseButtonRight.physicalKey:=	"Rbutton"
-	
 }

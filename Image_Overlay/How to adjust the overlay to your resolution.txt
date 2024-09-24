@@ -4,13 +4,20 @@
 
 Displaced Grid overlays this image directly on top of the Warcraft III:Reforged window.
 
+Name must be "IMAGE_OVERLAY.png"
 
 
-If you play in a different resolution than 1920x1080 - you need to adjust the overlay.
+
+If you DO NOT play in 1920x1080 - you DO need to adjust the overlay.
+Otherwise it won't be properly aligned.
+
 
 Use the provided "IMAGE_OVERLAY (for editing).psd" in this folder.
+.psd - is a Photoshop file.
+You can open in an online editor ("edit .psd online").
 
 
+Here's a detailed instruction:
 
 1. Open "IMAGE_OVERLAY (for editing).psd" in Photoshop or any online .psd editor.
 
@@ -18,11 +25,11 @@ Use the provided "IMAGE_OVERLAY (for editing).psd" in this folder.
 
 3. Don't forget to remove the in-game screenshot before exporting.
 
-4. Export as .png to keep the transparency.
+4. Export as .png to keep the transparency. Do not export as .jpg.
 
-5. The overlay image should be named exactly "IMAGE_OVERLAY.png".
+5. The overlay image should be named exactly "IMAGE_OVERLAY.png". Do not name it any differently.
 
-P.S. Save the .psd file as well in case you'll need to edit it later.
+P.S. Save the .psd file as well just in case you'll need to get back to it later.
 
 That's it!
 

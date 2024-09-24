@@ -4,7 +4,7 @@
 ;	Download Latest: https://github.com/etofok/Displaced-Grid-for-Warcraft-III
 
 ;	Development: 
-;	Dec 10th, 2023 - Sept 5th, 2024
+;	Dec 10th, 2023 - Sept 24th, 2024
 ;-----------------------------------------
 
 #SingleInstance force
@@ -14,7 +14,7 @@
 if not A_IsAdmin
 	Run *RunAs "%A_ScriptFullPath%"
 
-Global currentVersion				:= "v1.3.2"
+Global currentVersion				:= "v1.3.3"
 Global winTitle 					:= "ahk_class OsWindow" ; Warcraft III class name, as seen in WindowSpy of AutoHotkey
 Global winName 						:= "Warcraft III"		; Warcraft III window name, as seen in WindowSpy of AutoHotkey
 
@@ -37,10 +37,12 @@ Global error_warcraftNotFound 		:= "App is active but Warcraft III is NOT FOUND`
 #Include *i %A_ScriptDir%\Modules\Hotkey_ControlGroup.ahk
 #Include *i %A_ScriptDir%\Modules\Hotkey_Item.ahk
 
+
 Hotkey, %Hotkey_Toggle_DisplacedGrid%, 					Toggle_DisplacedGrid,		UseErrorLevel
 Hotkey, %Hotkey_ScriptReload%, 							ScriptReload,				UseErrorLevel
-Hotkey, %Hotkey_ScriptFolder%, 							ScriptFolder,				UseErrorLevel
 
+Hotkey, %Hotkey_Send_glhf%,								Send_glhf,					UseErrorLevel
+Hotkey, %Hotkey_Send_gg%, 								Send_gg,					UseErrorLevel
 
 Hotkey, IfWinActive, ahk_class OsWindow
 
@@ -78,56 +80,28 @@ if (b_EventLog == True) {
 
 Menu, Tray, Add, 	,
 
-Menu, Tray, Add, 		Modules, handler_blank
-Menu, Tray, Disable, 	Modules
+Menu, Tray, Add, 		MODULES, handler_blank
+Menu, Tray, Disable, 	MODULES
 
 ; ADDING MODULES ONE BY ONE...
-
-if (b_RapidFire == True) {
-	#Include 				*i %A_ScriptDir%\Modules\module_RapidFire.ahk
-	Global enable_RapidFire = True
-}
-
-if (b_CameraHotkeys == True) {
-	#Include 				*i %A_ScriptDir%\Modules\module_CameraHotkeys.ahk
-	Global enable_CameraHotkeys = True
-}
-
-if (b_CommandMultipleGroups == True) {
-	#Include 				*i %A_ScriptDir%\Modules\module_CommandMultipleGroups.ahk
-	Global enable_CommandMultipleGroups = True
-}
-
-if (b_AltKeyImprovements == True) {
-	#Include 				*i %A_ScriptDir%\Modules\module_AltKeyImprovements.ahk
-	Global enable_AltKeyImprovements = True
-}
-
-if (b_QuickCastItems == True) {
-	#Include 				*i %A_ScriptDir%\Modules\module_QuickCastItems.ahk
-	Global enable_QuickCastItems = True
-}
-
-if (b_ShiftQueueItems == True) {
-	#Include 				*i %A_ScriptDir%\Modules\module_ShiftQueueItems.ahk
-	Global enable_ShiftQueueItems = True
-}
-
-if (b_QuickDropItems == True) {
-	#Include 				*i %A_ScriptDir%\Modules\module_QuickDropItems.ahk
-	Global enable_QuickDropItems = True
-}
+#Include 				*i %A_ScriptDir%\Modules\module_RapidFire.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_CameraHotkeys.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_CommandMultipleGroups.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_ShiftQueueItems.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_QuickCastItems.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_QuickDropItems.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_AltKeyImprovements.ahk
 
 Menu, Tray, Add, 		,
-Menu, Tray, Add, 		Tutorials, handler_blank
-Menu, Tray, Disable, 	Tutorials
+Menu, Tray, Add, 		SET UP, handler_blank
+Menu, Tray, Disable, 	SET UP
+Menu, Tray, Add, 		%menu_ScriptSettings%, 										ScriptSettings
 Menu, Tray, Add, 		How to enable QuickCast for Abilities, Tutorial_AbilityQuickCast
 Menu, Tray, Add, 		How to align the overlay, Tutorial_Overlay
 Menu, Tray, Add, 		Go to Website, Tutorial_Website
 Menu, Tray, Add, 		,
 
 Menu, Tray, Add, 		%menu_ScriptReload%,										ScriptReload
-Menu, Tray, Add, 		%menu_ScriptSettings%, 										ScriptSettings
 Menu, Tray, Add, 		%menu_ScriptFolder%, 										ScriptFolder
 Menu, Tray, Add, 		Exit, 														ScriptExit
 
@@ -151,15 +125,12 @@ SplashTextOff
 if (b_DisplacedGrid == 1) {
 
 	if WinExist(winTitle) {
-		; Toggle On on start ONLY if the Warcraft III window exists
-		Control_DisplacedGrid(1)
+		Control_DisplacedGrid(1)	; Toggle On on start ONLY if the Warcraft III window exists
 	} else {
-		; Force Toggle Off if the Warcraft III window does not exist
-		Control_DisplacedGrid(0)
+		Control_DisplacedGrid(0) 	; Force Toggle Off if the Warcraft III window does not exist
 	}
-; if the user has specified b_DisplacedGrid = False in the UserSettings, then don't enable the hotkeys on launch
 } else {
-	Control_DisplacedGrid(0)
+	Control_DisplacedGrid(0) ; otherwise don't enable the hotkeys on launch
 }
 
 ;--------------------
@@ -184,8 +155,8 @@ Toggle_DisplacedGrid() {
 		;turn off the DGRID Layout
 		Control_DisplacedGrid(0)
 
-		; Crutch to link Displaced Grid On/Off with Hold Cast. 
-		; Otherwise you can't type because RapidFire sends a left click which closes chat :)
+		; Crutch to link Displaced Grid On/Off with RapidFire module. 
+		; Otherwise you can't type because RapidFire sends a left click as you type, which closes the chat :)
 		Control_RapidFire(0)
 
 		;turn off Image_Overlay.png
@@ -196,8 +167,8 @@ Toggle_DisplacedGrid() {
 			;turn on the DGRID Layout
 			Control_DisplacedGrid(1)
 
-			; Crutch to link Displaced Grid On/Off with Hold Cast. 
-			; Otherwise you can't type because RapidFire sends a left click which closes chat :)
+			; Crutch to link Displaced Grid On/Off with RapidFire module. 
+			; Otherwise you can't type because RapidFire sends a left click as you type, which closes the chat :)
 			Control_RapidFire(1)
 
 			;turn on Image_Overlay.png
@@ -245,6 +216,23 @@ ReloadHotkeys() {
 ; Auxiliary functions
 ;----------------------------------------------------------------
 
+Send_glhf() {
+    Send, {Enter}
+    Sleep, 50
+    SendRaw, gl hf
+    Sleep, 50
+    Send, {Enter}
+}
+
+
+Send_gg() {
+    Send, {Enter}
+    Sleep, 50
+    SendRaw, gg
+    Sleep, 50
+    Send, {Enter}
+}
+
 ;--------------------------------
 ; Tutorial_AbilityQuickCast
 ;--------------------------------
@@ -260,7 +248,7 @@ return
 
 Tutorial_Overlay:
 	Suspend, Permit
-	Run, %a_scriptdir%\Image_Overlay\How to align the overlay to your resolution.txt
+	Run, %a_scriptdir%\Image_Overlay\How to adjust the overlay to your resolution.txt
 return
 
 ;--------------------------------
@@ -388,6 +376,5 @@ return
 
 handler_blank() {
 }
-
 
 #IfWinActive

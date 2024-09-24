@@ -20,8 +20,6 @@ Hotkey_Item(objCommand) {
 		UpdateEventLog("Physical Key Pressed:`t" mods A_ThisHotkey "`nCorresponding GRID:`t" objCommand.logicalKey)	
 	}
 
-
-
 	; Shift-keyed Item Key Usage
 	if (GetKeyState("Shift", "P")) {
 
@@ -38,13 +36,14 @@ Hotkey_Item(objCommand) {
 
 			if (b_QuickCastItems == 1) {
 				QuickCast(objCommand)
-			}
 
-			if (b_RapidFire == 1) {
-				Send, {Shift down}{Escape}
+				if (b_RapidFire == 1) {
+					RapidFire_queue()
+				}
 			}
+		} 
 
-		} else { 	; b_ShiftQueueItems == 0
+		if (b_ShiftQueueItems == 1) {
 
 			; By default, we cannot activate Item keys while Shift is pressed down: there's just no effect - the item hotkey is ignored.
 
@@ -52,24 +51,30 @@ Hotkey_Item(objCommand) {
 				UpdateEventLog("Attempt to activate " objCommand.logicalKey "`n(Default behavior - no action)")
 		}
 
-	
 	; No "Shift" Item Usage
 
-	} else {
-
-		Send % objCommand.logicalKey
+	} else { ; if (GetKeyState("Shift", "P")) {
 
 		; QuickCastItems is a module that fires a pseudo quick cast
-		; read more info inside the module_QuickCastItems
+		; read more in module_QuickCastItems.ahk
+
+		Send % objCommand.logicalKey ; fire layout key to active item
 
 		if (b_QuickCastItems == 1) {
-			QuickCast(objCommand)
-		}		
-
-		if (b_RapidFire == 1) {
-			Send, {Escape}
-		}
 			
-	}
+			if (b_EventLog)
+				UpdateEventLog("QuickCast Item: " objCommand.logicalKey)
 
+			QuickCast(objCommand)
+
+			if (b_RapidFire == 1) {
+				RapidFire()
+			}	
+		}
+
+		if (b_QuickCastItems == 0) {
+			if (b_EventLog)
+				UpdateEventLog("Cast Item: " objCommand.logicalKey)
+		}
+	}
 }

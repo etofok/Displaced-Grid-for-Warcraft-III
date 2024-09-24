@@ -43,5 +43,4 @@ load_DisplacedGrid() {
 	Item6.physicalKey			:=	"!x"
 
 	MouseButtonRight.physicalKey:=	"Rbutton"
-	
 }

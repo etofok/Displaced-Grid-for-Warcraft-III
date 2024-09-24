@@ -39,6 +39,9 @@ Menu, Tray, Add, %menu_Toggle_QuickCastItems%, Toggle_QuickCastItems
 
 if (b_QuickCastItems == 1) {
 	Control_QuickCastItems(1)
+} else {
+	Control_QuickCastItems(0)
+	Menu, Tray, Disable, 	%menu_Toggle_QuickCastItems%
 }
 
 ;-----------------------------------------
@@ -82,9 +85,10 @@ QuickCast(objItem) {
 
 	;-----------------------------------------
 	; Finally, send a Click or Shift-Click
-	; I have not found a clever way to differentiate between active and passive Items (i.e. Orb of Fire)
-	; which means it'll send a left click if we attempt to use a passive item.
-	; SOLUTION: don't attempt to use passive items it's not complicated guys.
+	; I have not found a clever way to differentiate between active and passive Items (i.e. Staff of Teleportation vs Orb of Fire)
+	; which means this module will send a left click as an attempt to active the item.
+	; if the item is a passive item, what will happen is you'll leftclick something.
+	; SOLUTION: just don't 'activate' your passive items.
 	
 	if (GetKeyState("Shift", "P")) {
 
@@ -99,7 +103,6 @@ QuickCast(objItem) {
 
 		if (b_EventLog)
 			UpdateEventLog("QuickCast Items: CLICK!")
-
 	}
 }
 

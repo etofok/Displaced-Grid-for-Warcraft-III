@@ -28,6 +28,9 @@ Menu, Tray, Add, %menu_Toggle_RapidFire%,	Toggle_RapidFire
 
 if (b_RapidFire == 1) {
 	Control_RapidFire(1)
+} else {
+	Control_RapidFire(0)
+	Menu, Tray, Disable, 	%menu_Toggle_RapidFire%
 }
 
 ;-----------------------------------------
@@ -35,6 +38,16 @@ if (b_RapidFire == 1) {
 
 RapidFire() {
 	Send, {Escape}
+
+	if (b_EventLog)
+		UpdateEventLog("Deselect")	
+}
+
+RapidFire_queue() {
+	Send, {Shift Down}{Escape}
+
+	if (b_EventLog)
+		UpdateEventLog("Deselect")
 }
 
 ;-----------------------------------------

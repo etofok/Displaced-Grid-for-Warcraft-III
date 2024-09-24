@@ -23,8 +23,10 @@ Menu, Tray, Add, %menu_Toggle_ShiftQueueItems%, Toggle_ShiftQueueItems
 
 if (b_ShiftQueueItems == 1) {
 	Control_ShiftQueueItems(1)
+} else {
+	Control_ShiftQueueItems(0)
+	Menu, Tray, Disable, 	%menu_Toggle_ShiftQueueItems%
 }
-
 ;-----------------------------------------
 ; ShiftQueueItems Module
 ;-----------------------------------------

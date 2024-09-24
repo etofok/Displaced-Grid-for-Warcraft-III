@@ -1,7 +1,8 @@
 ﻿;-----------------------------------------
 ; ----- QuickDrop Items
 ;-----------------------------------------
-; Ctrl + Alt + 1 2 3 4 5 6 (+ Shift)
+; Ctrl + Alt + Item1 / Item2 / Item3 / Item4 / Item5 / Item6 
+;(+ Shift)
 ;
 ; Drop/Pass/Sell an item from your inventory to the target at mouse cursor: 
 ; a. place on the ground
@@ -24,6 +25,9 @@ Menu, Tray, Add, %menu_Toggle_QuickDropItems%, Toggle_QuickDropItems
 
 if (b_QuickDropItems == 1) {
 	Control_QuickDropItems(1)
+} else {
+	Control_QuickDropItems(0)
+	Menu, Tray, Disable, 	%menu_Toggle_QuickDropItems%
 }
 
 ;-----------------------------------------
@@ -31,6 +35,15 @@ if (b_QuickDropItems == 1) {
 ;-----------------------------------------
 
 QuickDrop(objItem) {
+
+	if (b_QuickDropItems == 0) {
+
+		if (b_EventLog) {
+			UpdateEventLog("QuickDropItems module is off!")	
+		}
+
+		return
+	}
 
 	ItemX := objItem.x
 	ItemY := objItem.y+4 ; a few pixels below the coordinates specified in UserSettings.ahk
@@ -44,8 +57,7 @@ QuickDrop(objItem) {
 		Send {Click %StartX% %StartY%}							; otherwise Mouse Left Click
 
 	} else {
-	
-		;Send {Shift Down}{Click Right}{Shift Up}				; This is an important difference that's necessary to comment out, because otherwise you'll shift-queue the 'follow' order. Meaning, the unit won't get to pass the item ever.
+		;Send {Shift Down}{Click Right}{Shift Up}				; This is an important difference that's necessary to comment out, because otherwise it'll shift-queue the 'follow' order.
 		Send {Click %ItemX% %ItemY% Right}						; grab the item on the interface
 		Send {Shift Down}{Click %StartX% %StartY%}{Shift Up}	; then Shift Mouse Left Click
 	}

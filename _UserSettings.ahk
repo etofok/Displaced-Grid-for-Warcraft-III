@@ -10,7 +10,7 @@
 ; (!) How to enable QuickCasts for Abilities in Warcraft III:Reforged.
 ; Displaced Grid is designed with this functionality in mind.
 ;
-; Step 1. You MUST use the 'GRID' layout. 
+; Step 1. You MUST use the 'GRID' layout in Warcraft III:Reforged. 
 ; Warcraft III -> Menu -> Options -> Input -> Preset Keybindings -> Dropdown select "Grid" -> Save -> Exit Warcraft III
 ;
 ; Step 2. Open War3Preferences.txt
@@ -20,6 +20,7 @@
 ; In War3Preferences.txt change every "QuickCast=0" to "QuickCast=1".
 ; Save War3Preferences.txt -> Launch the game.
 ;
+; You now have QuickCasts for Abilities enabled.
 ;-----------------------------------------
 
 
@@ -28,7 +29,8 @@
 
 
 ;-----------------------------------------
-; 1. Do you want to switch Displaced Grid hotkeys on or off on app Launch?
+; 1. Do you want to have Displaced Grid hotkeys on or off on app Launch?
+; Change the variable to indicate Yes or No (True = Yes, False = No).
 ;-----------------------------------------
 
 Global b_DisplacedGrid 			:= True		; True / False
@@ -39,9 +41,17 @@ Global b_DisplacedGrid 			:= True		; True / False
 ; 2. What hotkeys do you want to control the app with?
 ;-----------------------------------------
 
-Hotkey_Toggle_DisplacedGrid		= ScrollLock 	; Hotswitch between Displaced Grid and Default hotkeys. You need this in order to type in game chats.
-Hotkey_ScriptReload 			= ^Numpad3 	; Reload Script. Default is CTRL+Numpad3
+; Hotswitch between Displaced Grid and Default hotkeys. 
+Hotkey_Toggle_DisplacedGrid		= ScrollLock 	
 
+Hotkey_Send_glhf 				= F9 		; type "gl hf" in chat
+Hotkey_Send_gg 					= F11		; type "gg" in chat
+; you want these two for Displaced Grid because otherwise it's impossible to type.
+; it's easier just to press f9/f11 than to deactivate dgrid -> enter -> type -> enter -> activate drid back
+
+
+Hotkey_ScriptReload 			= ^Numpad3 	; Reload the Script.
+; "^" is CTRL in Autohotkey.
 ; ^ - CTRL
 ; + - SHIFT
 ; ! - ALT
@@ -52,20 +62,23 @@ Hotkey_ScriptReload 			= ^Numpad3 	; Reload Script. Default is CTRL+Numpad3
 ;-----------------------------------------
 ; 3. What MODULES do you want to use?
 ;
-; If set to 'True' - the module WILL be loaded.
-; If set to 'False' - the module WILL NOT be loaded.
+; If set to 'True' - the module is ENABLED.
+; If set to 'False' - the module is DISABLED.
 ;-----------------------------------------
 
-Global b_QuickCastItems 		:= True 	; Pseudo QuickCast for Items (requires precise pixel coordinates, see below)
 Global b_RapidFire			:= True 	; RapidFire Casting: Hold Command
-Global b_ShiftQueueItems		:= True 	; Queue items by holding SHIFT
-Global b_AltKeyImprovements		:= True 	; Hold ALT to Self Cast. Holding ALT no longer block commands.
+Global b_CameraHotkeys 			:= True 	; Instant camera pan for control groups (defaults 'F1', 'F2', 'F3' and 'F4', see below)
 Global b_CommandMultipleGroups 		:= True 	; Command Multiple Groups (defaults 'A', 'S', 'Z' and 'X', see below)
-Global b_CameraHotkeys 			:= True 	; Instant Camera Jump for certain groups (defaults 'F1', 'F2', 'F3' and 'F4', see below)
-Global b_QuickDropItems 		:= True 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise pixel coordinates, see below)
+Global b_ShiftQueueItems		:= True 	; Queue items by holding SHIFT and ALT. It's a minor module, but more important for DGRID users because we need to hold down ALT to use items on DGRID.
 
-Global b_EventLog	 		:= False 	; This is a debugging overlay used in development.
+; The following modules require your attention to work properly. 
+; These are disabled by default to bring your attention to it.
+; Down below you'll see how to set these modules
+; (it's not hard, just mandatory)
 
+Global b_QuickCastItems 		:= FALSE 	; Pseudo QuickCast for Items (requires precise pixel coordinates, see below)
+Global b_QuickDropItems 		:= FALSE 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise pixel coordinates, see below)
+Global b_AltKeyImprovements		:= FALSE 	; Hold ALT to Self Cast. Holding ALT no longer block commands.
 
 
 ;-----------------------------------------
@@ -76,16 +89,16 @@ Global b_EventLog	 		:= False 	; This is a debugging overlay used in development
 ; The module double-taps the group when you tap it, that's why the camera instantly pans.
 ;-----------------------------------------
 
-ControlGroup1.jumpCameraInstantly := False 	; a
-ControlGroup2.jumpCameraInstantly := False 	; s
-ControlGroup3.jumpCameraInstantly := False 	; z
-ControlGroup4.jumpCameraInstantly := False 	; x
-ControlGroup5.jumpCameraInstantly := False 	; q
-ControlGroup6.jumpCameraInstantly := False 	; w
-ControlGroup7.jumpCameraInstantly := True 	; f1
-ControlGroup8.jumpCameraInstantly := True 	; f2
-ControlGroup9.jumpCameraInstantly := True 	; f3
-ControlGroup0.jumpCameraInstantly := True 	; f4
+ControlGroup1.instantCameraPan := False 	; a
+ControlGroup2.instantCameraPan := False 	; s
+ControlGroup3.instantCameraPan := False 	; z
+ControlGroup4.instantCameraPan := False 	; x
+ControlGroup5.instantCameraPan := False 	; q
+ControlGroup6.instantCameraPan := False 	; w
+ControlGroup7.instantCameraPan := True 	; f1
+ControlGroup8.instantCameraPan := True 	; f2
+ControlGroup9.instantCameraPan := True 	; f3
+ControlGroup0.instantCameraPan := True 	; f4
 
 ; I found two main use cases:
 ; Instant camera pan to a scout or a hit-squad
@@ -176,3 +189,21 @@ Item6.y 					:= 	1017
 
 ; That's it!
 ; etofok
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Global b_EventLog	 		:= FALSE 	
+; This is a debugging overlay used in development for troubleshooting. 
+; You can switch it on if you're curious but it's useless for gameplay.

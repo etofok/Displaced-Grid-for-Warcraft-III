@@ -30,6 +30,9 @@ Menu, Tray, Add, %menu_Toggle_AltKeyImprovements%, Toggle_AltKeyImprovements
 
 if (b_AltKeyImprovements == 1) {
 	Control_AltKeyImprovements(1)
+} else {
+	Control_AltKeyImprovements(0)
+	Menu, Tray, Disable, 	%menu_Toggle_AltKeyImprovements%
 }
 
 ;--------------------------------
@@ -85,8 +88,7 @@ AltKeyImprovements(objCommand) {
 					Click % PortraitUI.x " " PortraitUI.y
 
 					if (b_RapidFire == 1) {
-
-						Send {Shift Down}{Escape}
+						RapidFire_queue()
 
 						if (b_EventLog)
 							UpdateEventLog("Deselect")			
@@ -144,8 +146,7 @@ AltKeyImprovements(objCommand) {
 						UpdateEventLog("Alt + (" KeyToPress ")`nFiring the Ability anyway!")
 
 					if (b_RapidFire == 1) {
-						
-						Send, {Escape}
+						RapidFire()
 						Send % objCommand.logicalKey
 						
 						return
