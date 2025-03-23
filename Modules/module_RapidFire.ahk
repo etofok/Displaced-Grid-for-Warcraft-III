@@ -21,6 +21,8 @@
 
 ; Yes I use Globals
 Global menu_Toggle_RapidFire				:= "RapidFire Casting"
+Global initialState_RapidFire				:= False
+
 Menu, Tray, Add, %menu_Toggle_RapidFire%,	Toggle_RapidFire
 
 ;-----------------------------------------
@@ -28,8 +30,10 @@ Menu, Tray, Add, %menu_Toggle_RapidFire%,	Toggle_RapidFire
 
 if (b_RapidFire == 1) {
 	Control_RapidFire(1)
+	initialState_RapidFire = True
 } else {
 	Control_RapidFire(0)
+	initialState_RapidFire = False ; yea yeah don't care
 	Menu, Tray, Disable, 	%menu_Toggle_RapidFire%
 }
 

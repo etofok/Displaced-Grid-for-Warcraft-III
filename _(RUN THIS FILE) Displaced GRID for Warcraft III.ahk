@@ -4,7 +4,7 @@
 ;	Download Latest: https://github.com/etofok/Displaced-Grid-for-Warcraft-III
 
 ;	Development: 
-;	Dec 10th, 2023 - Sept 24th, 2024
+;	Dec 10th, 2023 - March 24th, 2025
 ;-----------------------------------------
 
 #SingleInstance force
@@ -14,7 +14,7 @@
 if not A_IsAdmin
 	Run *RunAs "%A_ScriptFullPath%"
 
-Global currentVersion				:= "v1.3.3"
+Global currentVersion				:= "v1.3.4"
 Global winTitle 					:= "ahk_class OsWindow" ; Warcraft III class name, as seen in WindowSpy of AutoHotkey
 Global winName 						:= "Warcraft III"		; Warcraft III window name, as seen in WindowSpy of AutoHotkey
 
@@ -157,7 +157,9 @@ Toggle_DisplacedGrid() {
 
 		; Crutch to link Displaced Grid On/Off with RapidFire module. 
 		; Otherwise you can't type because RapidFire sends a left click as you type, which closes the chat :)
-		Control_RapidFire(0)
+		if (initialState_RapidFire == False) {
+			Control_RapidFire(0)
+		}
 
 		;turn off Image_Overlay.png
 		Control_Overlay(0)
@@ -169,7 +171,9 @@ Toggle_DisplacedGrid() {
 
 			; Crutch to link Displaced Grid On/Off with RapidFire module. 
 			; Otherwise you can't type because RapidFire sends a left click as you type, which closes the chat :)
-			Control_RapidFire(1)
+			if (initialState_RapidFire == True) {
+				Control_RapidFire(1)
+			}
 
 			;turn on Image_Overlay.png
 			Control_Overlay(1)
@@ -374,7 +378,10 @@ return
 ; Blank 
 ;-----------------------------------------
 
+
 handler_blank() {
 }
 
 #IfWinActive
+
+

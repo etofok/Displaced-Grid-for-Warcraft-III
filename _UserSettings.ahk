@@ -1,4 +1,4 @@
-﻿;-----------------------------------------
+;-----------------------------------------
 ; Welcome to UserSettings!
 ; Please set aside 5 minutes to set up everything once and for all.
 ;-----------------------------------------
@@ -66,19 +66,19 @@ Hotkey_ScriptReload 			= ^Numpad3 	; Reload the Script.
 ; If set to 'False' - the module is DISABLED.
 ;-----------------------------------------
 
-Global b_RapidFire			:= True 	; RapidFire Casting: Hold Command
-Global b_CameraHotkeys 			:= True 	; Instant camera pan for control groups (defaults 'F1', 'F2', 'F3' and 'F4', see below)
-Global b_CommandMultipleGroups 		:= True 	; Command Multiple Groups (defaults 'A', 'S', 'Z' and 'X', see below)
-Global b_ShiftQueueItems		:= True 	; Queue items by holding SHIFT and ALT. It's a minor module, but more important for DGRID users because we need to hold down ALT to use items on DGRID.
+Global b_RapidFire			:= False 	; RapidFire Casting: Hold Command
+Global b_CameraHotkeys 			:= False 	; Instant camera pan for control groups (defaults 'F1', 'F2', 'F3' and 'F4', see below)
+Global b_CommandMultipleGroups 		:= False 	; Command Multiple Groups (defaults 'A', 'S', 'Z' and 'X', see below)
+Global b_ShiftQueueItems		:= False 	; Queue items by holding SHIFT and ALT. It's a minor module, but more important for DGRID users because we need to hold down ALT to use items on DGRID.
 
-; The following modules require your attention to work properly. 
-; These are disabled by default to bring your attention to it.
+; The following modules REQUIRE YOUR ATTENTION to work properly.
+; These DO NOT work "from the box".
 ; Down below you'll see how to set these modules
 ; (it's not hard, just mandatory)
 
-Global b_QuickCastItems 		:= FALSE 	; Pseudo QuickCast for Items (requires precise pixel coordinates, see below)
-Global b_QuickDropItems 		:= FALSE 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise pixel coordinates, see below)
-Global b_AltKeyImprovements		:= FALSE 	; Hold ALT to Self Cast. Holding ALT no longer block commands.
+Global b_QuickCastItems 		:= False 	; Pseudo QuickCast for Items (requires precise pixel coordinates, see below)
+Global b_QuickDropItems 		:= False 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise pixel coordinates, see below)
+Global b_AltKeyImprovements		:= False 	; Hold ALT to Self Cast. Holding ALT no longer block commands.
 
 
 ;-----------------------------------------
