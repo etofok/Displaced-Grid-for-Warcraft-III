@@ -20,6 +20,30 @@ load_DisplacedGrid() {
 	ControlGroup9.physicalKey	:=	"f3"
 	ControlGroup0.physicalKey	:=	"f4"
 
+	/*
+	
+	; For Input - CustomKeys.txt
+
+	GRID_00.physicalKey 		:= 	"e"
+	GRID_01.physicalKey 		:= 	"r"
+	GRID_02.physicalKey 		:= 	"t"
+	GRID_03.physicalKey 		:= 	"4"
+
+	GRID_10.physicalKey 		:= 	"d"
+	GRID_11.physicalKey 		:= 	"f"
+	GRID_12.physicalKey 		:= 	"g"
+	GRID_13.physicalKey 		:= 	"Space"
+
+	GRID_20.physicalKey 		:= 	"c"
+	GRID_21.physicalKey 		:= 	"v"
+	GRID_22.physicalKey 		:= 	"b"
+	GRID_23.physicalKey 		:= 	"n"
+
+	*/
+
+
+	; For Input - GRID
+
 	GRID_00.physicalKey 		:= 	"d"
 	GRID_01.physicalKey 		:= 	"f"
 	GRID_02.physicalKey 		:= 	"g"

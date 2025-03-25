@@ -1,6 +1,7 @@
 ;-----------------------------------------
 ; Welcome to UserSettings!
-; Please set aside 5 minutes to set up everything once and for all.
+; Please set aside 5 minutes to set up everything.
+; You won't have to do this again.
 ;-----------------------------------------
 
 
@@ -29,7 +30,7 @@
 
 
 ;-----------------------------------------
-; 1. Do you want to have Displaced Grid hotkeys on or off on app Launch?
+; 1. Do you want to have Displaced Grid hotkeys ON or OFF on app Launch?
 ; Change the variable to indicate Yes or No (True = Yes, False = No).
 ;-----------------------------------------
 
@@ -46,11 +47,9 @@ Hotkey_Toggle_DisplacedGrid		= ScrollLock
 
 Hotkey_Send_glhf 				= F9 		; type "gl hf" in chat
 Hotkey_Send_gg 					= F11		; type "gg" in chat
-; you want these two for Displaced Grid because otherwise it's impossible to type.
-; it's easier just to press f9/f11 than to deactivate dgrid -> enter -> type -> enter -> activate drid back
 
+Hotkey_ScriptReload 			= ^Numpad3 	; Reload the Script
 
-Hotkey_ScriptReload 			= ^Numpad3 	; Reload the Script.
 ; "^" is CTRL in Autohotkey.
 ; ^ - CTRL
 ; + - SHIFT
@@ -64,29 +63,28 @@ Hotkey_ScriptReload 			= ^Numpad3 	; Reload the Script.
 ;
 ; If set to 'True' - the module is ENABLED.
 ; If set to 'False' - the module is DISABLED.
+;
 ;-----------------------------------------
 
-Global b_RapidFire			:= False 	; RapidFire Casting: Hold Command
-Global b_CameraHotkeys 			:= False 	; Instant camera pan for control groups (defaults 'F1', 'F2', 'F3' and 'F4', see below)
-Global b_CommandMultipleGroups 		:= False 	; Command Multiple Groups (defaults 'A', 'S', 'Z' and 'X', see below)
-Global b_ShiftQueueItems		:= False 	; Queue items by holding SHIFT and ALT. It's a minor module, but more important for DGRID users because we need to hold down ALT to use items on DGRID.
+Global b_RapidFire			:= False 	; RapidFire Casting: Hold an action key to repeatedly fire
+Global b_CameraHotkeys 			:= False 	; Instant camera pan for control groups (default groups: 'F1', 'F2', 'F3' and 'F4', see below)
+Global b_CommandMultipleGroups 		:= False 	; Command Multiple Groups (default groups: 'A', 'S', 'Z' and 'X', see below)
+Global b_ShiftQueueItems		:= False 	; Ability to queue items when holding both SHIFT and ALT. It's important for DGRID users because item activation requres pressing down ALT.
 
 ; The following modules REQUIRE YOUR ATTENTION to work properly.
 ; These DO NOT work "from the box".
 ; Down below you'll see how to set these modules
-; (it's not hard, just mandatory)
+; (takes 5 minutes)
 
-Global b_QuickCastItems 		:= False 	; Pseudo QuickCast for Items (requires precise pixel coordinates, see below)
-Global b_QuickDropItems 		:= False 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires precise pixel coordinates, see below)
-Global b_AltKeyImprovements		:= False 	; Hold ALT to Self Cast. Holding ALT no longer block commands.
+Global b_QuickCastItems 		:= False 	; Pseudo QuickCast for Items (requires VERY precise pixel coordinates, see below)
+Global b_QuickDropItems 		:= False 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires VERY precise pixel coordinates, see below)
+Global b_AltKeyImprovements		:= False 	; Hold ALT to Self Cast. Holding ALT no longer blocks input commands.
 
 
 ;-----------------------------------------
-; 4. To which control groups would you like to attach the instant camera pan functionality? | 'Camera Hotkeys' Module Set Up
+; 4. To what control groups would you like to attach the instant camera pan functionality? | 'Camera Hotkeys' 
 ;
-; The defaults in Displaced Grid are the control groups 7,8,9 and 0 (which are bound to F1 F2 F3 and F4).
-; These are VALID control groups.
-; The module double-taps the group when you tap it, that's why the camera instantly pans.
+; The module double-taps the group when you single tap it.
 ;-----------------------------------------
 
 ControlGroup1.instantCameraPan := False 	; a
@@ -95,19 +93,18 @@ ControlGroup3.instantCameraPan := False 	; z
 ControlGroup4.instantCameraPan := False 	; x
 ControlGroup5.instantCameraPan := False 	; q
 ControlGroup6.instantCameraPan := False 	; w
-ControlGroup7.instantCameraPan := True 	; f1
-ControlGroup8.instantCameraPan := True 	; f2
-ControlGroup9.instantCameraPan := True 	; f3
-ControlGroup0.instantCameraPan := True 	; f4
+ControlGroup7.instantCameraPan := False 	; f1
+ControlGroup8.instantCameraPan := False 	; f2
+ControlGroup9.instantCameraPan := False 	; f3
+ControlGroup0.instantCameraPan := False 	; f4
 
 ; I found two main use cases:
 ; Instant camera pan to a scout or a hit-squad
 ; Instant camera pan between your Main Base and Expansion
 
 
-
 ;-----------------------------------------
-; 5. Which control groups would you like to manage simultaneously using CapsLock? | 'Command Multiple Groups' Module Set Up
+; 5. What control groups would you like to manage simultaneously using CapsLock? | 'Command Multiple Groups' Module Set Up
 ;
 ; This module allow the user to send attack/move/cast/stop/hold/patrol commands to specific control groups.
 ;
@@ -127,36 +124,19 @@ ControlGroup9.commandThisGroup := False 	; f3
 ControlGroup0.commandThisGroup := False 	; f4
 
 
-
 ;-----------------------------------------
-; 6. Where is the Portrait UI element located on your screen?
+; 6. Where is the Inventory/Backpack UI element located on your screen?
 ;
-; This is required for the "Alt Cast" module in order to click the Portrait UI element.
-; Otherwise this module will not work properly.
+; This is required for the QuickCastItem module, because we pixel hunt to determine whether the item is on cooldown (by its blue cooldown overlay).
+; This is also required for the QuickDropItem module, as we right-click the item to grab and drag it.
+; Otherwise, these two modules will not work properly.
 ;
-; You can easily check the coordinates in Windows Paint (see in the bottom-left), like so:
-; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
-;-----------------------------------------
-
-; The following works for 1920x1080
-PortraitUI.x := 700
-PortraitUI.y := 900
-
-
-
-;-----------------------------------------
-; 7. Where is the Inventory/Backpack UI element located on your screen?
-;
-; This is required for the QuickCastItem module, because we pixel hunt whether the item is on cooldown or not (by its blue cooldown overlay).
-; This is required for the QuickDropItem module, because we right-click the item in order to grab-and-drag it.
-; Otherwise these two modules will not work properly.
-;
-; You can easily check the coordinates in Windows Paint (see in the bottom-left), like so:
+; You can easily check the coordinates in Windows Paint (see the bottom-left), like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;
-; We are looking for the blue overlay on top of the item border. Just one pixel.
+; We are looking for the blue overlay on top of the item border — just one pixel.
 ;
-; This way we can determine whether or not the item slot contains an item (by its silver-colored border), and we also can determine whether or not the item is on cooldown (by the blue overlay).
+; This way, we can determine whether the item slot contains an item (by its silver-colored border) and whether the item is on cooldown (by the blue overlay).
 ;-----------------------------------------
 
 ; The following works for 1920x1080
@@ -186,6 +166,24 @@ Item6.x 					:= 	1270
 Item6.y 					:= 	1017
 
 ;-----------------------------------------
+
+
+
+;-----------------------------------------
+; 7. Where is the Portrait UI element located on YOUR screen?
+;
+; This is MANDATORY for the "Alt Cast" module.
+; 
+; You can easily check the coordinates in Windows Paint (see in the bottom-left), like so:
+; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
+;
+; Find one pixel of your portrait element.
+;-----------------------------------------
+
+; The following works for 1920x1080
+PortraitUI.x := 700
+PortraitUI.y := 900
+
 
 ; That's it!
 ; etofok

@@ -24,7 +24,7 @@ SetTitleMatchMode, 3
 ; miscellaneous
 Global FlashSplashTime 				:= 150
 Global PortraitUI 					:= []
-Global error_warcraftNotFound 		:= "App is active but Warcraft III is NOT FOUND`n`nTo use Displaced Grid hotkeys`nplease launch Warcraft III and try again!"
+Global error_warcraftNotFound 		:= "Application has loaded correctly, but `n Warcraft III is NOT FOUND!`n`nPlease launch Warcraft III and restart the app!"
 
 #Include *i %A_ScriptDir%\Modules\layout_Start.ahk
 #Include *i %A_ScriptDir%\_UserSettings.ahk
