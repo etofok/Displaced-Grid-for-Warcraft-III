@@ -151,38 +151,48 @@ return ; this return is the most important line of code
 
 Toggle_DisplacedGrid() {
 
+	;if DisplacedGrid is ON -> switch DisplacedGrid OFF
 	if (b_DisplacedGrid == 1) {
-		;turn off the DGRID Layout
-		Control_DisplacedGrid(0)
 
-		; Crutch to link Displaced Grid On/Off with RapidFire module. 
-		; Otherwise you can't type because RapidFire sends a left click as you type, which closes the chat :)
-		if (initialState_RapidFire == False) {
+		;This is a crutch to link "DisplacedGrid Off" to the RapidFire module.
+		;Otherwise you can't type! 
+		;RapidFire sends an ESCAPE command as you press buttons (i.e. when you type) which closes the chat :)
+
+		if (initialState_RapidFire) {
 			Control_RapidFire(0)
 		}
 
-		;turn off Image_Overlay.png
-		Control_Overlay(0)
+		;Switch Displaced Grid OFF
+		Control_DisplacedGrid(0)
 
-	}	else {
+		;Switch Image_Overlay.png OFF
+		Control_Overlay(0)		
+
+	}
+
+	;if DisplacedGrid is OFF -> switch DisplacedGrid ON
+	else {
 		if WinExist(winTitle) {
-			;turn on the DGRID Layout
-			Control_DisplacedGrid(1)
 
-			; Crutch to link Displaced Grid On/Off with RapidFire module. 
-			; Otherwise you can't type because RapidFire sends a left click as you type, which closes the chat :)
-			if (initialState_RapidFire == True) {
+			;This is a crutch to link "DisplacedGrid On" to the RapidFire module.
+			;Otherwise you can't type!
+			;RapidFire sends an ESCAPE command as you press buttons (i.e. when you type) which closes the chat :)
+
+			if (initialState_RapidFire) {
 				Control_RapidFire(1)
 			}
 
-			;turn on Image_Overlay.png
+			;Switch Displaced Grid ON 
+			Control_DisplacedGrid(1)
+
+			;Switch Image_Overlay.png ON
 			Control_Overlay(1)
+
 		} else {
 			MsgBox, %error_warcraftNotFound%
 		}
 	}
 }
-
 
 Control_DisplacedGrid(switchTo) {
 	
@@ -375,9 +385,17 @@ LinkTree:
 return
 
 ;-----------------------------------------
-; Blank 
+; Random 
 ;-----------------------------------------
 
+Rand(min, max) {
+    Random, output, min, max
+    return output
+}
+
+;-----------------------------------------
+; Blank 
+;-----------------------------------------
 
 handler_blank() {
 }
