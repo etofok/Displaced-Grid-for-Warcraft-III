@@ -14,7 +14,7 @@
 if not A_IsAdmin
 	Run *RunAs "%A_ScriptFullPath%"
 
-Global currentVersion				:= "v1.3.4"
+Global currentVersion				:= "v1.3.6"
 Global winTitle 					:= "ahk_class OsWindow" ; Warcraft III class name, as seen in WindowSpy of AutoHotkey
 Global winName 						:= "Warcraft III"		; Warcraft III window name, as seen in WindowSpy of AutoHotkey
 
