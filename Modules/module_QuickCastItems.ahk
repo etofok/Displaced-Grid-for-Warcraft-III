@@ -128,6 +128,5 @@ Control_QuickCastItems(switchTo) {
 
 	if (b_EventLog) {
 		UpdateEventLog("QuickCast Items - " . switchTo)	
-		FlashSplash("QuickCast Items - " . switchTo, FlashSplashTime)
 	}
 } 

@@ -78,12 +78,12 @@
     background-size: 100% 100%;
     margin-left: 8px;
     margin-right: 8px;
-    width: 105px;
-    height: 64px;
+    width: 95px;
+    height: 59px;
     cursor: pointer;
     text-align: left;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    filter: brightness(60%);
+    filter: brightness(75%);
 
     background-position: 0 90%;
     box-shadow: rgba(0, 0, 0, .3) 15px 1.5rem 25px -18px;
@@ -94,30 +94,19 @@
 }
 
 .button-slide-thumbnail:hover {
+    filter: brightness(90%);
+    scale: 1.03;
 
-    border-top: 2px solid var(--colorElementHoverText);
-    border-left: 2px solid var(--colorElementHoverText);
-    border-right: 2px solid var(--colorElementHoverText);
-    border-bottom: 2px solid var(--colorElementHoverText);
-
-    filter: brightness(80%);
-
-    box-shadow: rgba(0, 0, 0, .3) 15px 1.5rem 18px -8px;
-
+    box-shadow: rgba(0, 0, 0, .3) 4px 1rem 8px -8px;
     transform: translate3d(0, -2px, 0);
-
 }
 
 .button-slide-thumbnail.active {
-    border-top: 2px solid var(--colorElementHoverText);
-    border-left: 2px solid var(--colorElementHoverText);
-    border-right: 2px solid var(--colorElementHoverText);
-    border-bottom: 2px solid var(--colorElementHoverText);
-
     filter: brightness(100%);
+    scale: 1.12;
 
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-    transform: translate3d(0, 3px, 0);
+    transform: translate3d(0, -3px, 0);
 }
 
 

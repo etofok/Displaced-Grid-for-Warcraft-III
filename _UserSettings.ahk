@@ -36,26 +36,27 @@
 
 Global b_DisplacedGrid 			:= True		; True / False
 
-
-
 ;-----------------------------------------
 ; 2. What hotkeys do you want to control the app with?
 ;-----------------------------------------
 
 ; Hotswitch between Displaced Grid and Default hotkeys. 
-Hotkey_Toggle_DisplacedGrid		= ScrollLock 	
+; ScrollLock is a good hotkey because it got a visual indicator on most keyboards.
+; Another great option is to bind it to a side mouse button like Xbutton1 or Xbutton2.
+; https://www.autohotkey.com/docs/v1/KeyList.htm
+
+Hotkey_Toggle_DisplacedGrid		= ScrollLock
 
 Hotkey_Send_glhf 				= F9 		; type "gl hf" in chat
 Hotkey_Send_gg 					= F11		; type "gg" in chat
 
-Hotkey_ScriptReload 			= ^Numpad3 	; Reload the Script
+Hotkey_ScriptReload 			= ^Numpad3 	; Reload the Script with CONTROL + NUMPAD3 (default bind)
 
-; "^" is CTRL in Autohotkey.
+
 ; ^ - CTRL
 ; + - SHIFT
 ; ! - ALT
 ; Wiki page: https://www.autohotkey.com/docs/v1/Hotkeys.htm
-
 
 
 ;-----------------------------------------
@@ -66,42 +67,41 @@ Hotkey_ScriptReload 			= ^Numpad3 	; Reload the Script
 ;
 ;-----------------------------------------
 
-Global b_RapidFire			:= False 	; RapidFire Casting: Hold an action key to repeatedly fire
-Global b_CameraHotkeys 			:= False 	; Instant camera pan for control groups (default groups: 'F1', 'F2', 'F3' and 'F4', see below)
-Global b_CommandMultipleGroups 		:= False 	; Command Multiple Groups (default groups: 'A', 'S', 'Z' and 'X', see below)
-Global b_ShiftQueueItems		:= False 	; Ability to queue items when holding both SHIFT and ALT. It's important for DGRID users because item activation requres pressing down ALT.
+Global b_SetSkillPoint			:= False 	; CTRL + Ability to quickly allocate a hero skill point.
+Global b_CommandMultipleGroups 	:= False 	; Command Multiple Groups (default control groups: 'A', 'S', 'Z' and 'X', see below).
+Global b_RapidFire				:= False 	; RapidFire Casting: Hold an action key to repeatedly fire.
+Global b_InstantCamera 			:= False 	; Instant camera for control groups (default control groups: none, see below).
+Global b_ShiftQueueItems		:= False 	; Ability to queue items when holding SHIFT and ALT. It's important for DGRID users because item activation requres pressing down ALT.
 
 ; The following modules REQUIRE YOUR ATTENTION to work properly.
-; These DO NOT work "from the box".
+; These DO NOT work "out of the box".
 ; Down below you'll see how to set these modules
 ; (takes 5 minutes)
 
-Global b_QuickCastItems 		:= False 	; Pseudo QuickCast for Items (requires VERY precise pixel coordinates, see below)
-Global b_QuickDropItems 		:= False 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires VERY precise pixel coordinates, see below)
-Global b_AltKeyImprovements		:= False 	; Hold ALT to Self Cast. Holding ALT no longer blocks input commands.
-
+Global b_QuickCastItems 		:= False 	; Pseudo QuickCast for Items (requires VERY precise pixel coordinates, see below).
+Global b_QuickDropItems 		:= False 	; ALT + CTRL + q/w/a/s/z/x to drop/pass items to mouse cursor (requires VERY precise pixel coordinates, see below).
+Global b_CastOnYourself			:= False 	; Hold ALT to Cast On Yourself. Alt+D+D will no longer exit the game.
 
 ;-----------------------------------------
-; 4. To what control groups would you like to attach the instant camera pan functionality? | 'Camera Hotkeys' 
+; 4. To what control groups would you like to attach the Instant Camera functionality?
 ;
 ; The module double-taps the group when you single tap it.
 ;-----------------------------------------
 
-ControlGroup1.instantCameraPan := False 	; a
-ControlGroup2.instantCameraPan := False 	; s
-ControlGroup3.instantCameraPan := False 	; z
-ControlGroup4.instantCameraPan := False 	; x
-ControlGroup5.instantCameraPan := False 	; q
-ControlGroup6.instantCameraPan := False 	; w
-ControlGroup7.instantCameraPan := False 	; f1
-ControlGroup8.instantCameraPan := False 	; f2
-ControlGroup9.instantCameraPan := False 	; f3
-ControlGroup0.instantCameraPan := False 	; f4
+ControlGroup1.instantCamera := False 	; a
+ControlGroup2.instantCamera := False 	; s
+ControlGroup3.instantCamera := False 	; z
+ControlGroup4.instantCamera := False 	; x
+ControlGroup5.instantCamera := False 	; q
+ControlGroup6.instantCamera := False 	; w
+ControlGroup7.instantCamera := False 	; f1
+ControlGroup8.instantCamera := False 	; f2
+ControlGroup9.instantCamera := False 	; f3
+ControlGroup0.instantCamera := False 	; f4
 
 ; I found two main use cases:
-; Instant camera pan to a scout or a hit-squad
-; Instant camera pan between your Main Base and Expansion
-
+; Instantly pan to a dedicated scout group or a hit-squad group (i.e. 'x')
+; Instantly pan between your Main Base and Expansion (i.e. 'f1' and 'f2')
 
 ;-----------------------------------------
 ; 5. What control groups would you like to manage simultaneously using CapsLock? | 'Command Multiple Groups' Module Set Up
@@ -131,10 +131,11 @@ ControlGroup0.commandThisGroup := False 	; f4
 ; This is also required for the QuickDropItem module, as we right-click the item to grab and drag it.
 ; Otherwise, these two modules will not work properly.
 ;
-; You can easily check the coordinates in Windows Paint (see the bottom-left), like so:
+; You can easily check the coordinates in Paint.exe (see the bottom-left), like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;
-; We are looking for the blue overlay on top of the item border — just one pixel.
+; You are looking for the blue overlay on top of the item border — just one pixel! (!)
+; It's very precise but this works.
 ;
 ; This way, we can determine whether the item slot contains an item (by its silver-colored border) and whether the item is on cooldown (by the blue overlay).
 ;-----------------------------------------
@@ -172,9 +173,9 @@ Item6.y 					:= 	1017
 ;-----------------------------------------
 ; 7. Where is the Portrait UI element located on YOUR screen?
 ;
-; This is MANDATORY for the "Alt Cast" module.
+; This is MANDATORY for the "Cast On Yourself" module.
 ; 
-; You can easily check the coordinates in Windows Paint (see in the bottom-left), like so:
+; You can easily check the coordinates in Paint.exe, like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;
 ; Find one pixel of your portrait element.
@@ -202,6 +203,6 @@ PortraitUI.y := 900
 
 
 
-Global b_EventLog	 		:= FALSE 	
+Global b_EventLog	 		:= False 	
 ; This is a debugging overlay used in development for troubleshooting. 
 ; You can switch it on if you're curious but it's useless for gameplay.

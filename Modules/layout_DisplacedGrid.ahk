@@ -20,44 +20,25 @@ load_DisplacedGrid() {
 	ControlGroup9.physicalKey	:=	"f3"
 	ControlGroup0.physicalKey	:=	"f4"
 
-	/*
-	
-	; For Input - CustomKeys.txt
-
-	GRID_00.physicalKey 		:= 	"e"
-	GRID_01.physicalKey 		:= 	"r"
-	GRID_02.physicalKey 		:= 	"t"
-	GRID_03.physicalKey 		:= 	"4"
-
-	GRID_10.physicalKey 		:= 	"d"
-	GRID_11.physicalKey 		:= 	"f"
-	GRID_12.physicalKey 		:= 	"g"
-	GRID_13.physicalKey 		:= 	"Space"
-
-	GRID_20.physicalKey 		:= 	"c"
-	GRID_21.physicalKey 		:= 	"v"
-	GRID_22.physicalKey 		:= 	"b"
-	GRID_23.physicalKey 		:= 	"n"
-
-	*/
-
-
-	; For Input - GRID
+	; Blizzard GRID
+	; | 0,0 | 1,0 | 2,0 | 3,0 |
+	; | 0,1 | 1,1 | 2,1 | 3,1 |
+	; | 0,2 | 1,2 | 2,2 | 3,2 |
 
 	GRID_00.physicalKey 		:= 	"d"
-	GRID_01.physicalKey 		:= 	"f"
-	GRID_02.physicalKey 		:= 	"g"
-	GRID_03.physicalKey 		:= 	"Space"
+	GRID_10.physicalKey 		:= 	"f"
+	GRID_20.physicalKey 		:= 	"g"
+	GRID_30.physicalKey 		:= 	"Space"
 
-	GRID_10.physicalKey 		:= 	"c"
+	GRID_01.physicalKey 		:= 	"c"
 	GRID_11.physicalKey 		:= 	"v"
-	GRID_12.physicalKey 		:= 	"b"
-	GRID_13.physicalKey 		:= 	"n"
+	GRID_21.physicalKey 		:= 	"b"
+	GRID_31.physicalKey 		:= 	"n"
 
-	GRID_20.physicalKey 		:= 	"e"
-	GRID_21.physicalKey 		:= 	"r"
+	GRID_02.physicalKey 		:= 	"e"
+	GRID_12.physicalKey 		:= 	"r"
 	GRID_22.physicalKey 		:= 	"t"
-	GRID_23.physicalKey 		:= 	"4"
+	GRID_32.physicalKey 		:= 	"4"
 
 	Item1.physicalKey			:=	"!q"
 	Item2.physicalKey			:=	"!w"

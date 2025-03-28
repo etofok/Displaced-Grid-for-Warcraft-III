@@ -19,7 +19,7 @@
 ;-----------------------------------------
 
 ; Yes I use Globals
-Global menu_Toggle_CommandMultipleGroups				:= "Command Multiple Groups: Hold CapsLock"
+Global menu_Toggle_CommandMultipleGroups				:= "[CAPSLOCK] to Command Multiple Groups"
 Menu, Tray, Add, %menu_Toggle_CommandMultipleGroups%,	Toggle_CommandMultipleGroups
 
 ;-----------------------------------------
@@ -56,6 +56,7 @@ if (b_CommandMultipleGroups == 1) {
 
 CommandMultipleGroups(modifiers, objCommand) {
 
+	; The loop goes from the last group to the first, so that at the end of it we end up with the first group (which is most likely out 'main' group)
 	Loop, % ControlGroups.MaxIndex() {
 	    i := ControlGroups.MaxIndex() - A_Index + 1
 	    if (ControlGroups[i].commandThisGroup == 1) {
@@ -63,7 +64,6 @@ CommandMultipleGroups(modifiers, objCommand) {
 	        Send % modifiers objCommand.logicalKey
 	    }
 	}
-
 
 	if (b_EventLog) {
 		modifiers := ReplaceModifiers(modifiers)
@@ -91,6 +91,5 @@ Control_CommandMultipleGroups(switchTo) {
 
 	if (b_EventLog) {
 		UpdateEventLog("Command Multiple Groups - " . switchTo)	
-		FlashSplash("Command Multiple Groups - " . switchTo, FlashSplashTime)
 	}
 }

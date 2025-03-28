@@ -34,8 +34,11 @@ if (b_RapidFire == 1) {
 } else {
 	Control_RapidFire(0)
 	initialState_RapidFire = False ; yea yeah don't care
+
 	Menu, Tray, Disable, 	%menu_Toggle_RapidFire%
 }
+
+
 
 ;-----------------------------------------
 ; Module Control
@@ -60,11 +63,11 @@ RapidFire_queue() {
 
 Toggle_RapidFire() {
 
-	if (b_RapidFire == 1)
+	if (b_RapidFire == 1) 
 		Control_RapidFire(0)
-	else
+	else 
 		Control_RapidFire(1)
-} 
+}
 
 Control_RapidFire(switchTo) {
 
@@ -73,7 +76,6 @@ Control_RapidFire(switchTo) {
 	ToggleCheckmark(menu_Toggle_RapidFire, switchTo)
 
 	if (b_EventLog) {
-		UpdateEventLog("Hold RapidFire - " . switchTo)	
-		FlashSplash("Hold RapidFire - " . switchTo, FlashSplashTime)
+		UpdateEventLog("Hold RapidFire - " . switchTo)
 	}
 }

@@ -1,15 +1,15 @@
 Global	GRID_00 			:= 	[]
-Global	GRID_01 			:=	[]
-Global	GRID_02 			:=	[]
-Global	GRID_03 			:=	[]
 Global	GRID_10 			:=	[]
-Global	GRID_11 			:=	[]
-Global	GRID_12 			:=	[]
-Global	GRID_13 			:=	[]
 Global	GRID_20 			:=	[]
+Global	GRID_30 			:=	[]
+Global	GRID_01 			:=	[]
+Global	GRID_11 			:=	[]
 Global	GRID_21 			:=	[]
+Global	GRID_31 			:=	[]
+Global	GRID_02 			:=	[]
+Global	GRID_12 			:=	[]
 Global	GRID_22 			:=	[]
-Global	GRID_23 			:=	[]
+Global	GRID_32 			:=	[]
 
 Global	SelectHero1 		:=	[]
 Global	SelectHero2 		:=	[]
@@ -41,18 +41,23 @@ Global	MouseButtonRight 	:= 	[]
 ; Command Card.
 ;-------------------------------------------
 
+; Blizzard GRID
+; | 0,0 | 1,0 | 2,0 | 3,0 |
+; | 0,1 | 1,1 | 2,1 | 3,1 |
+; | 0,2 | 1,2 | 2,2 | 3,2 |
+
 GRID_00.logicalKey 			:= 	"{q}"	; Parentheses are necessary, because otherwise the hotkeys won't work once you change the language in Windows
-GRID_01.logicalKey			:=	"{w}"
-GRID_02.logicalKey			:=	"{e}"
-GRID_03.logicalKey			:=	"{r}"
-GRID_10.logicalKey			:=	"{a}"
+GRID_10.logicalKey			:=	"{w}"
+GRID_20.logicalKey			:=	"{e}"
+GRID_30.logicalKey			:=	"{r}"
+GRID_01.logicalKey			:=	"{a}"
 GRID_11.logicalKey			:=	"{s}"
-GRID_12.logicalKey			:=	"{d}"
-GRID_13.logicalKey			:=	"{f}"
-GRID_20.logicalKey			:=	"{z}"
-GRID_21.logicalKey			:=	"{x}"
+GRID_21.logicalKey			:=	"{d}"
+GRID_31.logicalKey			:=	"{f}"
+GRID_02.logicalKey			:=	"{z}"
+GRID_12.logicalKey			:=	"{x}"
 GRID_22.logicalKey			:=	"{c}"
-GRID_23.logicalKey			:=	"{v}"
+GRID_32.logicalKey			:=	"{v}"
 
 ;-------------------------------------------
 ; Select Hero.

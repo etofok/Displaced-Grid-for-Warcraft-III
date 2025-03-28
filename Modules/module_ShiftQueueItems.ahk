@@ -54,6 +54,5 @@ Control_ShiftQueueItems(switchTo) {
 
 	if (b_EventLog) {
 		UpdateEventLog("Shift-Queue Items - " . switchTo)	
-		FlashSplash("Shift-Queue Items - " . switchTo, FlashSplashTime)
 	}
 }

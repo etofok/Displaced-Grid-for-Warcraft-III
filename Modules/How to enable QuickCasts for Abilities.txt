@@ -1,12 +1,15 @@
 ;-----------------------------------------
 
 How to Enable QuickCasts for Abilities in Warcraft III:Reforged.
-(Displaced Grid is designed with this functionality in mind)
+
+(Is this necessary? 
+No, if you only interested in the layout. 
+You do want this for the full experience.)
 
 
 Step 1. 
 
-	You MUST use the "GRID" layout.
+	You MUST select the "GRID" layout in INPUT Settings.
 
 		1. Launch Warcraft III:Reforged
 		2. Go to "Options"
@@ -25,10 +28,12 @@ Step 2.
 
 Step 3. 
 
-	In "War3Preferences.txt" change every "QuickCast=0" to "QuickCast=1".
+	1. In "War3Preferences.txt" change every "QuickCast=0" to "QuickCast=1".
 
-	Save "War3Preferences.txt"
+	2. Save "War3Preferences.txt"
 	
-	Launch Warcraft III:Reforged
+	3. Launch Warcraft III:Reforged
+
+	4. Test it - Quick Casts should work!
 
 ;-----------------------------------------

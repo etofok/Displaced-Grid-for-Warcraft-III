@@ -1,10 +1,10 @@
 ;-----------------------------------------
 ; 	Displaced Grid for Warcraft III:Reforged by etofok
-;	Website Overview: https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/index
+;	Website Presentation: https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/index
 ;	Download Latest: https://github.com/etofok/Displaced-Grid-for-Warcraft-III
 
 ;	Development: 
-;	Dec 10th, 2023 - March 24th, 2025
+;	Dec 10th, 2023 - March 28th, 2025
 ;-----------------------------------------
 
 #SingleInstance force
@@ -14,7 +14,7 @@
 if not A_IsAdmin
 	Run *RunAs "%A_ScriptFullPath%"
 
-Global currentVersion				:= "v1.3.4"
+Global currentVersion				:= "v1.4.0"
 Global winTitle 					:= "ahk_class OsWindow" ; Warcraft III class name, as seen in WindowSpy of AutoHotkey
 Global winName 						:= "Warcraft III"		; Warcraft III window name, as seen in WindowSpy of AutoHotkey
 
@@ -84,13 +84,14 @@ Menu, Tray, Add, 		MODULES, handler_blank
 Menu, Tray, Disable, 	MODULES
 
 ; ADDING MODULES ONE BY ONE...
-#Include 				*i %A_ScriptDir%\Modules\module_RapidFire.ahk
-#Include 				*i %A_ScriptDir%\Modules\module_CameraHotkeys.ahk
-#Include 				*i %A_ScriptDir%\Modules\module_CommandMultipleGroups.ahk
-#Include 				*i %A_ScriptDir%\Modules\module_ShiftQueueItems.ahk
 #Include 				*i %A_ScriptDir%\Modules\module_QuickCastItems.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_RapidFire.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_CommandMultipleGroups.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_SetSkillPoint.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_CastOnYourself.ahk
 #Include 				*i %A_ScriptDir%\Modules\module_QuickDropItems.ahk
-#Include 				*i %A_ScriptDir%\Modules\module_AltKeyImprovements.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_InstantCamera.ahk
+#Include 				*i %A_ScriptDir%\Modules\module_ShiftQueueItems.ahk
 
 Menu, Tray, Add, 		,
 Menu, Tray, Add, 		SET UP, handler_blank
@@ -121,11 +122,11 @@ SplashTextOff
 ; load Image_Overlay at the very end
 #Include *i %A_ScriptDir%\Modules\module_Overlay.ahk
 
-; ?Should we activate Displaced Grid hotkeys on app start?
+; ?Should we activate Displaced Grid hotkeys on APPLICATION START?
 if (b_DisplacedGrid == 1) {
 
 	if WinExist(winTitle) {
-		Control_DisplacedGrid(1)	; Toggle On on start ONLY if the Warcraft III window exists
+		Control_DisplacedGrid(1)	; Switch ON on application start ONLY if the Warcraft III window exists
 	} else {
 		Control_DisplacedGrid(0) 	; Force Toggle Off if the Warcraft III window does not exist
 	}
@@ -151,32 +152,43 @@ return ; this return is the most important line of code
 
 Toggle_DisplacedGrid() {
 
+	;if DisplacedGrid is ON -> switch DisplacedGrid OFF
 	if (b_DisplacedGrid == 1) {
-		;turn off the DGRID Layout
-		Control_DisplacedGrid(0)
 
-		; Crutch to link Displaced Grid On/Off with RapidFire module. 
-		; Otherwise you can't type because RapidFire sends a left click as you type, which closes the chat :)
-		if (initialState_RapidFire == False) {
+		;This is a crutch to link "DisplacedGrid Off" to the RapidFire module.
+		;Otherwise you can't type, because
+		;RapidFire sends an ESCAPE command as you press buttons (i.e. when you type) which closes the chat :)
+
+		if (initialState_RapidFire) {
 			Control_RapidFire(0)
 		}
 
-		;turn off Image_Overlay.png
-		Control_Overlay(0)
+		;Switch Displaced Grid OFF
+		Control_DisplacedGrid(0)
 
-	}	else {
+		;Switch Image_Overlay.png OFF
+		Control_Overlay(0)		
+
+	}
+
+	;if DisplacedGrid is OFF -> switch DisplacedGrid ON
+	else {
 		if WinExist(winTitle) {
-			;turn on the DGRID Layout
-			Control_DisplacedGrid(1)
 
-			; Crutch to link Displaced Grid On/Off with RapidFire module. 
-			; Otherwise you can't type because RapidFire sends a left click as you type, which closes the chat :)
-			if (initialState_RapidFire == True) {
+			;This is a crutch to link "DisplacedGrid On" to the RapidFire module.
+			;Otherwise you can't type, because
+			;RapidFire sends an ESCAPE command as you press buttons (i.e. when you type) which closes the chat :)
+
+			if (initialState_RapidFire) {
 				Control_RapidFire(1)
 			}
 
-			;turn on Image_Overlay.png
+			;Switch Displaced Grid ON 
+			Control_DisplacedGrid(1)
+
+			;Switch Image_Overlay.png ON
 			Control_Overlay(1)
+
 		} else {
 			MsgBox, %error_warcraftNotFound%
 		}
@@ -195,7 +207,6 @@ Control_DisplacedGrid(switchTo) {
 
 	if (b_EventLog) {
 		UpdateEventLog("Displaced GRID Keys - " . switchTo)
-		FlashSplash("Displaced GRID Keys - " . switchTo, FlashSplashTime)
 	}
 } 
 
@@ -269,7 +280,7 @@ return
 ;--------------------------------
 
 ScriptReload:
-	Suspend, Permit
+	;Suspend, Permit
 	Reload
 return
 
@@ -375,9 +386,17 @@ LinkTree:
 return
 
 ;-----------------------------------------
-; Blank 
+; Random 
 ;-----------------------------------------
 
+Rand(min, max) {
+    Random, output, min, max
+    return output
+}
+
+;-----------------------------------------
+; Blank 
+;-----------------------------------------
 
 handler_blank() {
 }

@@ -16,81 +16,91 @@ const modules = [
         0, 
         'QuickCast Abilities*', 
         'Ability fires immediately on key activation at the cursor. No mouse click required!', 
-        'assets/modules/1_thumb.png', 
-        'assets/modules/1_video.mp4', 
+        'assets/modules/QuickCast Abilities.png', 
+        'assets/modules/QuickCast Abilities.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Default behavior: You must click left mouse button on target. <br> Most games of today do have Quick Casts in-built already. <br> *Warcraft III:R does have Ability Quick Casts half implemented by Blizz. This is not a Displaced Grid module.'
+        'Most games of 2025 already have Quick Casts. <br> *Warcraft III:R DOES have Ability Quick Casts somewhat implemented by Blizz.<br> This is not a Displaced Grid module, but we are going to take advantage of it.'
         ),
     m_QuickCastItems            = new ModuleData(
         1, 
         'QuickCast Items', 
         'Item ability fires immediately on key activation at the cursor. No mouse click required!', 
-        'assets/modules/2_thumb.png', 
-        'assets/modules/2_video.mp4', 
+        'assets/modules/QuickCast Items.png', 
+        'assets/modules/QuickCast Items.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Default behavior: You must click left mouse button on target. <br> This module does something most todays games do by default - enables you to target cast items without the extra click.'
+        'This module enables you to cast items without the mouse click.'
         ),
-    m_HoldCast                = new ModuleData(
+    m_RapidFire                = new ModuleData(
         2, 
         'Rapid Fire Casting', 
         'Hold down the ability key to fire repeatedly!', 
-        'assets/modules/3_thumb.png', 
-        'assets/modules/3_video.mp4', 
+        'assets/modules/Rapid Fire Casting.png', 
+        'assets/modules/Rapid Fire Casting.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Default behavior: When you get an Error (or want cast something again) you must let go of the ability key and then press it again. This module enables you to just hold down the Ability / Item key. <br> Great synergy with Quick Cast!'
-        ),
-    m_ShiftQueueItems      = new ModuleData(
-        3, 
-        'Shift-Queue Items', 
-        'Shift-Queue Items while holding Shift!', 
-        'assets/modules/4_thumb.png', 
-        'assets/modules/4_video.mp4', 
-        'e_slideBig',
-        'e_thumbnail',
-        'Default behavior: To Shift-Queue multiple Items you have to let go of the Shift key before using the Item hotkey. <br> This module enables you to just hold down the Shift key and queue as much as you want without letting go of the Shift key each time. <br> Great synergy with Quick Casts and Hold Cast!'
-        ),
-    m_AltKeyImprovements        = new ModuleData(
-        4, 
-        'Cast on Yourself', 
-        'Alt + Double-Tap to target yourself!', 
-        'assets/modules/5_thumb.png', 
-        'assets/modules/5_video.mp4', 
-        'e_slideBig',
-        'e_thumbnail',
-        'Default behavior: None. <br> Warcraft III does not have "Self Target" / "Self Cast" functionality to help players with in-battle control. <br> Bonus: Alt no longer prevents Ability use. <br> By default in Warcraft III, holding the Alt key flat out blocks the usage of abilities and items.'
+        'This module allows you to hold down a hotkey to repeatedly activate its command. <br> Great synergy with Quick Cast!'
         ),
     m_CommandMultipleGroups           = new ModuleData(
-        5, 
+        3, 
         'Command Multiple Groups', 
-        'Issue an Attack/Move/Cast/etc command to ALL designated control groups at ONCE!', 
-        'assets/modules/6_thumb.png', 
-        'assets/modules/6_video.mp4', 
+        'Attack/Move/Cast/etc with multiple control groups at ONCE!', 
+        'assets/modules/Command Multiple Groups.png', 
+        'assets/modules/Command Multiple Groups.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Default behavior: 1-a-click-2-a-click-3-a-click-4-a-click to issue an attack command to groups 1 2 3 4. <br> With this module you just press Caps + Attack. <br> Works with mouse right click i.e. Caps + Right Click to move/attack. <br> Has extra synergy with Quick Cast, especially for Undead (Coil/Nova/Swarm/Impale share the same hotkey).'
+        'Default behavior: 1-a-click-2-a-click-3-a-click-4-a-click to issue an attack command to groups 1 2 3 4. <br> This module adds a new key modifier - CapsLock - so that you can just press CapsLock + Attack to attack with multiple groups. <br> Works with mouse right click i.e. CapsLock + Right Click to move/attack. <br> Works for abilities just as well.'
+        ),    
+    m_SetSkillPoint           = new ModuleData(
+        4, 
+        'Set Skill Point', 
+        'Quickly level up your ability using CTRL + ability key!', 
+        'assets/modules/Set Skill Point.png', 
+        'assets/modules/Set Skill Point.mp4', 
+        'e_slideBig',
+        'e_thumbnail',
+        'Very nice.'
         ),
-    m_CameraHotkeys             = new ModuleData(
-        6, 
-        'Camera Hotkeys | Instant pan', 
-        'Instant camera jump for designated control groups!', 
-        'assets/modules/7_thumb.png', 
-        'assets/modules/7_video.mp4', 
+    m_CastOnYourself        = new ModuleData(
+        5, 
+        'Cast on Yourself', 
+        'Alt + Ability to Cast on Yourself!', 
+        'assets/modules/Cast on Yourself.png', 
+        'assets/modules/Cast on Yourself.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Default behavior: None. <br> This module enables you to use control groups as pseudo camera hotkeys. <br> Meaning, your camera will jump to the unit/building as soon as you press the key. <br> Defaults are control groups 7,8,9,0 which in Displaced Grid are rebound to f1 f2 f3 f4.'
+        'Warcraft III does not have "Cast on Yourself" functionality. <br> Now it does. <br> Unfortunately, doesnt work for Items'
         ),
     m_QuickDropItems            = new ModuleData(
-        7, 
+        6, 
         'QuickDrop Items', 
         'Instantly Pass, Sell or Drop items on target!', 
-        'assets/modules/8_thumb.png', 
-        'assets/modules/8_video.mp4', 
+        'assets/modules/QuickDrop Items.png', 
+        'assets/modules/QuickDrop Items.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Default behavior: None. <br> In Warcraft III you manipulate inventory through drag-and-drop. <br> This module enables you to hold down CTRL and press the item hotkey to quickly Drop/Pass/Sell the item. <br> P.S. You will need to set up a few things for this module to work.'
+        'In Warcraft III you manipulate the inventory through drag-and-drop. <br> This module adds a new modifier key to Items - CTRL. <br> Hold CTRL and use the item to quickly Drop/Pass/Sell it. <br> P.S. You will need to set up a few things for this module to work.'
+        ),
+    m_CameraHotkeys             = new ModuleData(
+        7, 
+        'Instant Camera', 
+        'Instant camera jump for control groups!', 
+        'assets/modules/Instant Camera.png', 
+        'assets/modules/Instant Camera.mp4', 
+        'e_slideBig',
+        'e_thumbnail',
+        'Default behavior: double-tap a control group to jump to it. <br> With this module you can single-tap a control group to jump to it.'
+        ),
+    m_ShiftQueueItems      = new ModuleData(
+        8, 
+        'Shift-Queue Items', 
+        'Shift-Queue Items while holding Shift!', 
+        'assets/modules/Shift-Queue Items.png', 
+        'assets/modules/Shift-Queue Items.mp4', 
+        'e_slideBig',
+        'e_thumbnail',
+        'This module allows you to hold down the Shift key to shift-queue items without letting go of the Shift key each time. <br> Great synergy with Quick Casts and RapidFire!'
         )
 ];
 

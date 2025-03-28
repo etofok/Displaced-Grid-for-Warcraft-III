@@ -125,7 +125,6 @@ Toggle_EventLog() {
 Control_EventLog(switchTo) {
 
 	if (switchTo == 1) {
-		;SetupEventLog()
 		Gui, gui_AlertBox:Show, % "x" (1920-220) " y" (0+60) 
 	} else {
 		Gui, gui_AlertBox:Hide
@@ -134,5 +133,8 @@ Control_EventLog(switchTo) {
 	b_EventLog := switchTo
 	
 	ToggleCheckmark(menu_Toggle_EventLog, switchTo)
-	FlashSplash("Event Log - " . switchTo, FlashSplashTime)
+
+	if (b_EventLog) {
+		UpdateEventLog("Control_EventLog - " . switchTo)	
+	}
 }

@@ -57,43 +57,48 @@ SetHotkeys(activeOrNot) {
 	; Command Card.
 	;
 	; 1rd Row: Move Stop Hold Attack / Build T1 / Train units
-	; Defaults are D F G Space
+	; D F G Space
 	
 	; 2rd Row: T2 / Miscellaneous
-	; Default are C V B N
+	; C V B N
 
 	; 3rd Row: Use Abilities / Build T3, Shop / Research Upgrades
-	; Default are E R T Y
+	; E R T 4
+   	
+	; Blizzard GRID
+	; | 0,0 | 1,0 | 2,0 | 3,0 |
+	; | 0,1 | 1,1 | 2,1 | 3,1 |
+	; | 0,2 | 1,2 | 2,2 | 3,2 |
    	
    	set_GRID_00 									:= Func("Hotkey_CommandCard").bind(GRID_00)
-   	set_GRID_01 									:= Func("Hotkey_CommandCard").bind(GRID_01)
-   	set_GRID_02 									:= Func("Hotkey_CommandCard").bind(GRID_02)
-    set_GRID_03 									:= Func("Hotkey_CommandCard").bind(GRID_03)
+   	set_GRID_10 									:= Func("Hotkey_CommandCard").bind(GRID_10)
+   	set_GRID_20 									:= Func("Hotkey_CommandCard").bind(GRID_20)
+    set_GRID_30 									:= Func("Hotkey_CommandCard").bind(GRID_30)
 
-    set_GRID_10 									:= Func("Hotkey_CommandCard").bind(GRID_10)
+    set_GRID_01 									:= Func("Hotkey_CommandCard").bind(GRID_01)
     set_GRID_11 									:= Func("Hotkey_CommandCard").bind(GRID_11)
-    set_GRID_12 									:= Func("Hotkey_CommandCard").bind(GRID_12)
-    set_GRID_13 									:= Func("Hotkey_CommandCard").bind(GRID_13)
-
-    set_GRID_20 									:= Func("Hotkey_CommandCard").bind(GRID_20)
     set_GRID_21 									:= Func("Hotkey_CommandCard").bind(GRID_21)
+    set_GRID_31 									:= Func("Hotkey_CommandCard").bind(GRID_31)
+
+    set_GRID_02 									:= Func("Hotkey_CommandCard").bind(GRID_02)
+    set_GRID_12 									:= Func("Hotkey_CommandCard").bind(GRID_12)
     set_GRID_22 									:= Func("Hotkey_CommandCard").bind(GRID_22)
-    set_GRID_23 									:= Func("Hotkey_CommandCard").bind(GRID_23)
+    set_GRID_32 									:= Func("Hotkey_CommandCard").bind(GRID_32)
 
     Hotkey % "*"GRID_00.physicalKey, 				% set_GRID_00, %activeOrNot%
-    Hotkey % "*"GRID_01.physicalKey, 				% set_GRID_01, %activeOrNot%
-    Hotkey % "*"GRID_02.physicalKey, 				% set_GRID_02, %activeOrNot%
-    Hotkey % "*"GRID_03.physicalKey, 				% set_GRID_03, %activeOrNot%
-
     Hotkey % "*"GRID_10.physicalKey, 				% set_GRID_10, %activeOrNot%
-    Hotkey % "*"GRID_11.physicalKey, 				% set_GRID_11, %activeOrNot%
-    Hotkey % "*"GRID_12.physicalKey, 				% set_GRID_12, %activeOrNot%
-    Hotkey % "*"GRID_13.physicalKey, 				% set_GRID_13, %activeOrNot%
-
     Hotkey % "*"GRID_20.physicalKey, 				% set_GRID_20, %activeOrNot%
+    Hotkey % "*"GRID_30.physicalKey, 				% set_GRID_30, %activeOrNot%
+
+    Hotkey % "*"GRID_01.physicalKey, 				% set_GRID_01, %activeOrNot%
+    Hotkey % "*"GRID_11.physicalKey, 				% set_GRID_11, %activeOrNot%
     Hotkey % "*"GRID_21.physicalKey, 				% set_GRID_21, %activeOrNot%
+    Hotkey % "*"GRID_31.physicalKey, 				% set_GRID_31, %activeOrNot%
+
+    Hotkey % "*"GRID_02.physicalKey, 				% set_GRID_02, %activeOrNot%
+    Hotkey % "*"GRID_12.physicalKey, 				% set_GRID_12, %activeOrNot%
     Hotkey % "*"GRID_22.physicalKey, 				% set_GRID_22, %activeOrNot%
-    Hotkey % "*"GRID_23.physicalKey, 				% set_GRID_23, %activeOrNot%
+    Hotkey % "*"GRID_32.physicalKey, 				% set_GRID_32, %activeOrNot%
 
 	; ----------------------------------------------------
 	; Items.

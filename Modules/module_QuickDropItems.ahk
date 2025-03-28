@@ -17,7 +17,7 @@
 ;-----------------------------------------
 
 ; Yes I use Globals
-Global menu_Toggle_QuickDropItems				:= "QuickDrop Items: Hold CTRL -> Use Item"
+Global menu_Toggle_QuickDropItems				:= "[CTRL] Item to QuickDrop"
 Menu, Tray, Add, %menu_Toggle_QuickDropItems%, Toggle_QuickDropItems
 
 ;-----------------------------------------
@@ -84,6 +84,5 @@ Control_QuickDropItems(switchTo) {
 
 	if (b_EventLog) {
 		UpdateEventLog("QuickDrop Items - " . switchTo)
-		FlashSplash("QuickDrop Items - " . switchTo, FlashSplashTime)
 	}
 }

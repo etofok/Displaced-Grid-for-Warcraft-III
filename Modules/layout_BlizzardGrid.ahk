@@ -21,20 +21,25 @@ load_BlizzardGrid() {
 	ControlGroup9.physicalKey	:=	"9"
 	ControlGroup0.physicalKey	:=	"0"
 
+	; Blizzard GRID
+	; | 0,0 | 1,0 | 2,0 | 3,0 |
+	; | 0,1 | 1,1 | 2,1 | 3,1 |
+	; | 0,2 | 1,2 | 2,2 | 3,2 |
+	
 	GRID_00.physicalKey 		:= 	"q"
-	GRID_01.physicalKey 		:= 	"w"
-	GRID_02.physicalKey 		:= 	"e"
-	GRID_03.physicalKey 		:= 	"r"
+	GRID_10.physicalKey 		:= 	"w"
+	GRID_20.physicalKey 		:= 	"e"
+	GRID_30.physicalKey 		:= 	"r"
 
-	GRID_10.physicalKey 		:= 	"a"
+	GRID_01.physicalKey 		:= 	"a"
 	GRID_11.physicalKey 		:= 	"s"
-	GRID_12.physicalKey 		:= 	"d"
-	GRID_13.physicalKey 		:= 	"f"
+	GRID_21.physicalKey 		:= 	"d"
+	GRID_31.physicalKey 		:= 	"f"
 
-	GRID_20.physicalKey 		:= 	"z"
-	GRID_21.physicalKey 		:= 	"x"
+	GRID_02.physicalKey 		:= 	"z"
+	GRID_12.physicalKey 		:= 	"x"
 	GRID_22.physicalKey 		:= 	"c"
-	GRID_23.physicalKey 		:= 	"v"
+	GRID_32.physicalKey 		:= 	"v"
 
 	Item1.physicalKey			:=	"numpad7"
 	Item2.physicalKey			:=	"numpad8"

@@ -9,8 +9,8 @@
 
 	Send % appendModifiers objCommand.logicalKey
 
-	; See module_CameraHotkeys.ahk
-	if (b_CameraHotkeys == 1) {
-		InstantCameraPan(objCommand)	
+	; See module_InstantCamera.ahk
+	if (b_InstantCamera == 1) {
+		InstantCamera(objCommand)	
 	}
 }
