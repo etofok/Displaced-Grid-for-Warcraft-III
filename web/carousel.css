@@ -119,7 +119,6 @@
 
 
 .moduleName {
-    font-family: "Friz Quadrata TT";
     font-size: 1.5rem;
     font-weight: 600;
 
@@ -128,14 +127,12 @@
 
 
 .moduleDesc {
-    font-family: "Friz Quadrata TT";
     font-size: 1.25rem;
 
     color: #000000;
 }
 
 .moduleTooltip {
-    font-family: "Friz Quadrata TT";
     font-size: 2rem;
     font-weight: 800;
 
@@ -152,7 +149,6 @@
 .moduleTooltipText {
     visibility: hidden; /* visiblity done in js. seems out of scope to be found here? */
 
-    font-family: "Friz Quadrata TT";
     font-size: 1rem;
     font-weight: 32;
     text-align: left;

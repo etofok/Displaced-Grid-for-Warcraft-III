@@ -1,95 +1,88 @@
 .container-comparison {
-  position: relative;
-  margin: 0 auto;
-  height: 487px;
-  width: auto;
-  max-width: 768px;
-  overflow: clip;
-  
+    position: relative;
+    margin: 0 auto;
+    height: 487px;
+    width: auto;
+    max-width: 768px;
+    overflow: clip;
 }
 
 .container-comparison .img {
-  margin: 0 auto;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: auto auto;
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: auto auto;
 }
 
 .container-comparison .before-img {
-  background-image: url("OriginalGrid.png");
+    background-image: url("OriginalGrid.png");
 }
 
 .container-comparison .after-img {
-  background-image: url("DisplacedGrid.png");
+    background-image: url("DisplacedGrid.png");
 }
 
-
 .slider {
-  position: absolute;
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0);
-  outline: none;
-  margin: 0;
-  transition: all 0.2s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0);
+    outline: none;
+    margin: 0;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .slider:hover {
-  background: rgba(255, 255, 255, 0);
+    background: rgba(255, 255, 255, 0);
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0.5rem;
-  height: 450px;
-  background: #33333333;
-  cursor: pointer;
-
-  border: solid 2px #44444444;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.5rem;
+    height: 450px;
+    background: #33333333;
+    cursor: pointer;
+    border: solid 2px #44444444;
+    box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
 }
 
 .slider-button {
-  pointer-events: none;
-  position: absolute;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background-color: white;
-  left: calc(50% - 165px);
-  top: calc(50% - 165px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-left: 0.25rem;
-  border: solid 0.5rem #44444444;
-  
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
+    pointer-events: none;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: white;
+    left: calc(50% - 165px);
+    top: calc(50% - 165px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.25rem;
+    border: solid 0.5rem #44444444;
+    box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
 }
 
-.slider-button:after,
-.slider-button:before {
-  content: "";
-  padding: 2px;
-  display: inline-block;
-  border: solid #5d5d5d;
-  border-width: 0 2px 2px 0;
+.slider-button::after,
+.slider-button::before {
+    content: "";
+    padding: 2px;
+    display: inline-block;
+    border: solid #5d5d5d;
+    border-width: 0 2px 2px 0;
 }
 
-.slider-button:after {
-  transform: rotate(-45deg);
+.slider-button::after {
+    transform: rotate(-45deg);
 }
 
-.slider-button:before {
-  transform: rotate(135deg);
+.slider-button::before {
+    transform: rotate(135deg);
 }

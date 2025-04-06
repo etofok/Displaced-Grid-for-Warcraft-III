@@ -1,77 +1,139 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
-ol {
-    font-family: "Geist";
-
+ol,
+ul {
     margin-top: 1rem;
     margin-bottom: 1rem;
     text-align: left;
+}
 
+ol {
     list-style-position: inside;
 }
 
 li {
-    font-family: "Geist";
-
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     text-align: left;
 }
 
-ul {
-    font-family: "Geist";
-
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    text-align: left;
-}
-
 .list-compact {
-    font-family: "Geist";
-
-    margin-bottom: 0rem;
-    margin-top: 0rem;
-    padding-left: 0rem;
-    padding-right: 0rem;
-}
-
-.list-notsocompact { /*I don't care*/
-    font-family: "Geist";
-
-    margin-bottom: 0.75rem;
-    margin-top: 0.75rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-
-    font-weight: 100;
-}
-
-.wrap-list-features {
-    font-family: "Geist";
-
-    margin: 0 auto;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    border-collapse: collapse;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
-    max-width: 600px;
+    margin: 0;
+    padding: 0;
 }
 
 .wrap-list-end {
-    font-family: "Geist";
-
-    margin: 0 auto;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin: 1rem auto;
     padding: 1rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
     max-width: 400px;
 }
 
 .wrap-list-normal {
-    font-family: "Geist";
-
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin: 1rem 0;
     border-collapse: collapse;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+}
+
+.wrap-list-features {
+    overflow: hidden;
+    font-size: 1em;
+    margin: 1rem auto;
+    max-width: 700px;
+    padding: 1.5em;
+    background-color: #effefe;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.wrap-list-features h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1em;
+    color: #111;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5em;
+}
+
+.wrap-list-features ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.wrap-list-features li {
+    margin-bottom: 0.85rem;
+    line-height: 1.6;
+    color: #555;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+}
+
+.wrap-list-features li b {
+    font-weight: 600;
+    color: #333;
+    flex: 0 0 130px;
+}
+
+.wrap-list-features kbd {
+    display: inline-block;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0.2em 0.5em;
+    margin: 0 0.2em 0.2em 0;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #444;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    line-height: 1;
+    vertical-align: baseline;
+}
+
+.wrap-list-benefits {
+    margin: 2em auto 0;
+    max-width: 500px;
+    padding: 2em;
+    padding-bottom: 1em;
+    background-color: #effefe;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.wrap-list-benefits h3 {
+    font-size: 1.75rem;
+    color: #212529;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.wrap-list-benefits ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.wrap-list-benefits li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.wrap-list-benefits li:last-child {
+    border-bottom: none;
+}
+
+.wrap-list-benefits li b {
+    font-weight: 700;
+    color: #007b22;
+}
+
+@media (max-width: 500px) {
+    .wrap-list-features {
+        font-size: 0.85em;
+    }
 }
