@@ -14,17 +14,17 @@ class ModuleData {
 const modules = [
     m_QuickCastAbilities         = new ModuleData(
         0, 
-        'QuickCast Abilities*', 
-        'Ability fires instantly at your cursor. No mouse click required!', 
+        'QuickCast abilities*', 
+        'Ability fires instantly at the cursor. No mouse click required!', 
         'assets/modules/QuickCast Abilities.png', 
         'assets/modules/QuickCast Abilities.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'By 2025, Quick Casts are common in most games. <br> Note that Warcraft III: Reforged already features some Ability Quick Cast functionality, implemented by Blizzard.<br> This isnt a Displaced Grid module, but we will utilize the built-in Quick Casts.'
+        'Quick Casts are common in most games. <br> Quick Casts allow you to cast abilities instantly with a key press, eliminating the need for a mouse click. <br> Note that Warcraft III: Reforged already features some Ability Quick Cast functionality, implemented by Blizzard.<br> This isnt a Displaced Grid module, but we will utilize the built-in Quick Casts.'
         ),
     m_QuickCastItems            = new ModuleData(
         1, 
-        'QuickCast Items', 
+        'QuickCast items', 
         'Item fires instantly at the cursor. No mouse click required!', 
         'assets/modules/QuickCast Items.png', 
         'assets/modules/QuickCast Items.mp4', 
@@ -34,18 +34,18 @@ const modules = [
         ),
     m_RapidFire                = new ModuleData(
         2, 
-        'Rapid Fire Casting', 
-        'Press and hold the ability key to fire repeatedly!', 
+        'Rapid Fire casting', 
+        'Press and hold ability key to fire repeatedly!', 
         'assets/modules/Rapid Fire Casting.png', 
         'assets/modules/Rapid Fire Casting.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Holding down an ability hotkey will repeatedly activate its command. <br> Great synergy with Quick Cast!'
+        'Holding down an ability hotkey will repeatedly activate its command. <br> This has great synergy with Quick Casts.'
         ),
     m_CommandMultipleGroups           = new ModuleData(
         3, 
-        'Command Multiple Groups', 
-        'Attack, Move, Cast, etc., simultaneously with multiple control groups!', 
+        'Command multiple groups', 
+        'Attack, move, cast simultaneously with multiple control groups!', 
         'assets/modules/Command Multiple Groups.png', 
         'assets/modules/Command Multiple Groups.mp4', 
         'e_slideBig',
@@ -54,8 +54,8 @@ const modules = [
         ),    
     m_SetSkillPoint           = new ModuleData(
         4, 
-        'Set Skill Point', 
-        'Press CTRL + [Ability Key] to level up the ability instantly!', 
+        'Set skill point', 
+        'Press CTRL + ability key to level up the ability instantly!', 
         'assets/modules/Set Skill Point.png', 
         'assets/modules/Set Skill Point.mp4', 
         'e_slideBig',
@@ -64,18 +64,18 @@ const modules = [
         ),
     m_CastOnYourself        = new ModuleData(
         5, 
-        'Cast on Yourself', 
-        'Press Alt + the ability key to cast the ability on yourself!', 
+        'Cast on yourself', 
+        'Press ALT + ability key to cast the ability on yourself!', 
         'assets/modules/Cast on Yourself.png', 
         'assets/modules/Cast on Yourself.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'Warcraft III didn`t have a "Cast on Yourself" feature. Now it does. <br> Doesnt work for Items.'
+        'Warcraft III didn`t have a "Cast on Yourself" feature. Now it does. <br> Doesnt work for items.'
         ),
     m_QuickDropItems            = new ModuleData(
         6, 
-        'QuickDrop Items', 
-        'Quickly Pass, Sell, or Drop items onto your target!', 
+        'QuickDrop items', 
+        'Quickly pass, sell, or drop items at the cursor!', 
         'assets/modules/QuickDrop Items.png', 
         'assets/modules/QuickDrop Items.mp4', 
         'e_slideBig',
@@ -84,18 +84,18 @@ const modules = [
         ),
     m_CameraHotkeys             = new ModuleData(
         7, 
-        'Instant Camera', 
+        'Instant camera', 
         'Instantly move the camera to the location of your selected control groups!', 
         'assets/modules/Instant Camera.png', 
         'assets/modules/Instant Camera.mp4', 
         'e_slideBig',
         'e_thumbnail',
-        'By default, double-tapping a control group key jumps the camera to that group. <br> This module changes that behavior, allowing you to instantly jump to a control group with a single tap of its key.'
+        'By default, double-tapping a control group key jumps the camera to that group. <br> This module enables you to change this behavior, allowing you to instantly jump to a control group with a single tap of its key.'
         ),
     m_ShiftQueueItems      = new ModuleData(
         8, 
-        'Shift-Queue Items', 
-        'Shift-Queue Items while holding Shift!', 
+        'Shift-Queue items', 
+        'Shift-Queue items while holding Shift!', 
         'assets/modules/Shift-Queue Items.png', 
         'assets/modules/Shift-Queue Items.mp4', 
         'e_slideBig',
