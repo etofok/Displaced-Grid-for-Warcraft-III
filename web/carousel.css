@@ -26,15 +26,20 @@
     width: 100%;
     height: 100%;
 
-    transition: transform 0.5s ease; /* Add transition for transform */
+    transition: transform 0.5s ease;
 }
+
+
+
+
+
 
 .prev,
 .next {
-    padding: 15px 15px;
-	opacity: 0.9;
+    padding: 32px 20px;
+	opacity: 0.8;
     position: absolute;
-    top: 50%;
+    top: 48%;
 
     color: #ffffff;
     background-color: #333333;
@@ -62,6 +67,24 @@
 
 .next:hover {
     background-color: #555;
+}
+
+@media (max-width: 500px) {
+
+    .slide {
+
+        outline: 3px red solid;
+        margin: 0 auto;
+
+        height: 50%;
+
+        transition: transform 0.5s ease;
+    }
+
+    .next, .prev {
+        opacity: 0.75;
+        padding: 16px 10px;
+    }
 }
 
 .container-thumbnails {
@@ -135,10 +158,10 @@
 }
 
 .moduleTooltip {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 800;
 
-    color: #001040;
+    color: #aaaaaa;
 
     display: inline-block;
     position: relative;

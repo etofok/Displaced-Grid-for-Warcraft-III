@@ -100,9 +100,45 @@ b {
     box-shadow: inset 0 -0.5rem 0.5rem -0.5rem rgba(110, 110, 110, 0.5);
 }
 
-.section-read-modules h1 {
+.section-read-disclamer h1 {
     font-size: 1.5em;
 }
+
+
+.wrap-list-disclamer {
+    margin: 2em auto 0;
+    max-width: 600px;
+    padding: 3em;
+    background-color: #ffdddd;
+    border-radius: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 500px) {
+
+    .section-read-modules h1 {
+        font-size: 1.25em;
+    }    
+
+    .section-read-abovethefold h1 {
+        font-size: 1.5em;
+    }
+
+    .section-read-abovethefold h2 {
+        font-size: 2.5em;
+    }
+    
+    .section-read-abovethefold h3 {
+        font-size: 1.5em;
+    }
+    
+    .section-read-abovethefold h4 {
+        font-size: 0.85em;
+    }
+    
+}
+
 
 .redbg {
     background-color: red;
@@ -110,4 +146,8 @@ b {
 
 #anchor-smooth {
     scroll-behavior: smooth;
+}
+
+.separator {
+    border-top: 1px solid #33333311;
 }

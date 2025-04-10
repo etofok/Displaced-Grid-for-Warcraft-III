@@ -81,3 +81,7 @@
     max-width: 1000px;
     box-shadow: rgb(0, 0, 0, 0.2) 0 1rem 1rem 1rem;
 }
+
+.faq-section h1 b {
+    font-weight: 500;
+}
