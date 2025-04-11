@@ -158,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         btn.addEventListener('click', function() {
             const answer = this.nextElementSibling;
-            //answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
 
             if (answer.classList.contains("show")) {
               answer.classList.remove("show");

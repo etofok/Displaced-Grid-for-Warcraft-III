@@ -20,8 +20,9 @@ li {
 }
 
 .list-compact {
+    list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0.5em;
 }
 
 .wrap-list-end {

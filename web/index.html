@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAM7AAADOwGLxKo2AAAFwWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4yLWMwMDAgMTE2LmRlZTNhNzcsIDIwMjIvMDkvMDEtMTM6NTc6MDggICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMy41IChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjQtMDUtMTFUMTk6MzQ6NTgrMDM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDI0LTA1LTExVDE5OjM3KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI0LTA1LTExVDE5OjM3KzAzOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpkN2U3YTRkYi1mZWM5LWYxNDItYmZlMy0xNzkyNTcwOTFiZTkiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo4Yzc2YzZjMC01ODBiLTBjNGQtOTk4Mi1lYWNjNzQ1Zjc0MmYiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2MDQ0ZDM2OS04MmJhLTU4NDAtODZiNy1lOTA5YjE4NmVhZTAiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjYwNDRkMzY5LTgyYmEtNTg0MC04NmI3LWU5MDliMTg2ZWFlMCIgc3RFdnQ6d2hlbj0iMjAyNC0wNS0xMVQxOTozNDo1OCswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjUgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpkN2U3YTRkYi1mZWM5LWYxNDItYmZlMy0xNzkyNTcwOTFiZTkiIHN0RXZ0OndoZW49IjIwMjQtMDUtMTFUMTk6MzcrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy41IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz67rMg4AAAAwUlEQVR42u3bQQqEMAwF0FynZ8nBci5P5mxlaEGYMi36Fn9XaPIWViON1tq5IDHI32uJRQDnDs0DAACgD3Acx7RUVXfjqoprBmum1gIAAAAAAAAAAAAAAAAAAAAAAAAAwACgqqYlM7sbZ2ZcM1gztZathqJ3AB49FQYAYB+AWN38QoTo/qX9PqJ+yajZu5lZS69XAAAAeAh6DwAAAIDPYQMRAAAAAAAAAAAAAAAAAAAAAAAAAC8GcG8QAAAAb7k+/wF/39osHJHepwAAAABJRU5ErkJggg==" rel="icon" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,9 +77,6 @@
       <div class='slider-button'></div>
     </div>
 
-    <!-- <img src="Legacy.png" alt="Legacy" class="centered">
-    -->
-
     <div class="wrap-list-features">
       <h3>Displaced Grid Interface</h3>
       <ul>
@@ -118,7 +113,7 @@
         <li>Noticeably <b>easier on your fingers</b></li>
         <li>Noticeably <b>less wrist movement</b></li>
         <li>Noticeably <b>faster gameplay</b></li>
-        <li><b>100%</b> the better choice after the switch</li>
+        <li><b>100%</b> the best choice</li>
       </ul>
     </div>
 
@@ -135,7 +130,7 @@
     <!-- 1 start -->
     <div class="question">
 
-      <button class="question-button">Displaced Grid Explained</button>
+      <button class="question-button">Displaced Grid explained</button>
 
       <div class="answer">
         
@@ -179,11 +174,11 @@
 
         <p>So instead of fighting the game, Displaced Grid is designed to fight the opponent.</p>
 
-        <p>A better interface enables us to better execute our decisions and desires.</p>
+        <p>A better interface enables us to better execute on our decisions.</p>
         
         <p>Which means our play is more efficient and faster. </p>
 
-        <p>And as a bonus - without hand fatigue at all!</p>
+        <p>And without hand fatigue at all!</p>
 
       </div>
    </div> 
@@ -192,7 +187,7 @@
     <!-- 2 start -->
 
  <div class="question">
-    <button class="question-button">Modules Explained</button>
+    <button class="question-button">Modules explained</button>
 
     <div class="answer">
   
@@ -201,7 +196,7 @@
       <div class="padded">
         <img class="centered cuteborder" src="assets/images/overview.png" alt="overview"> 
         <span class="textunderneath">
-        <i>'QuickCast Abilities'</i> is not a module. It actualy a thing in Reforged.
+        <i>'QuickCast Abilities'</i> is not a module. It actually a thing in Reforged.
         </span>
       </div>
 
@@ -211,7 +206,7 @@
 
       <p>But...</p>
 
-      <p><b>Please understand:</b> using modules in a 'real' game <b>is technically cheating,</b>because it's such a massive improvement.</p>
+      <p><b>Please understand:</b> using modules in a 'real' game <b>is technically cheating, </b>because it's such a massive improvement.</p>
       
     </div>
   </div>
@@ -224,9 +219,11 @@
 
   <div class="answer">
                   
-    <p>RTS games fell off in popularity not only because of their complexity but also because they are difficult to play.</p>
+    <p>RTS games gathered a massive following because of their inherent multilayered complexity.</p>
 
-    <p>And it is indeed hard to control everything well.</p>
+    <p>They're fun.</p>
+
+    <p>And not only they are difficult cognitively and mentally, but also physically - it is hard to control everything well.</p>
 
     <p>Some players don't see the dexterity check as a part of the experience.</p>
 
@@ -254,19 +251,17 @@
     <div class="padded">
       <img class="centered cuteborder" src="assets/images/dexterity vs strategy.jpg" alt="dexterityvsstrategy"> 
       <span class="textunderneath">
-        (this is approximate)
+        this is approximate
       </span>
     </div>
 
-    <p>RTS games gathered a large following, but have a relatively inactive player base.</p>
+    <p>RTS games have a relatively inactive player base compared to their audience.</p>
 
-    <p>The ratio of active players to those who simply follow or watch RTS games is likely one of the lowest in the gaming community.</p>
-
-    <p>And so, people do enjoy a good game, but because they don't like their own play, they prefer to watch.</p>
+    <p>People do enjoy a good game, but because they don't like their own play or find the experience too difficult or too stressful, they prefer to watch only.</p>
  
-    <p>Which means, to create an RTS with an active PLAYER base, we need to design around accessibility.</p>
+    <p>Which means, to create an RTS with an active PLAYER base, we need - among other things - to design around accessibility.</p>
 
-    <p>Therefore, we need to design a great interface first, that allows more people to perform at their cognitive capacity.</p>
+    <p>And therefore, we need to design a great interface first.</p>
 
     <p>Displaced Grid is my attempt to do exactly that.</p>
 
@@ -286,19 +281,18 @@
 
       <ul>
         <li>Displaced Grid Hotkey Layout</li>
-        <li><a href="#anchor_quickcastability">QuickCast Abilities*</a></li>
-        <li>Module - QuickCast Items</li>
-        <li>Module - Rapid Fire Casting</b></li>
-        <li>Module - Command Multiple Groups</li>
-        <li>Module - Set Skill Point</li>
-        <li>Module - Cast On Yourself</li>
-        <li>Module - QuickDrop Items</li>
-        <li>Module - Instant Camera</li>
-        <li>Module - Shift Queue Items</li>
-        <li>On / Off via your Hotkey</li>
-        <li>Complete Set Up Instructions</li>
-        <li>Image Overlay</li>
-        <li>Open Source Code</li>
+        <li>Displaced Grid Overlay</li>
+        <li><a href="#anchor_quickcastability">QuickCast abilities*</a> guide</li>
+        <li>Module - QuickCast items</li>
+        <li>Module - Rapid Fire casting</b></li>
+        <li>Module - Command multiple groups</li>
+        <li>Module - Set skill point</li>
+        <li>Module - Cast on yourself</li>
+        <li>Module - QuickDrop items</li>
+        <li>Module - Instant camera</li>
+        <li>Module - Shift Queue items</li>
+        <li>Overlay as an editable file</li>
+        <li>Open source code</li>
         <li>Everything is customizable</li>
         <li>Everything is optional</li>
         <li>Everything is FREE</li>
@@ -318,7 +312,7 @@
 
     <div class="question">
 
-      <button class="question-button smaller" id="anchor_quickcastability">How to Enable Quick Cast in Warcraft III</button>
+      <button class="question-button smaller" id="anchor_quickcastability">How to enable quick cast in Warcraft III</button>
       
       <div class="answer">
 
@@ -353,7 +347,7 @@
  
     <div class="question">
 
-      <button class="question-button smaller">How to run Displaced Grid</button>
+      <button class="question-button smaller">How to launch Displaced Grid</button>
 
       <div class="answer">
      
@@ -379,7 +373,7 @@
         <div class="padded">
           <img class="centered cuteborder" src="assets/images/overview.png">   
           <span class="textunderneath">
-            (Default Tray Menu)
+            (Default tray menu)
           </span>
         </div>     
 
@@ -398,14 +392,14 @@
         <div class="padded">
           <img class="centered cuteborder" src="assets/images/grid0.png">   
           <span class="textunderneath">
-            (Displaced Grid is Off)
+            Displaced Grid is Off
           </span>
         </div>   
 
         <div class="padded">
           <img class="centered cuteborder" src="assets/images/grid1.png">   
           <span class="textunderneath">
-            (Displaced Grid is On)
+            Displaced Grid is On
           </span>
         </div>   
 
@@ -419,7 +413,7 @@
 
         <p>The default key is <b>ScrollLock</b>.</p>
 
-     <p>You can change the hotkey in 'UserSettings.ahk' (open it with Notepad).</p>
+        <p>You can change the hotkey in 'UserSettings.ahk' (open it with Notepad).</p>
 
         <img class="centered padded cuteborder" src="assets/images/overview.png">
 
@@ -428,58 +422,81 @@
       
     <div class="question">
 
-      <button class="question-button smaller">How to 'fix' Image Overlay</button>
+      <button class="question-button smaller">How to adjust Displaced Grid Overlay</button>
 
       <div class="answer">
 
-        <p><i>"IMAGE_OVERLAY.png"</i> is displayed on top of the Warcraft III window.</p>
+        <p>"DisplacedGrid_Overlay.png" is displayed on top of the Warcraft III window.</p>
 
-        <p>(window, not full screen!)</p>
+
+        <p>(not full screen!)</p>
 
         <div class="padded">
           <img class="centered cuteborder" src="assets/images/imageoverlay.jpg">   
           <span class="textunderneath">
-            (When Displaced Grid is On you'll see this overlay.)
+            you'll see this overlay when Displaced Grid hotkeys are in effect
           </span>
         </div>
 
         <p>It's aligned for the 1920x1080 16:9 resolution.</p>
 
-        <p><b>If you DON'T play in 16:9 - the overlay will be off grid.</b></p>
-        
-        <p>In this case you'll need to adjust the overlay to your resolution.</p>
+        <p><b>If you DON'T play in 16:9 - the overlay will be off grid.</b>and you'll need to adjust the overlay to your resolution.</p>
 
-        <p>Message me directly if you need help. This is how I do it:</p>
+        <p>Message me directly if you need help.</p>
 
-          <li class="list-compact">Go into Warcraft III</li>
-          <li class="list-compact">Select a hero</li>
-          <li class="list-compact">Take an in-game screenshot - PrintScreen</li>
-          <li class="list-compact">Paste the screenshot into any image editor with layers - Photoshop, photopea.com, pixlr.com</li>
-          <li class="list-compact">Find "Image_Overlay/IMAGE_OVERLAY.psd" in the project</li>
-          <li class="list-compact">Paste it to the editor as the top layer on top of your in-game screenshot</li>
-          <li class="list-compact">Align the keys</li>
-          <li class="list-compact">Save exactly as "IMAGE_OVERLAY.png"</li>
-          <li class="list-compact">(don't change the name or the extension)</li>
-          <li class="list-compact">Restart Displaced Grid so that the new image is cached</li>
+        <p>This is how I do it:</p>
+
+          <li class="list-compact">1. Open "DisplacedGrid_Overlay (for editing).psd" in Photoshop or an online .psd editor.</li>
+          <li class="list-compact">2. Grab an in-game screenshot and paste it as well.</li>
+          <li class="list-compact">3. Align the overlay over the screenshot.</li>
+          <li class="list-compact">4. Delete the screenshot layer before saving.</li>
+          <li class="list-compact">5. Save the overlay as "DisplacedGrid_Overlay.png" (.png is required, not .jpg).</li>
+          <li class="list-compact">6. Save the .psd file for future edits.</li>
+          <li class="list-compact">7. Restart Displaced Grid so that the new image is cached</li>
 
       </div>   
     </div>
 
 
     <div class="question">
-
-      <button class="question-button smaller">How to set up Modules</button>
+    
+      <button class="question-button smaller">How to turn modules on or off</button>
 
       <div class="answer">
+
+        <p>In 'UserSettings.ahk' (open in Notepad) you can enable or disable modules on app launch.</p>
+
+        <img class="centered padded cuteborder" src="assets/images/modulesdefault.png">
+
+        <p>Set "True" to enable a module.</p>
+        <p>Set "False" to disable a module.</p>
+
+        <p>Disabled modules won't appear in the app tray Menu.</p>
+
+        <p>This is useful if you only want to use the Displaced Grid layout, without any modules.</p>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="question">
+
+      <button class="question-button smaller">How to set up modules</button>
+
+      <div class="answer">
+
+       <p>Right-click in your tray to see the menu.</p>
 
         <div class="padded">
           <img class="centered cuteborder" src="assets/images/overview.png">   
           <span class="textunderneath">
-            (app tray Menu)
+            app tray menu
           </span>
         </div>
 
-        <p>Some modules require very precise pixel coordinates to work. Otherwise they will not work.</p>
+        <p>Some modules require very very precise pixel coordinates to work. Otherwise they will not work.</p>
 
         <p>For example, we can visually see that an item is on cooldown by its blue countdown overlay.</p>
 
@@ -493,9 +510,9 @@
           <img class="centered cuteborder" src="assets/images/itemcoords.png">
         </div>
 
-        <p>If you DON'T play in 1920x1080 - you will need to adjust a few things in a very unintuitive way (I promise).</p>
+        <p>If you DON'T play in 1920x1080 - you will need to adjust a few things in a very unintuitive way.</p>
 
-        <p>Goal: find the X,Y coordinates of this one (1) exact pixel of every item while it is on cooldown.</p>
+        <p>Goal: find the X,Y coordinates of this one (one!) exact pixel of every item while it is on cooldown.</p>
 
         <div class="padded">
           <img class="centered cuteborder" src="assets/images/pixelhuntcloseup.png">   
@@ -515,7 +532,7 @@
           <source type="video/mp4" src="assets/images/pixelhuntsetup.mp4">
           </video>
           <span class="textunderneath">
-            (Tray Menu)
+            tray menu
           </span>
         </div>
 
@@ -546,7 +563,7 @@
 
         <p>---</p>
 
-        <p>'Cast on Yourself' module clicks the portrait so it needs to know where the portait is on your screen.</p>
+        <p>'Cast on Yourself' module clicks the portrait so it needs to know where the portrait is on your screen.</p>
 
         <p>Adjust the X,Y coordinates in 'UserSettings.ahk' for the Portrait UI element as well, so that you can use 'Cast on Yourself' module.</p>
 
@@ -568,7 +585,7 @@
 
         <p>---</p>
 
-        <p>For the <i>'Instant Camera'</i> module see this:</p>
+        <p>For the 'Instant Camera' module see this:</p>
 
         <div class="padded">
           <img class="centered cuteborder" src="assets/images/InstantCameraSetup.png">
@@ -579,30 +596,7 @@
 
       </div>     
     </div>
-
-
-    <div class="question">
-    
-      <button class="question-button smaller">How to Turn Off/On Modules entirely</button>
-
-      <div class="answer">
-
-        <p>In 'UserSettings.ahk' (open in Notepad) you can Enable / Disable modules on App start.</p>
-
-        <img class="centered padded cuteborder" src="assets/images/modulesdefault.png">
-
-        <p>Set "True" to Enable a module.</p>
-        <p>Set "False" to Disable a module.</p>
-
-        <p>Disabled modules won't appear in the App Tray Menu.</p>
-
-        <p>This is useful if you only want to use the Displaced Grid layout, without any modules.</p>
-
-      </div>
-    </div>
-
   </div> 
-
 
   <div class="section-read-modules">
 
@@ -616,7 +610,7 @@
 
       <p><a href="https://www.donationalerts.com/r/etofok" target="_blank">Donate</a></p>
 
-      <p><a href="https://www.youtube.com/user/etofok?sub_confirmation=1" target="_blank">Youtube</a></p>
+      <p><a href="https://www.youtube.com/user/etofok?sub_confirmation=1" target="_blank">YouTube</a></p>
  
       <p>I hope to deliver more quality content in my time</p>
 

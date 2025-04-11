@@ -9,8 +9,8 @@
 #Include *i %A_ScriptDir%\Modules\Gdip_All.ahk
 
 ; Path to the overlay image
-Global image_OverlayLayout_Path = 
-image_OverlayLayout_Path = %A_ScriptDir%\Image_Overlay\IMAGE_OVERLAY.png
+Global DisplacedGrid_Overlay_Path = 
+DisplacedGrid_Overlay_Path = %A_ScriptDir%\DisplacedGrid_Overlay\DisplacedGrid_Overlay.png
 
 Global WarcraftIII_posX 	:= 
 Global WarcraftIII_posY 	:= 
@@ -72,7 +72,7 @@ SetupImageOverlay() {
     WinSet, ExStyle, +0x20, % gui_imageOverlay
 
     ; Add the PNG image to the overlay at the exact size and position of the Warcraft III window
-    Gui, gui_imageOverlay: Add, Picture, x0 y0 w%WarcraftIII_width% h%WarcraftIII_height%, %image_OverlayLayout_Path%
+    Gui, gui_imageOverlay: Add, Picture, x0 y0 w%WarcraftIII_width% h%WarcraftIII_height%, %DisplacedGrid_Overlay_Path%
 
     ; Show the GUI overlay without activating it (No Activate)
     Gui, gui_imageOverlay: Show, NA x%WarcraftIII_posX% y%WarcraftIII_posY% w%WarcraftIII_width% h%WarcraftIII_height%

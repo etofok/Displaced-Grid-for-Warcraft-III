@@ -4,7 +4,7 @@
 ;	Download Latest: https://github.com/etofok/Displaced-Grid-for-Warcraft-III
 
 ;	Development: 
-;	Dec 10th, 2023 - March 28th, 2025
+;	Dec 10th, 2023 - April 12th, 2025
 ;-----------------------------------------
 
 #SingleInstance force
@@ -14,7 +14,7 @@
 if not A_IsAdmin
 	Run *RunAs "%A_ScriptFullPath%"
 
-Global currentVersion				:= "v1.4.0"
+Global currentVersion				:= "v1.4.1"
 Global winTitle 					:= "ahk_class OsWindow" ; Warcraft III class name, as seen in WindowSpy of AutoHotkey
 Global winName 						:= "Warcraft III"		; Warcraft III window name, as seen in WindowSpy of AutoHotkey
 
@@ -54,7 +54,7 @@ Tooltip_Hotkey_ScriptReload 				:= ReplaceModifiers(Hotkey_ScriptReload)
 
 Global menu_Toggle_DisplacedGrid 			:= "Displaced Grid <" 				. Tooltip_Hotkey_Toggle_DisplacedGrid 	. ">"
 Global menu_ScriptReload 					:= "Restart Application <" 			. Tooltip_Hotkey_ScriptReload 			. ">"
-Global menu_ScriptSettings					:= "Open Settings"
+Global menu_ScriptSettings					:= "Go to Settings"
 Global menu_ScriptFolder					:= "Open Folder"
 
 ;-----------------------------------------
@@ -97,9 +97,9 @@ Menu, Tray, Add, 		,
 Menu, Tray, Add, 		SET UP, handler_blank
 Menu, Tray, Disable, 	SET UP
 Menu, Tray, Add, 		%menu_ScriptSettings%, 										ScriptSettings
+Menu, Tray, Add, 		Go to Website, Tutorial_Website
 Menu, Tray, Add, 		How to enable QuickCast for Abilities, Tutorial_AbilityQuickCast
 Menu, Tray, Add, 		How to align the overlay, Tutorial_Overlay
-Menu, Tray, Add, 		Go to Website, Tutorial_Website
 Menu, Tray, Add, 		,
 
 Menu, Tray, Add, 		%menu_ScriptReload%,										ScriptReload
@@ -119,7 +119,7 @@ SplashTextOn, 300, 120, , %displaySplash%
 Sleep, 1500
 SplashTextOff
 
-; load Image_Overlay at the very end
+; load DisplacedGrid_Overlay at the very end
 #Include *i %A_ScriptDir%\Modules\module_Overlay.ahk
 
 ; ?Should we activate Displaced Grid hotkeys on APPLICATION START?
@@ -166,7 +166,7 @@ Toggle_DisplacedGrid() {
 		;Switch Displaced Grid OFF
 		Control_DisplacedGrid(0)
 
-		;Switch Image_Overlay.png OFF
+		;Switch DisplacedGrid_Overlay.png OFF
 		Control_Overlay(0)		
 
 	}
@@ -186,7 +186,7 @@ Toggle_DisplacedGrid() {
 			;Switch Displaced Grid ON 
 			Control_DisplacedGrid(1)
 
-			;Switch Image_Overlay.png ON
+			;Switch DisplacedGrid_Overlay.png ON
 			Control_Overlay(1)
 
 		} else {
@@ -263,7 +263,7 @@ return
 
 Tutorial_Overlay:
 	Suspend, Permit
-	Run, %a_scriptdir%\Image_Overlay\How to adjust the overlay to your resolution.txt
+	Run, %a_scriptdir%\DisplacedGrid_Overlay\How to adjust the overlay to your resolution.txt
 return
 
 ;--------------------------------
