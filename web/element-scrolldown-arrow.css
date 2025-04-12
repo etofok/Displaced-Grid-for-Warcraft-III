@@ -1,0 +1,31 @@
+.scrolldown-arrow {
+    position: relative;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 24px;
+    border-left: 2px solid #777;
+    border-bottom: 2px solid #777;
+    transform: translateX(-50%) rotate(180deg);
+    animation: bounce 3.5s infinite;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.scrolldown-arrow:hover {
+    opacity: 1;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0) rotate(-45deg);
+    }
+    40% {
+        transform: translateX(-50%) translateY(0.5rem) rotate(-45deg);
+    }
+    60% {
+        transform: translateX(-50%) translateY(0.25rem) rotate(-45deg);
+    }
+}

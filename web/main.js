@@ -297,3 +297,6 @@ disabledBtns.forEach(function(btn) {
         btn.innerHTML = tempval;
     });
 });
+
+
+

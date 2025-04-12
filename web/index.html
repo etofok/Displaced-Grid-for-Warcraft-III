@@ -16,56 +16,43 @@
   <link rel="stylesheet" href="lists.css">
   <link rel="stylesheet" href="buttons.css">
   <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="floatingButton.css">
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="element-scrolldown-arrow.css">
+
+  <nav class="navbar">
+    <a href="https://github.com/etofok/Displaced-Grid-for-Warcraft-III/archive/refs/heads/main.zip" target="_blank">Download</a>
+    <a href="https://discord.gg/grmNuB5cWc" target="_blank">Discord</a>
+    <a href="https://www.donationalerts.com/r/etofok" target="_blank">Donate</a>
+    <!-- <a href="https://www.youtube.com/user/etofok?sub_confirmation=1" target="_blank">YouTube</a> -->
+  </nav>
+
+  <span class="scroll-nagivation" id="scroll-to-top"></span>
 
   <!-- Above the fold -->
   <div class="section-read-abovethefold nocontextmenu"> 
 
     <h1>Displaced Grid</h1>
     <h4>by etofok</h4>
-    <h2>Advanced Hotkey Layout For Warcraft III</h2>
-    <h3>...and 8 new gamebreaking modules</h3>
+    <h2>Advanced Hotkeys For Warcraft III</h2>
 
+    <!-- 
     <img class="nocontextmenu centered" src="assets/images/DGridOnTop.png" alt="DGridOnTop"> 
-
-
-
-    <a name="anchor_tothetop" class="anchor-smooth"></a>
-  </div>
-
-  <!-- quick disclaimer -->
-  <div class="section-read-modules nocontextmenu">
-    
-    <h1>Modules provide an unfair advantage</h1>
-    <h1>Do NOT use versus players!</h1>
-
-  </div>
-
-  <!-- Showcase Modules -->
-  <div class="section-read-modules nocontextmenu">
-
-    <div id="container-thumbnails" class="container-thumbnails">
-        <!-- Generated from data in main.js -->
-    </div>
-    
-    <div class="carousel-container">
-      <span class="container-slide-big" id="container-slide-big"><!-- Generated from data in main.js --></span>
-
-      <div class="moduleTooltipText" id="moduleTooltipText">TOOLTIP TEXT</div>
-
-      <button class="prev nocontextmenu" onclick="prevSlide()"><</button>
-      <button class="next nocontextmenu" onclick="nextSlide()">></button>
-    </div>
-        
-    <div class="moduleText">
-      <span class="moduleName" id="moduleName"></span>
-      <span class="moduleTooltip" id="moduleTooltip">[?]</span>
-      <div class="moduleDesc" id="moduleDesc" value=""></div>
-    </div>
+    -->
 
     <a href="https://github.com/etofok/Displaced-Grid-for-Warcraft-III/archive/refs/heads/main.zip" target="_blank" class="CTA-button-one centered">Download Now</a>
+    
+    <h3>or explore more below...</h3>
+
+    <div class="scrolldown-arrow"></div>
+
+    <span class="scroll-nagivation" id="scroll-to-layout"></span>
+
   </div>
 
   <!-- Slider Displaced vs Grid -->
+  
+
   <div class="section-read-comparison nocontextmenu">
     
     <div class="container-comparison">
@@ -105,9 +92,8 @@
       </ul>
     </div>
 
-
     <div class="wrap-list-benefits">
-      <h3>Why Displaced Grid?</h3>
+      <h3>Displaced Grid is...</h3>
       <ul>
         <li>Noticeably <b>more compact</b></li>
         <li>Noticeably <b>easier on your fingers</b></li>
@@ -117,14 +103,59 @@
       </ul>
     </div>
 
+    <a href="https://github.com/etofok/Displaced-Grid-for-Warcraft-III/archive/refs/heads/main.zip" target="_blank" class="CTA-button-one centered">Download Now</a> 
+  </div>
+
+
+
+  <!-- Showcase Gallery -->
+  <div class="section-gallery nocontextmenu"> 
+
+    <h1>Displaced Grid Gallery</h1>
+
+    <div class="container-main-image">
+      <img id="mainImage" class="main-image" alt="Main Image">
+      <button class="nav-button prev" onclick="changeImage(-1)">&#10094;</button>
+      <button class="nav-button next" onclick="changeImage(1)">&#10095;</button>
+    </div>
+  
     <a href="https://github.com/etofok/Displaced-Grid-for-Warcraft-III/archive/refs/heads/main.zip" target="_blank" class="CTA-button-one centered">Download Now</a>
+
 
   </div>
 
-<!--  -->
-  <!-- Showcase Gallery -->
 
-<!--  -->
+  <!-- Modules -->
+  <div class="section-read-modules nocontextmenu">
+    
+    <h1>Modules</h1>
+    
+    <h2>Modules provide an unfair advantage</h2>
+    <h2>Do NOT use versus players!</h2>
+
+    <div id="container-thumbnails" class="container-thumbnails">
+        <!-- Generated from data in main.js -->
+    </div>
+    
+    <div class="carousel-container">
+      <span class="container-slide-big" id="container-slide-big"><!-- Generated from data in main.js --></span>
+
+      <div class="moduleTooltipText" id="moduleTooltipText">TOOLTIP TEXT</div>
+
+      <button class="prev nocontextmenu" onclick="prevSlide()"><</button>
+      <button class="next nocontextmenu" onclick="nextSlide()">></button>
+    </div>
+        
+    <div class="moduleText">
+      <span class="moduleName" id="moduleName"></span>
+      <span class="moduleTooltip" id="moduleTooltip">[?]</span>
+      <div class="moduleDesc" id="moduleDesc" value=""></div>
+    </div>
+
+    <a href="https://github.com/etofok/Displaced-Grid-for-Warcraft-III/archive/refs/heads/main.zip" target="_blank" class="CTA-button-one centered">Download Now</a>
+  </div>
+
+  <!-- FAQ -->
   <div class="faq-section nocontextmenu">
 
     <!-- 1 start -->
@@ -464,16 +495,24 @@
 
       <div class="answer">
 
-        <p>In 'UserSettings.ahk' (open in Notepad) you can enable or disable modules on app launch.</p>
+        <p>By default, on your first launch - all modules are disabled.</p>
+
+        <p>Disabled modules are grayed out in the tray menu.</p>
+
+        <div class="padded">
+          <img class="centered cuteborder" src="assets/images/overview.png">   
+          <span class="textunderneath">
+            app tray menu
+          </span>
+        </div>
+
+        <p>You can enable (or disable) a module in 'UserSettings.ahk' (open in Notepad).</p>
 
         <img class="centered padded cuteborder" src="assets/images/modulesdefault.png">
 
         <p>Set "True" to enable a module.</p>
         <p>Set "False" to disable a module.</p>
 
-        <p>Disabled modules won't appear in the app tray Menu.</p>
-
-        <p>This is useful if you only want to use the Displaced Grid layout, without any modules.</p>
 
       </div>
     </div>
@@ -600,21 +639,10 @@
 
   <div class="section-read-modules">
 
-    <h1>Congratulations and please enjoy</h1>
+    <h2 class="padded">Feedback appreciated</h2>
 
   </div>
 
-  <div class="section-read-modules">
- 
-      <p><a href="https://discord.gg/grmNuB5cWc" target="_blank">Discord</a></p>
-
-      <p><a href="https://www.donationalerts.com/r/etofok" target="_blank">Donate</a></p>
-
-      <p><a href="https://www.youtube.com/user/etofok?sub_confirmation=1" target="_blank">YouTube</a></p>
- 
-      <p>I hope to deliver more quality content in my time</p>
-
-  </div>
 
   <div class="section-read-footer">
 
@@ -626,6 +654,8 @@
 
   <script src="main.js"></script>
   <script src="gallery.js"></script>
+  <script src="navbar.js"></script>
+  <script src="element-scrolldown-arrow.js"></script>
 
 </body>
 </html>

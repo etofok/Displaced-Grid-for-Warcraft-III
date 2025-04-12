@@ -1,0 +1,32 @@
+  .navbar {
+    position: fixed; /* Fixed position */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1em;
+    background-color: #222;
+    color: #F5F5F5;
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Vertical alignment */
+    justify-content: flex-end; /* Right-align buttons */
+    z-index: 100; /* Ensure it's on top */
+    opacity: 0;
+  }
+
+  .navbar a {
+    color: #F5F5F5;
+    text-decoration: none;
+    padding: 0 1.5em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease;
+  }
+
+  .navbar a:hover {
+    background-color: #383838; /* Slightly darker on hover */
+  }
+
+  .navbar.scrolled {
+    opacity: 1;
+  }
