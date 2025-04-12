@@ -75,7 +75,7 @@ Global b_ShiftQueueItems		:= False 	; Ability to queue items when holding SHIFT 
 
 ; The following modules REQUIRE YOUR ATTENTION to work properly.
 ; These DO NOT work "out of the box".
-; Down below you'll see how to set these modules
+; See instructions below.
 ; (takes 5 minutes)
 
 Global b_QuickCastItems 		:= False 	; Pseudo QuickCast for Items (requires VERY precise pixel coordinates, see below).
@@ -83,9 +83,9 @@ Global b_QuickDropItems 		:= False 	; ALT + CTRL + q/w/a/s/z/x to drop/pass item
 Global b_CastOnYourself			:= False 	; Hold ALT to Cast On Yourself. Alt+D+D will no longer exit the game.
 
 ;-----------------------------------------
-; 4. To what control groups would you like to attach the Instant Camera functionality?
+; 4. To what control groups would you like to attach the Instant Camera functionality, if any?
 ;
-; The module double-taps the group when you single tap it.
+; This module double-taps the group when you single tap it.
 ;-----------------------------------------
 
 ControlGroup1.instantCamera := False 	; a
@@ -106,10 +106,9 @@ ControlGroup0.instantCamera := False 	; f4
 ;-----------------------------------------
 ; 5. What control groups would you like to manage simultaneously using CapsLock? | 'Command Multiple Groups' Module Set Up
 ;
-; This module allow the user to send attack/move/cast/stop/hold/patrol commands to specific control groups.
+; This module allows the user to send attack/move/cast/stop/hold/patrol commands to specific control groups.
 ;
 ; I recommend using CG1 CG2 CG3 CG4 as your main 'army' hotkeys (which are bound to 'A', 'S', 'Z' and 'X').
-; I recommend using CG5 or CG6 as your 'production' hotkey (which are bound to Q and W respectively).
 ;-----------------------------------------
 
 ControlGroup1.commandThisGroup := True 		; a
@@ -127,17 +126,20 @@ ControlGroup0.commandThisGroup := False 	; f4
 ;-----------------------------------------
 ; 6. Where is the Inventory/Backpack UI element located on your screen?
 ;
-; This is required for the QuickCastItem module, because we pixel hunt to determine whether the item is on cooldown (by its blue cooldown overlay).
-; This is also required for the QuickDropItem module, as we right-click the item to grab and drag it.
+; This is required for the QuickCastItem module, because we pixel hunt to determine whether the item is on cooldown by its blue cooldown overlay.
+; This is also required for the QuickDropItem module, because we right-click the item to grab and drag it.
+; The app needs to know where exactly to click.
+;
 ; Otherwise, these two modules will not work properly.
 ;
-; You can easily check the coordinates in Paint.exe (see the bottom-left), like so:
+; You can easily check the coordinates using the Windows Paint app, like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;
 ; You are looking for the blue overlay on top of the item border — just one pixel! (!)
 ; It's very precise but this works.
 ;
-; This way, we can determine whether the item slot contains an item (by its silver-colored border) and whether the item is on cooldown (by the blue overlay).
+; This way, we can determine whether the item slot contains an item (by its silver-colored border) 
+; AND whether the item is on cooldown (by the blue overlay).
 ;-----------------------------------------
 
 ; The following works for 1920x1080
@@ -173,18 +175,17 @@ Item6.y 					:= 	1017
 ;-----------------------------------------
 ; 7. Where is the Portrait UI element located on YOUR screen?
 ;
-; This is MANDATORY for the "Cast On Yourself" module.
+; This is required for the "Cast On Yourself" module.
 ; 
-; You can easily check the coordinates in Paint.exe, like so:
+; You can easily check the coordinates using the Windows Paint app, like so:
 ; https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/assets/images/pixelhuntsetup.mp4
 ;
-; Find one pixel of your portrait element.
+; Find one pixel of your portrait element, so the app knows where to click.
 ;-----------------------------------------
 
 ; The following works for 1920x1080
 PortraitUI.x := 700
 PortraitUI.y := 900
-
 
 ; That's it!
 ; etofok
