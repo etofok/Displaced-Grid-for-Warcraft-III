@@ -1,4 +1,5 @@
-# Displaced Grid Layout + 7 UX Modules For Warcraft III
+# Displaced Grid for Warcraft III
+Advanced Hotkeys + 8 UX Modules
 by etofok
 
 [**GO SEE FULL WEBSITE (ALL INFO HERE)**](https://etofok.github.io/Displaced-Grid-for-Warcraft-III/web/index.html)
