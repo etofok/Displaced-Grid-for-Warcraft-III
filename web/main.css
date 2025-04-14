@@ -152,7 +152,7 @@ body {
     }    
 
     .section-read-abovethefold h1 {
-        font-size: 1.5em;
+        font-size: 2em;
     }
 
     .section-read-abovethefold h2 {
@@ -164,7 +164,7 @@ body {
     }
     
     .section-read-abovethefold h4 {
-        font-size: 0.85em;
+        font-size: 1.125em;
     }
     
 }
