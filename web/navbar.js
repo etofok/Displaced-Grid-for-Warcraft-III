@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
 
   function handleScroll() {
-    if (window.scrollY > 500) {
+    if (window.scrollY > 600) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');

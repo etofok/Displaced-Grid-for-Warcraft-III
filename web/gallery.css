@@ -10,7 +10,8 @@
     background-color: var(--faq-bg);
     text-align: center;
     box-shadow: inset 0 -1rem 1rem -1rem rgba(0, 0, 0, 0.5);
-    padding: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;    
 }
 
 .section-gallery h1 {
