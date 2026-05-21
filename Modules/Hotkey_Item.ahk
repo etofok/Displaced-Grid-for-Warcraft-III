@@ -94,7 +94,7 @@
 	} else {
 
 		; redirect to CastOnYourself if an ITEM hotkey has been double-tapped
-		if ((keyPressed_LAlt || keyPressed_RAlt) AND (currentTime - LastKeyPressTime < 500) && LastKeyPressTime != 0)  { ; Added LastKeyPressTime != 0 to prevent initial false positive
+		if ((keyPressed_LAlt || keyPressed_RAlt) AND (currentTime - LastKeyPressTime < 200) && LastKeyPressTime != 0)  { ; Added LastKeyPressTime != 0 to prevent initial false positive
 	    	UpdateEventLog("---- Item Double Tap! ---")
 		    LastKeyPressTime := 0
 		    CastOnYourself(objCommand)
@@ -103,7 +103,7 @@
 		
 		LastKeyPressTime := currentTime
 
-		Send % objCommand.ingameHotkey ; fire layout key to active item
+		Send % objCommand.ingameHotkey ; send in-game command to use the item
 
 		; redirect to quickcast if the module is enabled
 		if (m_QuickCastItems.active == 1) {

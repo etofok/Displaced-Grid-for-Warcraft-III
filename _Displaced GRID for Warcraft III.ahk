@@ -5,7 +5,7 @@
 ;	Download: https://github.com/etofok/displaced-grid
 ;
 ;	Development: 
-;	Dec 10th, 2023 - Feb 28th, 2026
+;	Dec 10, 2023 - May 21, 2026
 ;	
 ;-----------------------------------------
 
@@ -54,6 +54,7 @@ ReadSettingsFromIni()
 Hotkey, %Hotkey_Toggle_CurrentLayout%, 					Toggle_CurrentLayout,		UseErrorLevel
 Hotkey, %Hotkey_ScriptReload%, 							ScriptReload,				UseErrorLevel
 Hotkey, %Hotkey_OpenSettings%, 							OpenSettings,				UseErrorLevel
+Hotkey, %Hotkey_EnterAndToggleLayout%, 					EnterAndToggleLayout,		UseErrorLevel
 
 Hotkey, IfWinActive, %winClass%
 
@@ -66,11 +67,13 @@ Hotkey, IfWinActive, %winClass%
 Tooltip_Hotkey_Toggle_CurrentLayout 		:= ReplaceModifiers(Hotkey_Toggle_CurrentLayout)
 Tooltip_Hotkey_ScriptReload 				:= ReplaceModifiers(Hotkey_ScriptReload)
 Tooltip_Hotkey_OpenSettings 				:= ReplaceModifiers(Hotkey_OpenSettings)
+Tooltip_Hotkey_EnterAndToggleLayout 		:= ReplaceModifiers(Hotkey_EnterAndToggleLayout)
 
 
-Global menu_Toggle_CurrentLayout			:= currentLayout " <" 			. Tooltip_Hotkey_Toggle_CurrentLayout 	. ">"
-Global menu_ScriptReload 					:= "Restart the app <" 			. Tooltip_Hotkey_ScriptReload 			. ">"
+Global menu_Toggle_CurrentLayout			:= currentLayout " <" 			. Tooltip_Hotkey_Toggle_CurrentLayout 		. ">"
+Global menu_ScriptReload 					:= "Restart the app <" 			. Tooltip_Hotkey_ScriptReload 				. ">"
 Global menu_OpenSettings					:= "Open Settings"
+Global menu_EnterAndToggleLayout 			:= "Toggle && Enter <" 			. Tooltip_Hotkey_EnterAndToggleLayout 		. ">"
 Global menu_ScriptFolder					:= "Open Folder"
 
 ;-----------------------------------------
@@ -83,7 +86,7 @@ Menu, Tray, Tip, 		Displaced Grid %DisplacedGridVersion% by etofok
 
 Menu, Tray, Add, 		Displaced Grid %DisplacedGridVersion% by etofok,		handler_blank
 Menu, Tray, Disable, 	Displaced Grid %DisplacedGridVersion% by etofok
-Menu, Tray, Add, 		Donate >>,													Button_Donate
+Menu, Tray, Add, 		Donate >>,												Button_Donate
 Menu, Tray, Add, 		Discord >>,												Button_Discord
 Menu, Tray, Add, 		Website >>,												Button_Website
 
@@ -93,6 +96,8 @@ Menu, Tray, Disable, 	Layout in use:
 
 Menu, Tray, Add, 		%menu_Toggle_CurrentLayout%,							Toggle_CurrentLayout
 Menu, Tray, Default, 	%menu_Toggle_CurrentLayout%,
+
+Menu, Tray, Add, 		%menu_EnterAndToggleLayout%,							Toggle_CurrentLayout
 
 #Include *i %A_ScriptDir%\Modules\module_EventLog.ahk
 
@@ -137,7 +142,7 @@ if (ActivateHotkeysOnLaunch == 1) {
 	Switch_CurrentLayout(0)
 }
 
-SplashNotify("Displaced Grid`nby etofok`n`nToggle Hotkey: `n" . Tooltip_Hotkey_Toggle_CurrentLayout, 3000)
+SplashNotify("Displaced Grid`nby etofok`n`nToggle Hotkey: `n" . Tooltip_Hotkey_Toggle_CurrentLayout, 2500)
 
 ;-----------------------------------------
 
@@ -177,8 +182,10 @@ return ; this return is the most important line of code
 Switch_CurrentLayout(switchTo) {
 
 	if (winExist(winClass)) {
-		SetHooks()
-		UpdateAll()
+	    if (UpdateWindowData()) {
+	        SetHooks()
+	        UpdateAll()
+	    }
 	} else {
 		; if the window no longer exists / has been closed
 		NoGame()
@@ -304,12 +311,18 @@ unloadLayout() {
 ; UpdateWindowData 
 ;----------------------------------------------------------------
 UpdateWindowData() {
+	global winID, winPID, winName, winClass
+
 	WinGet, winID, ID, %winName%
 	WinGet, winPID, PID, %winClass%
 
 	if (winID == "" || winPID == "") {
-		;--------------------------MsgBox % error_warcraftNotFound
+	    if (m_EventLog.active) {
+	        UpdateEventLog("Warcraft III Not Found")
+	    }
+	    return false ; Return false so your script knows it failed
 	}
+	return true
 }
 
 ;----------------------------------------------------------------
@@ -333,6 +346,23 @@ Send_gg() {
 }
 
 
+EnterAndToggleLayout() {
+	Toggle_CurrentLayout()
+    Sleep, 10
+    if (keyPressed_LShift || keyPressed_RShift) {
+    	Send, {Shift}{Enter}
+    } else {
+    	Send, {Enter}
+    }
+}
+
+
+;--------------------------------
+; EnterAndToggleLayout
+;--------------------------------
+EnterAndToggleLayout:
+	EnterAndToggleLayout()
+return
 
 
 ;--------------------------------
@@ -340,7 +370,10 @@ Send_gg() {
 ;--------------------------------
 ScriptReload:
 	;Suspend, Permit
-	UnhookAllEvents() ; important because we set hooks for Overlay to work; hooks must be unhooked manually
+	; important because we set hooks for Overlay to work; hooks must be unhooked manually
+	if (hooks.MaxIndex() > 0) {
+	    UnhookAllEvents()
+	}
 	Reload
 return
 
@@ -348,7 +381,10 @@ return
 ; Reload This Script
 ;--------------------------------
 RestartApp() {
-	UnhookAllEvents() ; important because we set hooks for Overlay to work; hooks must be unhooked manually
+	; important because we set hooks for Overlay to work; hooks must be unhooked manually
+	if (hooks.MaxIndex() > 0) {
+	    UnhookAllEvents()
+	}
 	Reload
 }
 

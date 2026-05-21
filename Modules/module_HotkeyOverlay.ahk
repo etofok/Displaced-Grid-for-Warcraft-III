@@ -7,100 +7,71 @@
 ; The overlay automatically understands where to be displayed and adjusts itself on window change
 ;
 ;-----------------------------------------
-
 Global isUpdating   := 0
 Global hooks        := []
+Global clientArea   := {} ; needs to be global
+
+; global callback pointers!!!!!!
+Global cb_MOVESIZEEND  := ""
+Global cb_LOCATIONCHANGE := ""
+Global cb_DESTROY        := ""
 
 ; the HotkeyOverlay is tied to the Displaced Grid layout. Layout On = HotkeyOverlay On.
-b_HotkeyOverlay 										:= ActivateHotkeysOnLaunch
-
 ; this allows us to adjust the overlay automatically without manually refreshing it
 ; I spent like 15 hours figuring out this stuff, this is the best solution of them all
+b_HotkeyOverlay := ActivateHotkeysOnLaunch
 
-;-----------------------------------------
-; On program start...
-
-; overlay is switched off with the layout toggle in the main file
-
-
-; ---------------------------------------------
-; SetHooks
-; ---------------------------------------------
 SetHooks() {
+    ; if the app isn't open, do NOT install global hooks
+    if (!winPID) {
+        if (m_EventLog.active) {
+            UpdateEventLog("ERROR: Warcraft III not found. Hooks not set.")
+        }
+        return
+    }
 
-    ; unhook hooks if were previously installed before proceeding
     if (hooks.MaxIndex() > 0) {
         UnhookAllEvents()
     }
 
     WINEVENT_OUTOFCONTEXT := 0x0000
+    
+    ; set callback pointers exactly once so it doesn't create hooks multiple times and then you lose them and it's a mess
+    if (!cb_MOVESIZEEND) {
+        cb_MOVESIZEEND     := RegisterCallback("ResizeCallback_MOVESIZEEND", "F")
+        cb_LOCATIONCHANGE  := RegisterCallback("ResizeCallback_CHANGE", "F")
+        cb_DESTROY         := RegisterCallback("WindowDestoyedCallback", "Fast")
+    }
 
-    ; this is an event listener for window move and resize with mouse
-    ; however, it does not account for window resize with Alt+Enter and maximize/restore
-    ; EVENT_SYSTEM_MOVESIZEEND guarantees one update on move/size end motion
-    EVENT_SYSTEM_MOVESIZEEND  := 0x000B
-    hook_MOVESIZEEND := DllCall("SetWinEventHook"
-        , "UInt", EVENT_SYSTEM_MOVESIZEEND 
-        , "UInt", EVENT_SYSTEM_MOVESIZEEND 
-        , "UInt", 0
-        , "Ptr", RegisterCallback("ResizeCallback_MOVESIZEEND", "F")
-        , "UInt", winPID
-        , "UInt", 0
-        , "UInt", WINEVENT_OUTOFCONTEXT)
+    ; globally accessible winPID
+    global winPID 
 
-    if (hook_MOVESIZEEND) {
+    EVENT_SYSTEM_MOVESIZEEND := 0x000B
+    hook_MOVESIZEEND := DllCall("SetWinEventHook", "UInt", EVENT_SYSTEM_MOVESIZEEND, "UInt", EVENT_SYSTEM_MOVESIZEEND, "UInt", 0, "Ptr", cb_MOVESIZEEND, "UInt", winPID, "UInt", 0, "UInt", WINEVENT_OUTOFCONTEXT, "Ptr")
+    if (hook_MOVESIZEEND)
         hooks.Push(hook_MOVESIZEEND)
-    }
 
-    ; this is an event listener for every window change, including Alt+Enter and maximize/restore
-    ; It technically includes the EVENT_SYSTEM_MOVESIZEEND, but I decided to use both.
-    ; because EVENT_OBJECT_LOCATIONCHANGE fires every nanosecond and break things.
     EVENT_OBJECT_LOCATIONCHANGE := 0x800B
-    hook_LOCATIONCHANGE := DllCall("SetWinEventHook"
-        , "UInt", EVENT_OBJECT_LOCATIONCHANGE 
-        , "UInt", EVENT_OBJECT_LOCATIONCHANGE 
-        , "UInt", 0
-        , "Ptr", RegisterCallback("ResizeCallback_CHANGE", "F")
-        , "UInt", winPID
-        , "UInt", 0
-        , "UInt", WINEVENT_OUTOFCONTEXT)
-
-    if (hook_LOCATIONCHANGE) {
+    hook_LOCATIONCHANGE := DllCall("SetWinEventHook", "UInt", EVENT_OBJECT_LOCATIONCHANGE, "UInt", EVENT_OBJECT_LOCATIONCHANGE, "UInt", 0, "Ptr", cb_LOCATIONCHANGE, "UInt", winPID, "UInt", 0, "UInt", WINEVENT_OUTOFCONTEXT, "Ptr")
+    if (hook_LOCATIONCHANGE)
         hooks.Push(hook_LOCATIONCHANGE)
-    }
 
     EVENT_OBJECT_DESTROY := 0x8001
-    hook_DESTROY := DllCall("SetWinEventHook"
-        , "UInt", EVENT_OBJECT_DESTROY
-        , "UInt", EVENT_OBJECT_DESTROY
-        , "Ptr", 0
-        , "Ptr", RegisterCallback("WindowDestoyedCallback", "Fast")
-        , "UInt", winPID
-        , "UInt", 0
-        , "UInt", WINEVENT_OUTOFCONTEXT)
-    
-    if (hook_DESTROY) {
+    hook_DESTROY := DllCall("SetWinEventHook", "UInt", EVENT_OBJECT_DESTROY, "UInt", EVENT_OBJECT_DESTROY, "UInt", 0, "Ptr", cb_DESTROY, "UInt", winPID, "UInt", 0, "UInt", WINEVENT_OUTOFCONTEXT, "Ptr")
+    if (hook_DESTROY)
         hooks.Push(hook_DESTROY)
-    }
 }
-
-; ---------------------------------------------
-; UpdateClientArea
-; ---------------------------------------------
 
 UpdateClientArea() {
-    if (!winID || winID == "") {
-
-        if (m_EventLog.active) {
+    global winID
+    if (!winID) {
+        if (m_EventLog.active) 
             UpdateEventLog("ERROR: No winID!")
-        }
-
         return
     }
-
     clientArea := v1_WinGetClientPos(winID)
-    ;MsgBox, % "clientArea.x: " clientArea.x "`nclientArea.y: " clientArea.y "`nclientArea.width: " clientArea.width "`nclientArea.height: " clientArea.height
 }
+
 
 ; ---------------------------------------------
 ; UpdateOverlayCoordinates
@@ -245,15 +216,9 @@ UpdateOverlayCoordinates() {
     InventoryEndX       := InventoryStartX + InventoryWidth
     InventoryEndY       := InventoryStartY + InventoryHeight
 
-    /*
-    Gui, gui_tempBox: Destroy
-    Gui, gui_tempBox: +AlwaysOnTop -Caption +ToolWindow +E0x20 +Owner%winID%
-    Gui, gui_tempBox: Color, White
-    Gui, gui_tempBox: Show, x%InventoryStartX% y%InventoryStartY% w%InventoryWidth% h%InventoryHeight%, InventoryBox
-    WinSet, Transparent, 128, InventoryBox
-    */
 
 }
+
 
 UpdateAll() {
     UpdateWindowData() ; update winID in case the game was closed and reopened
@@ -402,6 +367,14 @@ ResizeCallback_MOVESIZEEND(hWinEventHook, event, hWnd, idObject, idChild, idThre
 
 
 ResizeCallback_CHANGE(hWinEventHook, event, hWnd, idObject, idChild, idThread, dwmsEventTime) {
+    ; in AHK access to globals needs to be explicit
+    global winID, isUpdating
+    
+    ; CRITICAL SAFEGUARD: If the event came from the Taskbar or another app, abort!
+    if (hwnd != winID) {
+        return
+    }
+
     ; ignore events not top-level events i.e. mouse movement
     if (idObject != 0)  
         return 0
@@ -430,7 +403,7 @@ ResizeCallback_CHANGE(hWinEventHook, event, hWnd, idObject, idChild, idThread, d
     ; this is unbelievably clunky because in AHK v1.1 we can't target a function within a timer
     ; and because all modules are inside the autorun section of the application — we can't encapsulate the module, because we can't have a label there
     ; so it's really unintuitive and the amount of time I wasted of these limitations is completely ridiculous
-    SetTimer, timerUpdateReset, 500
+    SetTimer, timerUpdateReset, -200
 
     Return 0 ; always return 0 for callbacks
 }

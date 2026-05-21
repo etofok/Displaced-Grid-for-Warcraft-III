@@ -7,7 +7,9 @@
 
 Hotkey_LAlt() {
 
-	keyPressed_LAlt = 1
+	global keyPressed_LAlt
+	keyPressed_LAlt := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("LAlt Pressed")
 	}
@@ -18,14 +20,15 @@ Hotkey_LAlt() {
 	;KeyWait, LAlt
 	KeyWait, % object_LAlt.physicalKey
 
-
 	; this is very much needed because we intercept and block Alt.
 	; this means while Warcraft 3 is active the Alt cannot be activated
 	; this is great, because Alt no longer toggles of our healthbars in-game. Especially great, because we use Alt for Items.
 	; this is bad, because when Alt is blocked, we can't Alt-tab, which sucks massively.
 	; the code below listens to Alt and allows us to "simulate" Alt-Tabbing.
-	if (A_PriorKey == "Tab") {
-		Send {Blind}{Alt Up}
+	
+	; if we alt-tab the window/game loses focus. the alt will get stuck if we don't check for the window.
+	if (A_PriorKey == "Tab" || !WinActive(winClass)) {
+		Send {Alt Up}
 	}
 
 	; this handles Alt+Enter combo
@@ -33,7 +36,7 @@ Hotkey_LAlt() {
 		if (m_EventLog.active) {
 			UpdateEventLog("[Alt + Enter]")
 		}
-		Send {Blind}{Alt Up}
+		Send {Alt Up}
 	}
 
 	keyPressed_LAlt = 0
@@ -45,7 +48,9 @@ Hotkey_LAlt() {
 
 Hotkey_RAlt() {
 
-	keyPressed_RAlt = 1
+	global keyPressed_RAlt
+	keyPressed_RAlt := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("RAlt Pressed")
 	}
@@ -61,8 +66,10 @@ Hotkey_RAlt() {
 	; this is great, because Alt no longer toggles of our healthbars in-game. Especially great, because we use Alt for Items.
 	; this is bad, because when Alt is blocked, we can't Alt-tab, which sucks massively.
 	; the code below listens to Alt and allows us to "simulate" Alt-Tabbing.
-	if (A_PriorKey == "Tab") {
-		Send {Blind}{Alt Up}
+	
+	; if we alt-tab the window/game loses focus. the alt will get stuck if we don't check for the window.
+	if (A_PriorKey == "Tab" || !WinActive(winClass)) {
+		Send {Alt Up}
 	}
 
 	; this handles Alt+Enter combo
@@ -70,7 +77,7 @@ Hotkey_RAlt() {
 		if (m_EventLog.active) {
 			UpdateEventLog("[Alt + Enter]")
 		}
-		Send {Blind}{Alt Up}
+		Send {Alt Up}
 	}
 
 	keyPressed_RAlt = 0
@@ -82,7 +89,9 @@ Hotkey_RAlt() {
 
 Hotkey_LCtrl() {
 
-	keyPressed_LCtrl = 1
+	global keyPressed_LCtrl
+	keyPressed_LCtrl := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("LCtrl Pressed")
 	}
@@ -97,7 +106,9 @@ Hotkey_LCtrl() {
 
 Hotkey_RCtrl() {
 
-	keyPressed_RCtrl = 1
+	global keyPressed_RCtrl
+	keyPressed_RCtrl := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("RCtrl Pressed")
 	}
@@ -114,7 +125,9 @@ Hotkey_RCtrl() {
 
 Hotkey_LShift() {
 
-	keyPressed_LShift = 1
+	global keyPressed_LShift
+	keyPressed_LShift := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("LShift Pressed")
 	}
@@ -129,7 +142,9 @@ Hotkey_LShift() {
 
 Hotkey_RShift() {
 
-	keyPressed_RShift = 1
+	global keyPressed_RShift
+	keyPressed_RShift := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("RShift Pressed")
 	}
@@ -144,7 +159,9 @@ Hotkey_RShift() {
 
 
 Hotkey_Tab() {
+
     static keyPressed_Tab := false
+    global keyPressed_LAlt, keyPressed_RAlt ; ensure global scope
 
     if (keyPressed_Tab)
         return
@@ -159,34 +176,26 @@ Hotkey_Tab() {
         if (m_EventLog.active) {
             UpdateEventLog("ALT + TAB")
         }
-        Send {Blind}{Alt Down}
-        Send {Blind}{Tab Down}
+        Send {Alt Down}{Tab}
+        
         keyPressed_Tab := false
         return
     }
 
     ; Send initial Tab press immediately
-    Send {Blind}{Tab}
+    ; removed blind
+    Send {Tab}
 
-    ; initial delay but exit early if Tab is released
-    Loop 20 {  ; 20 * 10ms = 200ms
-        Sleep 10
-        if !GetKeyState("Tab", "P") {
-            keyPressed_Tab := false
-            if (m_EventLog.active) {
-                UpdateEventLog("Tab Released early (no repeat)")
-            }
-            return
+    ; this emulates alt-tabbing through the menu
+    holdCounter := 0
+
+    while (GetKeyState(object_Tab.physicalKey, "P")) {
+        holdCounter++
+        if (holdCounter > 4) { ; ~200ms delay before repeat starts (4 * 50ms)
+            Send, {Tab}
         }
-    }
-
-    ; Repeat while Tab is held down
-    while GetKeyState(object_Tab.physicalKey, "P") {
-        Send {Blind}{Tab}
         Sleep 50
     }
-
-	KeyWait, % object_Tab.physicalKey
 
     keyPressed_Tab := false
 
@@ -198,7 +207,9 @@ Hotkey_Tab() {
 
 Hotkey_Menu() {
 
-	keyPressed_Menu = 1
+	global keyPressed_Menu
+	keyPressed_Menu := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("Menu Pressed")
 	}
@@ -218,7 +229,10 @@ Hotkey_Menu() {
 ; I also desided to "block" the key entirely, so that Capslock has no effect while Warcraft3 is in focus
 ; CapsLock is "listenned to" so that we can use it as a modifier for UnifiedOrders
 Hotkey_CapsLock() {
-	keyPressed_CapsLock = 1
+
+	global keyPressed_CapsLock
+	keyPressed_CapsLock := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("CapsLock Pressed")
 	}
@@ -234,7 +248,9 @@ Hotkey_CapsLock() {
 
 Hotkey_Enter() {
 
-	keyPressed_Enter = 1
+	global keyPressed_Enter, keyPressed_LAlt, keyPressed_RAlt
+	keyPressed_Enter := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("Enter Pressed")
 	}
@@ -244,17 +260,22 @@ Hotkey_Enter() {
 		if (m_EventLog.active) {
 			UpdateEventLog("[Alt + Enter]")
 		}
-		Send {Blind}{Alt Down}
-		Send {Blind}{Enter Down}
+		Send, {Alt Down}{Enter Down}
+		Sleep, 10
+		Send, {Enter Up}{Alt Up}
+	} else {
+	    ; Normal Enter key press behavior when Alt is NOT held down
+	    Send, {Enter Down}
 	}
-
-	; emulate the key
-	Send {Blind}{Enter Down}
 
 	; for the release
 	KeyWait, % object_Enter.physicalKey
 
-	Send {Blind}{Enter Up}
+	; only send Enter Up if it was a normal Enter press 
+	; prevents hung states
+	if (!keyPressed_LAlt && !keyPressed_RAlt) {
+	    Send, {Enter Up}
+	}
 
 	keyPressed_Enter = 0
 	if (m_EventLog.active) {
@@ -264,7 +285,9 @@ Hotkey_Enter() {
 
 Hotkey_NumpadEnter() {
 
-	keyPressed_NumpadEnter = 1
+	global keyPressed_NumpadEnter, keyPressed_LAlt, keyPressed_RAlt
+	keyPressed_NumpadEnter := 1
+
 	if (m_EventLog.active) {
 		UpdateEventLog("NumpadEnter Pressed")
 	}
@@ -272,19 +295,24 @@ Hotkey_NumpadEnter() {
 	; this is needed because we intercept and block Alt.
 	if (keyPressed_LAlt || keyPressed_RAlt) {
 		if (m_EventLog.active) {
-			UpdateEventLog("[Alt + Enter]")
+			UpdateEventLog("[Alt + NumpadEnter]")
 		}
-		Send {Blind}{Alt Down}
-		Send {Blind}{NumpadEnter Down}
+		Send, {Alt Down}{NumpadEnter Down}
+		Sleep, 10
+		Send, {NumpadEnter Up}{Alt Up}
+	} else {
+	    ; Normal Enter key press behavior when Alt is NOT held down
+	    Send, {NumpadEnter Down}
 	}
-
-	; emulate the key
-	Send {Blind}{NumpadEnter Down}
 
 	; wait for the release
 	KeyWait, % object_NumpadEnter.physicalKey
 
-	Send {Blind}{NumpadEnter Up}
+	; only send Enter Up if it was a normal Enter press 
+	; prevents hung states
+	if (!keyPressed_LAlt && !keyPressed_RAlt) {
+	    Send, {NumpadEnter Up}
+	}
 
 	keyPressed_NumpadEnter = 0
 	if (m_EventLog.active) {
@@ -293,7 +321,10 @@ Hotkey_NumpadEnter() {
 }
 
 
+; not used?
 Hotkey_Up(state) {
+
+	global keyPressed_Up
 
 	if (state == 1) {
 
@@ -302,10 +333,10 @@ Hotkey_Up(state) {
 			UpdateEventLog("Up Pressed")
 		}
 		
-		Send {Blind}{Up Down}
+		Send {Up Down}
 
 	} else {
-		Send {Blind}{Up Up}
+		Send {Up Up}
 
 		keyPressed_Up = 0
 		if (m_EventLog.active) {
@@ -314,8 +345,10 @@ Hotkey_Up(state) {
 	}
 }
 
-
+; not used?
 Hotkey_Down(state) {
+
+	global keyPressed_Down
 
 	if (state == 1) {
 
@@ -324,11 +357,11 @@ Hotkey_Down(state) {
 			UpdateEventLog("Down Pressed")
 		}
 		
-		Send {Blind}{Down Down}
+		Send {Down Down}
 
 	} else {
 
-		Send {Blind}{Down Up}
+		Send {Down Up}
 
 		keyPressed_Down = 0
 		if (m_EventLog.active) {
@@ -337,8 +370,11 @@ Hotkey_Down(state) {
 	}		
 }
 
+; not used?
 Hotkey_Left(state) {
 
+	global keyPressed_Left
+	
 	if (state == 1) {
 
 		keyPressed_Left = 1
@@ -346,11 +382,11 @@ Hotkey_Left(state) {
 			UpdateEventLog("Left Pressed")
 		}
 		
-		Send {Blind}{Left Down}
+		Send {Left Down}
 
 	} else {
 
-		Send {Blind}{Left Up}
+		Send {Left Up}
 
 		keyPressed_Left = 0
 		if (m_EventLog.active) {
@@ -359,7 +395,10 @@ Hotkey_Left(state) {
 	}
 }
 
+; not used?
 Hotkey_Right(state) {
+
+	global keyPressed_Right
 
 	if (state == 1) {
 
@@ -368,11 +407,11 @@ Hotkey_Right(state) {
 			UpdateEventLog("Right Pressed")
 		}
 		
-		Send {Blind}{Right Down}
+		Send {Right Down}
 
 	} else {
 
-		Send {Blind}{Right Up}
+		Send {Right Up}
 
 		keyPressed_Right = 0
 		if (m_EventLog.active) {

@@ -1,4 +1,4 @@
-Global 	DisplacedGridVersion			:= "v2.1.0"
+Global 	DisplacedGridVersion			:= "v2.2.0"
 
 Global 	winName 						:= "" ; "Warcraft III"				; Warcraft III window name. Moved to settings.ini (v2.1.0)
 Global 	winClass 						:= "" ; "ahk_class OsWindow" 		; Warcraft III class name, as seen in WindowSpy of AutoHotkey. Moved to settings.ini (v2.1.0)
@@ -14,7 +14,7 @@ Global 	error_warcraftNotFound 			:= "Warcraft III not found!"
 
 Global 	a_Layouts 						:= {}
 Global 	LayoutMap 						:= {}
-Global 	currentLayout					:= "DisplacedGrid"
+Global 	currentLayout					:=
 Global 	layoutName						:=
 Global 	hotkeysRemapped					:=
 Global 	DisplacedGrid_logoOn = 
@@ -30,6 +30,7 @@ Global 	activateHotkeys 				:=
 Global 	Hotkey_Toggle_CurrentLayout		:=
 Global 	Hotkey_ScriptReload				:=
 Global 	Hotkey_OpenSettings				:=
+Global 	Hotkey_EnterAndToggleLayout				:=
 
 ; --- quickcast ?  ---
 Global 	m_AbilityQuickcast 				:= {}

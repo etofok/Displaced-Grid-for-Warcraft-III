@@ -19,6 +19,7 @@ ReadSettingsFromIni() {
     IniRead, Hotkey_Toggle_CurrentLayout, %SettingsIniFile%, General, Hotkey_Toggle_CurrentLayout
     IniRead, Hotkey_ScriptReload, %SettingsIniFile%, General, Hotkey_ScriptReload
     IniRead, Hotkey_OpenSettings, %SettingsIniFile%, General, Hotkey_OpenSettings
+    IniRead, Hotkey_EnterAndToggleLayout, %SettingsIniFile%, General, Hotkey_EnterAndToggleLayout
 
     ; --- [Modules] ---
     IniRead, temp, %SettingsIniFile%, Modules, m_AbilityQuickcast.enabled
@@ -214,7 +215,7 @@ SettingsGUI() {
     ; --- Tab 2 Unified Orders ---
     Gui, gui_Settings: Tab, 2
     Gui, gui_Settings: Add, Text, x90 y80, Check control groups for Unified Orders
-    Gui, gui_Settings: Add, Text, x90 y110, Modifier Key: CapsLock
+    Gui, gui_Settings: Add, Text, x90 y110, Modifier Key: [CapsLock]
 
     ; [UnifiedOrders]
     Global GUI_ControlGroup1_unifiedOrders := ControlGroup1.unifiedOrders
@@ -407,10 +408,15 @@ SettingsGUI() {
     Global GUI_Hotkey_Toggle_CurrentLayout      := Hotkey_Toggle_CurrentLayout
     Global GUI_Hotkey_ScriptReload              := Hotkey_ScriptReload
     Global GUI_Hotkey_OpenSettings              := Hotkey_OpenSettings
+    Global GUI_Hotkey_EnterAndToggleLayout      := Hotkey_EnterAndToggleLayout
 
     label_GUI_Hotkey_Toggle_CurrentLayout := ReplaceModifiers(GUI_Hotkey_Toggle_CurrentLayout)
-    Gui, gui_Settings: Add, Text, x90 y110, Toggle Layout:
-    Gui, gui_Settings: Add, Button, x235 y110 w120 h25 vGUI_Hotkey_Toggle_CurrentLayout gDynamicHotkey_Prompt_ToggleLayout, %label_GUI_Hotkey_Toggle_CurrentLayout%
+    Gui, gui_Settings: Add, Text, x90 y80, Toggle Layout:
+    Gui, gui_Settings: Add, Button, x235 y80 w120 h25 vGUI_Hotkey_Toggle_CurrentLayout gDynamicHotkey_Prompt_ToggleLayout, %label_GUI_Hotkey_Toggle_CurrentLayout%
+
+    label_GUI_Hotkey_EnterAndToggleLayout := ReplaceModifiers(GUI_Hotkey_EnterAndToggleLayout)
+    Gui, gui_Settings: Add, Text, x90 y110, Toggle && Enter:
+    Gui, gui_Settings: Add, Button, x235 y110 w120 h25 vGUI_Hotkey_EnterAndToggleLayout gDynamicHotkey_Prompt_EnterAndToggleLayout, %label_GUI_Hotkey_EnterAndToggleLayout%
 
     label_GUI_Hotkey_ScriptReload := ReplaceModifiers(GUI_Hotkey_ScriptReload)
     Gui, gui_Settings: Add, Text, x90 y140, App Reload:
@@ -450,8 +456,8 @@ ButtonSave() {
     global SettingsIniFile
        
     ; ---
-    global currentLayout, ActivateHotkeysOnLaunch, EnableHotkeyOverlay, Hotkey_Toggle_CurrentLayout, Hotkey_ScriptReload, Hotkey_OpenSettings
-    global GUI_currentLayout, GUI_a_Layouts_list, GUI_ActivateHotkeysOnLaunch, GUI_EnableHotkeyOverlay, GUI_Hotkey_Toggle_CurrentLayout, GUI_Hotkey_ScriptReload, GUI_Hotkey_OpenSettings
+    global currentLayout, ActivateHotkeysOnLaunch, EnableHotkeyOverlay, Hotkey_Toggle_CurrentLayout, Hotkey_ScriptReload, Hotkey_OpenSettings, Hotkey_EnterAndToggleLayout
+    global GUI_currentLayout, GUI_a_Layouts_list, GUI_ActivateHotkeysOnLaunch, GUI_EnableHotkeyOverlay, GUI_Hotkey_Toggle_CurrentLayout, GUI_Hotkey_ScriptReload, GUI_Hotkey_OpenSettings, GUI_Hotkey_EnterAndToggleLayout
 
     ; -------------------------------------    
     currentLayout                                           := GUI_a_Layouts_list
@@ -461,14 +467,19 @@ ButtonSave() {
     ActivateHotkeysOnLaunch                                 := GUI_ActivateHotkeysOnLaunch
     IniWrite, %ActivateHotkeysOnLaunch%,                    %SettingsIniFile%, General, ActivateHotkeysOnLaunch
     
-    EnableHotkeyOverlay                                 := GUI_EnableHotkeyOverlay
-    IniWrite, %EnableHotkeyOverlay%,                    %SettingsIniFile%, General, EnableHotkeyOverlay
+    EnableHotkeyOverlay                                     := GUI_EnableHotkeyOverlay
+    IniWrite, %EnableHotkeyOverlay%,                        %SettingsIniFile%, General, EnableHotkeyOverlay
     
     ; -------------------------------------
     Hotkey_Toggle_CurrentLayout                             := GUI_Hotkey_Toggle_CurrentLayout
     IniWrite, %GUI_Hotkey_Toggle_CurrentLayout%,            %SettingsIniFile%, General, Hotkey_Toggle_CurrentLayout
     Hotkey, %Hotkey_Toggle_CurrentLayout%,                  Toggle_CurrentLayout,       UseErrorLevel
-
+    
+    ; -------------------------------------
+    Hotkey_EnterAndToggleLayout                                      := GUI_Hotkey_EnterAndToggleLayout
+    IniWrite, %GUI_Hotkey_EnterAndToggleLayout%,                     %SettingsIniFile%, General, Hotkey_EnterAndToggleLayout
+    Hotkey, %Hotkey_EnterAndToggleLayout%,                           EnterAndToggleLayout,               UseErrorLevel
+    
     ; -------------------------------------
     Hotkey_ScriptReload                                     := GUI_Hotkey_ScriptReload
     IniWrite, %GUI_Hotkey_ScriptReload%,                    %SettingsIniFile%, General, Hotkey_ScriptReload
@@ -478,7 +489,7 @@ ButtonSave() {
     Hotkey_OpenSettings                                     := GUI_Hotkey_OpenSettings
     IniWrite, %GUI_Hotkey_OpenSettings%,                    %SettingsIniFile%, General, Hotkey_OpenSettings
     Hotkey, %Hotkey_OpenSettings%,                          OpenSettings,               UseErrorLevel
-    
+
    ; -------------------------------------
   
     Global GUI_m_AbilityQuickcast_enabled
@@ -690,6 +701,7 @@ ButtonSave() {
     GuiControlGet, Hotkey_Toggle_CurrentLayout, gui_Settings:, GUI_Hotkey_Toggle_CurrentLayout
     GuiControlGet, Hotkey_ScriptReload, gui_Settings:, GUI_Hotkey_ScriptReload
     GuiControlGet, Hotkey_OpenSettings, gui_Settings:, GUI_Hotkey_OpenSettings
+    GuiControlGet, Hotkey_EnterAndToggleLayout, gui_Settings:, GUI_Hotkey_EnterAndToggleLayout
 
     ; ----------------------------------
     Gui, gui_Settings: Destroy

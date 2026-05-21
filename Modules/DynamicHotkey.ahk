@@ -6,8 +6,8 @@ DynamicHotkey_Prompt(gLabel) {
 
     Suspend, On
     Gui, HotkeyPrompt:New, +ToolWindow -Caption +AlwaysOnTop
-    Gui, HotkeyPrompt:Font, S10 Bold, Arial
-    Gui, HotkeyPrompt:Add, Text,, Press any key...
+    Gui, HotkeyPrompt:Font, S14 Bold, Arial
+    Gui, HotkeyPrompt:Add, Text,, Press key to set Hotkey...
     Gui, HotkeyPrompt:Show, Center AutoSize
 
     SetTimer, _WatchForKeyPress, 10
@@ -18,8 +18,8 @@ DynamicHotkey_Capture(capturedKey) {
     global SettingsIniFile
        
     ; ---
-    global Hotkey_Toggle_CurrentLayout, Hotkey_ScriptReload, Hotkey_OpenSettings
-    global GUI_Hotkey_Toggle_CurrentLayout, GUI_Hotkey_ScriptReload, GUI_Hotkey_OpenSettings
+    global Hotkey_Toggle_CurrentLayout, Hotkey_ScriptReload, Hotkey_OpenSettings, Hotkey_EnterAndToggleLayout
+    global GUI_Hotkey_Toggle_CurrentLayout, GUI_Hotkey_ScriptReload, GUI_Hotkey_OpenSettings, GUI_Hotkey_EnterAndToggleLayout
 
     FinalHotkey := ""
 
@@ -54,13 +54,16 @@ DynamicHotkey_Capture(capturedKey) {
         Case "GUI_Hotkey_ScriptReload":
             GUI_Hotkey_ScriptReload := FinalHotkey
         Case "GUI_Hotkey_OpenSettings":
-            GUI_Hotkey_OpenSettings := FinalHotkey
+            GUI_Hotkey_OpenSettings := FinalHotkey        
+        Case "GUI_Hotkey_EnterAndToggleLayout":
+            GUI_Hotkey_EnterAndToggleLayout := FinalHotkey
     }
 
 
 
 
     ; save immediately on change
+
     ; -------------------------------------    
     IniWrite, %GUI_Hotkey_Toggle_CurrentLayout%,            %SettingsIniFile%, General, Hotkey_Toggle_CurrentLayout
     Hotkey, %Hotkey_Toggle_CurrentLayout%,                  Toggle_CurrentLayout,       UseErrorLevel
@@ -68,11 +71,15 @@ DynamicHotkey_Capture(capturedKey) {
     Hotkey_ScriptReload                                     := GUI_Hotkey_ScriptReload
     IniWrite, %GUI_Hotkey_ScriptReload%,                    %SettingsIniFile%, General, Hotkey_ScriptReload
     Hotkey, %Hotkey_ScriptReload%,                          ScriptReload,               On
-
     ; -------------------------------------
     Hotkey_OpenSettings                                     := GUI_Hotkey_OpenSettings
     IniWrite, %GUI_Hotkey_OpenSettings%,                    %SettingsIniFile%, General, Hotkey_OpenSettings
     Hotkey, %Hotkey_OpenSettings%,                          OpenSettings,               UseErrorLevel
+    ; -------------------------------------
+    Hotkey_EnterAndToggleLayout                                      := GUI_Hotkey_EnterAndToggleLayout
+    IniWrite, %GUI_Hotkey_EnterAndToggleLayout%,                     %SettingsIniFile%, General, Hotkey_EnterAndToggleLayout
+    Hotkey, %Hotkey_EnterAndToggleLayout%,                           EnterAndToggleLayout,               UseErrorLevel
+    ; -------------------------------------
 
 
     ; Update GUI
@@ -107,4 +114,8 @@ DynamicHotkey_Prompt_ScriptReload() {
 
 DynamicHotkey_Prompt_OpenSettings() {
     DynamicHotkey_Prompt("GUI_Hotkey_OpenSettings")
+}
+
+DynamicHotkey_Prompt_EnterAndToggleLayout() {
+    DynamicHotkey_Prompt("GUI_Hotkey_EnterAndToggleLayout")
 }
